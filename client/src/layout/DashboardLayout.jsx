@@ -25,7 +25,9 @@ const DashboardLayout = () => {
       <div className="mainContent">
         <Navbar toggleSidebar={toggleSidebar} />
 
-        <div className="pageContent">{welcomePageContent ?? <h2>Welcome to Dashboard</h2>}</div>
+        <div className="pageContent">
+          {welcomePageContent ?? <h2>Welcome to Dashboard</h2>}
+        </div>
       </div>
     </div>
   );
