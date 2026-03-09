@@ -1,29 +1,20 @@
-<<<<<<< HEAD
-const express = require("express")
-const cors=require('cors')
-const app = express()
-app.use(cors())
-app.get('/', (req, res) =>{
-    res.send("Server Started")
-})
 
-app.listen(5000, () =>{
-    console.log("Server is running")
-})
-=======
 const express = require("express");
+
 const mongoose = require("mongoose");
 const cors = require("cors");
-const router = require("./Routes/customerRoutes");
 require("dotenv").config();
+
+const customerRoutes = require("./routes/customerRoutes");
 
 const app = express();
 
-app.use(cors())
+app.use(cors());
 app.use(express.json());
-app.use("/api", router);
 
-mongoose.connect(process.env.DB_URL)
+// MongoDB Connection
+mongoose
+  .connect(process.env.DB_URL)
   .then(() => console.log("MongoDB Connected"))
   .catch(() => console.log("DB Error"));
 
@@ -31,9 +22,11 @@ app.get("/", (req, res) => {
   res.send("Server Started");
 });
 
+// Base API URL
+app.use("/api", customerRoutes);
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
->>>>>>> f94793a80307a0d8289a1cdbd2d44488269b1eea
