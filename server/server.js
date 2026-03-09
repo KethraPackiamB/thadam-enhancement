@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+const express = require("express")
+const cors=require('cors')
+const app = express()
+app.use(cors())
+app.get('/', (req, res) =>{
+    res.send("Server Started")
+})
+
+app.listen(5000, () =>{
+    console.log("Server is running")
+})
+=======
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -23,3 +36,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+>>>>>>> f94793a80307a0d8289a1cdbd2d44488269b1eea
