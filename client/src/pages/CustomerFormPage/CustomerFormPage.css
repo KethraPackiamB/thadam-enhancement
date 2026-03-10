@@ -1,0 +1,28 @@
+.card-container{
+  background-color: #eef2ff;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.form-group label {
+  text-align: start;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: rgb(255, 255, 255);
+  color: #000;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: brightness(0);
+}
