@@ -1,8 +1,7 @@
 const Customer = require("../models/customer");
-<<<<<<< delete-customer-api
 const mongoose = require("mongoose");
 
-const deleteCustomer = async (req, res) => {
+exports.deleteCustomer = async (req, res) => {
   try {
     const id = req.params.id;
 
@@ -48,8 +47,7 @@ const deleteCustomer = async (req, res) => {
   }
 };
 
-module.exports = { deleteCustomer };
-=======
+
 
 exports.updateCustomer = async (req, res) => {
     try{
@@ -68,4 +66,3 @@ exports.updateCustomer = async (req, res) => {
         res.status(500).json({message: "error.message"})
     }
 }
->>>>>>> main

@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import { WelcomeMessageContext } from "./context/WelcomeMessageContext";
 import DashboardLayout from "./layout/DashboardLayout";
-import WelcomeMessage from "./pages/dashboard/WelcomeMessage";
+
 import CustomerTable from "./components/table/CustomerTable";
 import { CustomerContextProvider } from "./context/CustomerTableContext";
 
@@ -13,7 +13,8 @@ import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
-    <div>
+<>
+<div>
     <WelcomeMessageContext>
       <DashboardLayout />
       <WelcomeMessage />
@@ -21,7 +22,8 @@ function App() {
      <CustomerContextProvider>
         <CustomerTable/>
     </CustomerContextProvider>
-    </div>
+    
+    
     {/* <WelcomeMessageContext>
       <DashboardLayout />
       <WelcomeMessage />
@@ -30,6 +32,9 @@ function App() {
    <AppRoutes/>
    </BrowserRouter>
     </div>
+
+</>
+    
    
   );
 }
