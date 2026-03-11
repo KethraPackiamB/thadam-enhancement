@@ -7,9 +7,16 @@ import {
 } from "@tanstack/react-table";
 import { useMemo, useState, useContext } from "react";
 import { CustomerTableContext } from "../../context/CustomerTableContext";
+import { useNavigate } from "react-router-dom";
 
 const CustomerTable = () => {
   const { customers } = useContext(CustomerTableContext);
+
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate('/add-customer');
+  }
 
   const data = useMemo(() => customers, []);
 
@@ -76,7 +83,7 @@ const CustomerTable = () => {
   };
 
   return (
-    <div className="container mt-3">
+    <div className="container-fluid mt-3">
       <div className="d-flex justify-content-end gap-3 p-2 size-sm">
         <input
           type="text"
@@ -84,7 +91,7 @@ const CustomerTable = () => {
           onChange={(e) => setFiltering(e.target.value)}
           placeholder="Search"
         />
-        <button className="btn btn-primary "><i className="fa-solid fa-plus"></i> Add Customer</button>
+        <button className="btn btn-primary" onClick={handleNavigate}><i className="fa-solid fa-plus"></i> Add Customer</button>
       </div>
       <div className="border p-3">
         <table className="table table-hover">
