@@ -55,20 +55,7 @@
   z-index: 900;
 }
 
-.layout {
-  display: flex;
-  min-height: 100vh;
-}
 
-.mainContent {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.pageContent {
-  padding: 20px;
-}
 
 @media (max-width: 1024px) {
   .sidebar {

@@ -1,12 +1,11 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
 import Navbar from "../components/navbar/Navbar";
 import Sidebar from "../components/Sidebar/Sidebar";
-import { messageContext } from "../context/WelcomeMessageContext";
 import "./DashboardLayout.css";
-import CustomerTable from "../components/table/CustomerTable";
+import { Logout } from "../components/logOutHandling/LogoutHandling";
 
 const DashboardLayout = () => {
-  const { welcomePageContent } = useContext(messageContext);
   const [open, setOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -19,7 +18,7 @@ const DashboardLayout = () => {
 
   return (
     <div className="layout">
-      <Sidebar open={open} />
+      <Sidebar open={open} handleLogout={Logout} />
 
       {open && <div className="overlay" onClick={closeSidebar}></div>}
 
@@ -27,8 +26,7 @@ const DashboardLayout = () => {
         <Navbar toggleSidebar={toggleSidebar} />
 
         <div className="pageContent">
-          {welcomePageContent ?? <h2>Welcome to Dashboard</h2>}
-          <CustomerTable/>
+          <Outlet />
         </div>
       </div>
     </div>

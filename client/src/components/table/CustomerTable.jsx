@@ -7,16 +7,9 @@ import {
 } from "@tanstack/react-table";
 import { useMemo, useState, useContext } from "react";
 import { CustomerTableContext } from "../../context/CustomerTableContext";
-import { useNavigate } from "react-router-dom";
 
 const CustomerTable = () => {
   const { customers } = useContext(CustomerTableContext);
-
-  const navigate = useNavigate();
-
-  const handleNavigate = () => {
-    navigate('/add-customer');
-  }
 
   const data = useMemo(() => customers, []);
 
@@ -48,10 +41,16 @@ const CustomerTable = () => {
 
         return (
           <div className="d-flex gap-2">
-            <button className="btn btn-sm btn-warning" onClick={() => handleEdit(customer)}>
+            <button
+              className="btn btn-sm btn-warning"
+              onClick={() => handleEdit(customer)}
+            >
               <i className="fa-regular fa-pen-to-square"></i>
             </button>
-            <button className="btn btn-sm btn-danger" onClick={() => handleDelete(customer.id)}>
+            <button
+              className="btn btn-sm btn-danger"
+              onClick={() => handleDelete(customer.id)}
+            >
               <i className="fa-regular fa-trash-can"></i>
             </button>
           </div>
@@ -83,7 +82,7 @@ const CustomerTable = () => {
   };
 
   return (
-    <div className="container-fluid mt-3">
+    <div className="container mt-3">
       <div className="d-flex justify-content-end gap-3 p-2 size-sm">
         <input
           type="text"
@@ -91,7 +90,9 @@ const CustomerTable = () => {
           onChange={(e) => setFiltering(e.target.value)}
           placeholder="Search"
         />
-        <button className="btn btn-primary" onClick={handleNavigate}><i className="fa-solid fa-plus"></i> Add Customer</button>
+        <button className="btn btn-primary ">
+          <i className="fa-solid fa-plus"></i> Add Customer
+        </button>
       </div>
       <div className="border p-3">
         <table className="table table-hover">
@@ -122,10 +123,32 @@ const CustomerTable = () => {
         </table>
       </div>
       <div className="my-2">
-        <button className="btn btn-outline-secondary btn-sm" onClick={() => table.setPageIndex(0)}>First Page</button>
-        <button className="btn btn-outline-secondary btn-sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Previous Page</button>
-        <button className="btn btn-outline-secondary btn-sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next Page</button>
-        <button className="btn btn-outline-secondary btn-sm" onClick={() => table.setPageIndex(table.getPageCount() - 1)}>Last Page</button>
+        <button
+          className="btn btn-outline-secondary btn-sm"
+          onClick={() => table.setPageIndex(0)}
+        >
+          First Page
+        </button>
+        <button
+          className="btn btn-outline-secondary btn-sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          Previous Page
+        </button>
+        <button
+          className="btn btn-outline-secondary btn-sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Next Page
+        </button>
+        <button
+          className="btn btn-outline-secondary btn-sm"
+          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+        >
+          Last Page
+        </button>
       </div>
     </div>
   );
