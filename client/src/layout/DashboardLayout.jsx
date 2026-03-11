@@ -3,6 +3,7 @@ import Navbar from "../components/navbar/Navbar";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { messageContext } from "../context/WelcomeMessageContext";
 import "./DashboardLayout.css";
+import CustomerTable from "../components/table/CustomerTable";
 
 const DashboardLayout = () => {
   const { welcomePageContent } = useContext(messageContext);
@@ -27,6 +28,7 @@ const DashboardLayout = () => {
 
         <div className="pageContent">
           {welcomePageContent ?? <h2>Welcome to Dashboard</h2>}
+          <CustomerTable/>
         </div>
       </div>
     </div>
