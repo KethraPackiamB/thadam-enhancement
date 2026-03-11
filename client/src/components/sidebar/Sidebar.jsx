@@ -1,19 +1,17 @@
 import "./Sidebar.css";
 import thadam from "../../assets/thadamLogo.svg";
 
-const Sidebar = ({ open }) => {
+const Sidebar = ({ open, handleLogout }) => {
   return (
     <div className={`sidebar ${open ? "active" : ""}`}>
-      <div>
-        <img className="logo" src={thadam} alt="logo" />
-      </div>
+      <img className="logo" src={thadam} alt="logo" />
 
       <nav className="menu">
         <p>Dashboard</p>
       </nav>
 
       <div className="logout">
-        <p>Logout</p>
+        <button onClick={handleLogout}>Logout</button>
       </div>
     </div>
   );

@@ -1,14 +1,13 @@
-import { useState } from "react";
-import { createContext } from "react";
+import { useState, createContext } from "react";
 
 export const messageContext = createContext();
 
 export const WelcomeMessageContext = ({ children }) => {
-  const [welcomePageContent, setWelcomePageContent] = useState(null);
+  const [welcomeMessage, setWelcomeMessage] = useState("");
 
   return (
     <messageContext.Provider
-      value={{ welcomePageContent, setWelcomePageContent }}
+      value={{ welcomeMessage, setWelcomeMessage }}
     >
       {children}
     </messageContext.Provider>

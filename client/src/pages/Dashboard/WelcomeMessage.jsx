@@ -1,20 +1,33 @@
 import { useEffect, useContext } from "react";
 import { messageContext } from "../../context/WelcomeMessageContext";
+import CustomerTable from "../../components/table/CustomerTable";
+
 import "./WelcomeMessage.css";
 
 const WelcomeMessage = () => {
-  const { setWelcomePageContent } = useContext(messageContext);
+  const name = localStorage.getItem("name") ?? "Guest";
+  const { setWelcomeMessage } = useContext(messageContext);
 
   useEffect(() => {
-    setWelcomePageContent(
-      <div className="welcomeMessage">
-        <h1>Admin Dashboard</h1>
-        <p>Welcome back, Admin </p>
-      </div>,
-    );
+    setWelcomeMessage(`Welcome back, ${name}`);
   }, []);
 
-  return null;
+  return (
+   <>
+    <div className="welcomeMessage">
+      <h1>{name}'s Dashboard</h1>
+      <p>Welcome back, {name}</p>
+
+
+    </div>
+    <div>
+
+      <CustomerTable/>
+    </div>
+   
+   
+   </>
+  );
 };
 
 export default WelcomeMessage;
