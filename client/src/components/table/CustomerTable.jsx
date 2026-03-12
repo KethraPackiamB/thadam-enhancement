@@ -6,10 +6,17 @@ import {
   getFilteredRowModel,
 } from "@tanstack/react-table";
 import { useMemo, useState, useContext } from "react";
+import { useNavigate } from 'react-router-dom';
 import { CustomerTableContext } from "../../context/CustomerTableContext";
 
 const CustomerTable = () => {
   const { customers } = useContext(CustomerTableContext);
+
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate('/add-customer-form')
+  }
 
   const data = useMemo(() => customers, []);
 
@@ -85,12 +92,12 @@ const CustomerTable = () => {
     <div className="container mt-3">
       <div className="d-flex justify-content-end gap-3 p-2 size-sm">
         <input
-          type="text"
+          type="search"
           value={filtering}
           onChange={(e) => setFiltering(e.target.value)}
           placeholder="Search"
         />
-        <button className="btn btn-primary ">
+        <button className="btn btn-primary " onClick={handleNavigate}>
           <i className="fa-solid fa-plus"></i> Add Customer
         </button>
       </div>

@@ -5,7 +5,7 @@ const Button = () => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate('/')
+    navigate('/dashboard')
   }
   return (
     <>

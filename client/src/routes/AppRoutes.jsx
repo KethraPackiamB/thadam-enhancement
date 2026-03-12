@@ -4,6 +4,7 @@ import WelcomeMessage from "../pages/Dashboard/WelcomeMessage";
 import CustomerTable from "../components/table/CustomerTable";
 import { LandingPage } from "../pages/landingPage/LandingPage";
 import AuthDetailsPage from "../auth/AuthDetails";
+import CustomerFormPage from "../pages/CustomerFormPage/CustomerFormPage";
 
 const AppRoutes = () => {
   return (
@@ -15,7 +16,9 @@ const AppRoutes = () => {
       <Route path="/dashboard" element={<DashboardLayout />}>
         <Route index element={<WelcomeMessage />} />
         <Route path="customers" element={<CustomerTable />} />
-      </Route>
+       
+    </Route>
+       <Route path="/add-customer-form" element={<CustomerFormPage/>}></Route>
     </Routes>
   );
 };
