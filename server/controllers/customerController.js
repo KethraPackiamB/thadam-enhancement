@@ -45,11 +45,11 @@ const getCustomerById = async (req, res) => {
 const deleteCustomer = async (req, res) => {
   try {
     const id = req.params.id;
+    const userId = req.user.id;
 
     if (!id) {
       return res.status(400).json({
         success: false,
-        status: "error",
         message: "Customer ID is required",
       });
     }
@@ -57,38 +57,45 @@ const deleteCustomer = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({
         success: false,
-        status: "error",
         message: "Invalid Customer ID",
       });
     }
 
+<<<<<<< HEAD
     const deletedCustomer = await Customer.findOneAndDelete({ _id: id, createdBy: req.userId });
+=======
+    const deletedCustomer = await Customer.findOneAndDelete({
+      _id: id,
+      createdBy: userId,
+    });
+>>>>>>> 04ff348f1497219299a61b9645397cc7623431e7
 
     if (!deletedCustomer) {
       return res.status(404).json({
         success: false,
-        status: "error",
-        message: "Customer not found",
+        message: "Customer not found or you are not authorized",
       });
     }
 
     res.status(200).json({
       success: true,
-      status: "success",
       message: "Customer deleted successfully",
       data: deletedCustomer,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      status: "error",
       message: "Server error",
       error: error.message,
     });
   }
 };
+<<<<<<< HEAD
 
 const updateCustomer = async (req, res) => {
+=======
+exports.updateCustomer = async (req, res) => {
+>>>>>>> 04ff348f1497219299a61b9645397cc7623431e7
   try {
     const updatedCustomer = await Customer.findOneAndUpdate(
       { _id: req.params.id, createdBy: req.userId },
