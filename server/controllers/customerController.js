@@ -61,14 +61,11 @@ const deleteCustomer = async (req, res) => {
       });
     }
 
-<<<<<<< HEAD
-    const deletedCustomer = await Customer.findOneAndDelete({ _id: id, createdBy: req.userId });
-=======
     const deletedCustomer = await Customer.findOneAndDelete({
       _id: id,
       createdBy: userId,
     });
->>>>>>> 04ff348f1497219299a61b9645397cc7623431e7
+
 
     if (!deletedCustomer) {
       return res.status(404).json({
@@ -90,12 +87,8 @@ const deleteCustomer = async (req, res) => {
     });
   }
 };
-<<<<<<< HEAD
 
 const updateCustomer = async (req, res) => {
-=======
-exports.updateCustomer = async (req, res) => {
->>>>>>> 04ff348f1497219299a61b9645397cc7623431e7
   try {
     const updatedCustomer = await Customer.findOneAndUpdate(
       { _id: req.params.id, createdBy: req.userId },
