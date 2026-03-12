@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/navbar/Navbar";
 import Sidebar from "../components/Sidebar/Sidebar";
+
 import "./DashboardLayout.css";
 import { Logout } from "../components/logOutHandling/LogoutHandling";
 
@@ -23,7 +23,7 @@ const DashboardLayout = () => {
       {open && <div className="overlay" onClick={closeSidebar}></div>}
 
       <div className="mainContent">
-        <Navbar toggleSidebar={toggleSidebar} />
+        {/* <Navbar toggleSidebar={toggleSidebar} /> */}
 
         <div className="pageContent">
           <Outlet />
