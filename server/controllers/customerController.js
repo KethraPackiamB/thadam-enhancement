@@ -1,6 +1,51 @@
 const Customer = require("../models/customer");
 const mongoose = require("mongoose");
 
+
+const getAllCustomers = async(req, res) => {
+ 
+    try{
+const customers = await Customer.find({});
+    res.json({
+        success : true,
+        message : "got customers data",
+        data : customers
+    })
+} catch(err){
+    res.json({
+        success : false,
+        message : "server error",
+        error : err.message
+    })
+}
+}
+ 
+const getCustomerById = async(req, res) => {
+ 
+    try{
+         const customer = await customer.findById(req.params.id);
+        if(!customer){
+            return res.status(404).json({
+                success : false,
+                message : "Customer not found!"
+            });
+        }
+        res.status(200).json({
+            success : true,
+            data : customer
+        });
+    }
+    catch(err){
+        res.json({
+            success : false,
+            message : "Server Error",
+            error : err.message
+        })
+    }
+}
+ 
+module.exports = {getAllCustomers, getCustomerById};
+
 exports.deleteCustomer = async (req, res) => {
   try {
     const id = req.params.id;
