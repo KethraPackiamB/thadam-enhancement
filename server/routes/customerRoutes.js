@@ -1,18 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const { deleteCustomer } = require("../controllers/customerController");
 const customerController = require("../controllers/customerController");
 const verifyToken = require("../middleware/authMiddleware");
 
 const {
   getAllCustomers,
   getCustomerById,
+  addCustomer,
+  updateCustomer,
+  deleteCustomer,
 } = require("../controllers/customerController");
 
-
-// router.delete("/customers/:id", deleteCustomer);
+router.delete("/customers/:id", verifyToken, deleteCustomer);
 router.get("/customers", verifyToken, getAllCustomers);
 router.get("/customers/:id", verifyToken, getCustomerById);
-// router.put("/customers/:id", customerController.updateCustomer);
-
+router.put("/customers/:id", verifyToken, updateCustomer);
+router.post("/customers", verifyToken, addCustomer);
 module.exports = router;
