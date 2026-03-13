@@ -1,0 +1,9 @@
+.table{
+  font-size:13px;
+  font-family:'Times New Roman', serif;
+}
+
+.table th{
+  font-size:13px;
+  font-weight:600;
+}
