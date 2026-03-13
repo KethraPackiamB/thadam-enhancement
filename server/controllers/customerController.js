@@ -1,14 +1,55 @@
 const Customer = require("../models/customer");
 const mongoose = require("mongoose");
 
-exports.deleteCustomer = async (req, res) => {
+const getAllCustomers = async (req, res) => {
+  try {
+    const customers = await Customer.find({ createdBy: req.userId });
+    res.json({
+      success: true,
+      message: "got customers data",
+      data: customers,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: "server error",
+      error: err.message,
+    });
+  }
+};
+
+const getCustomerById = async (req, res) => {
+  try {
+    const customer = await Customer.findOne({ _id: req.params.id, createdBy: req.userId });
+    if (!customer) {
+      return res.status(404).json({
+        success: false,
+        message: "Customer not found!",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      data: [customer],
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: "Server Error",
+      error: err.message,
+    });
+  }
+};
+
+// module.exports = {getAllCustomers, getCustomerById};
+
+const deleteCustomer = async (req, res) => {
   try {
     const id = req.params.id;
+    const userId = req.user.id;
 
     if (!id) {
       return res.status(400).json({
         success: false,
-        status: "error",
         message: "Customer ID is required",
       });
     }
@@ -16,43 +57,43 @@ exports.deleteCustomer = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({
         success: false,
-        status: "error",
         message: "Invalid Customer ID",
       });
     }
 
-    const deletedCustomer = await Customer.findByIdAndDelete(id);
+    const deletedCustomer = await Customer.findOneAndDelete({
+      _id: id,
+      createdBy: userId,
+    });
+
 
     if (!deletedCustomer) {
       return res.status(404).json({
         success: false,
-        status: "error",
-        message: "Customer not found",
+        message: "Customer not found or you are not authorized",
       });
     }
 
     res.status(200).json({
       success: true,
-      status: "success",
       message: "Customer deleted successfully",
       data: deletedCustomer,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      status: "error",
       message: "Server error",
       error: error.message,
     });
   }
 };
 
-exports.updateCustomer = async (req, res) => {
+const updateCustomer = async (req, res) => {
   try {
-    const updatedCustomer = await Customer.findByIdAndUpdate(
-      req.params.id,
+    const updatedCustomer = await Customer.findOneAndUpdate(
+      { _id: req.params.id, createdBy: req.userId },
       req.body,
-      { new: true },
+      { returnDocument: 'after' } ,
     );
 
     if (!updatedCustomer) {
@@ -63,4 +104,66 @@ exports.updateCustomer = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "error.message" });
   }
+};
+//Add Customer API
+const addCustomer = async (req, res) => {
+  console.log(req.user);
+  console.log(req.user);
+  try {
+    const { firstname, lastname, primaryEmail, primaryContactNo } = req.body;
+    if (!firstname || !lastname || !primaryEmail || !primaryContactNo) {
+      return res.status(400).json({
+        success: false,
+        status: "error",
+        message: "Required fields is missing",
+      });
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(primaryEmail)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid email format",
+      });
+    }
+    const phoneRegex = /^[0-9]{10,15}$/;
+    if (!phoneRegex.test(primaryContactNo)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid phone number",
+      });
+    }
+    const existingCustomer = await Customer.findOne({ primaryEmail });
+    if (existingCustomer) {
+      return res.status(400).json({
+        success: false,
+        status: "error",
+        message: "Customer with this email is already exists",
+      });
+    }
+    const newCustomer = new Customer({
+      ...req.body,
+      createdBy: req.userId,
+    });
+    const savedCustomer = await newCustomer.save();
+    res.status(201).json({
+      success: true,
+      status: "success",
+      message: "Customer created successfully",
+      data: savedCustomer,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      status: "error",
+      message: "Server error",
+      error: error.message,
+    });
+  }
+};
+module.exports = {
+  getAllCustomers,
+  getCustomerById,
+  addCustomer,
+  deleteCustomer,
+  updateCustomer,
 };

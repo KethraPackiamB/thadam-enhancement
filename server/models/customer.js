@@ -36,6 +36,7 @@ const customerSchema = new mongoose.Schema(
     },
     lastContactedDate: { type: Date },
     referredBy: { type: String },
+    createdBy:{type:String,required:true}
   },
   { timestamps: true },
 );
