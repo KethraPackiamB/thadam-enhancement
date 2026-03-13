@@ -1,6 +1,6 @@
 const { WorkOS } = require("@workos-inc/node");
-
 const workos = new WorkOS(process.env.WORKOS_API_KEY);
+const jwt = require("jsonwebtoken");
 
 const verifyToken = async (req, res, next) => {
   try {
@@ -14,20 +14,17 @@ const verifyToken = async (req, res, next) => {
     }
 
     const accessToken = token.replace("Bearer ", "").trim();
+    const decoded = jwt.decode(accessToken);
 
-   
-    const session = await workos.userManagement.getSession({
-      sessionToken: accessToken,
-    });
-
-    if (!session) {
+    if (!decoded || !decoded.sub) {
       return res.status(401).json({
         success: false,
-        message: "Invalid session",
+        message: "Invalid token",
       });
     }
 
-    req.user = session.user;
+    req.user = decoded;
+    req.userId = decoded.sub;
 
     next();
   } catch (error) {
