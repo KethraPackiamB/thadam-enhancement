@@ -1,3 +1,4 @@
+import "./CustomerTable.css"
 import {
   useReactTable,
   getCoreRowModel,
@@ -27,19 +28,19 @@ const CustomerTable = () => {
     },
     {
       header: "Name",
-      accessorFn: (row) => `${row.first_name} ${row.last_name}`,
+      accessorFn: (row) => `${row.firstname} ${row.lastname}`,
     },
     {
       header: "Email",
-      accessorKey: "email",
+      accessorKey: "primaryEmail",
     },
     {
       header: "Designation",
       accessorKey: "designation",
     },
     {
-      header: "Phone",
-      accessorKey: "phone",
+      header: "PhoneNo",
+      accessorKey: "primaryContactNo",
     },
     {
       header: "Actions",
@@ -81,7 +82,7 @@ const CustomerTable = () => {
   });
 
   const handleEdit = (customer) => {
-    console.log("Edit customer:", customer);
+    navigate("/add-customer-form", {state: customer})
   };
 
   const handleDelete = (id) => {
@@ -101,8 +102,9 @@ const CustomerTable = () => {
           <i className="fa-solid fa-plus"></i> Add Customer
         </button>
       </div>
-      <div className="border p-3">
+      <div className="table d-flex flex-column mb-5 table-responsive table-sm">
         <table className="table table-hover">
+          <thead className="border-bottom" style={{ backgroundColor: "#141010ff" }}>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
@@ -115,7 +117,7 @@ const CustomerTable = () => {
               ))}
             </tr>
           ))}
-
+          </thead>
           <tbody>
             {table.getRowModel().rows.map((row) => (
               <tr key={row.id}>
