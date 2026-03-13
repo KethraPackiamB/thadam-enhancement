@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import Sidebar from "../components/Sidebar/Sidebar";
+import Sidebar from "../components/sidebar/Sidebar.jsx";
 
 import "./DashboardLayout.css";
 import { Logout } from "../components/logOutHandling/LogoutHandling";
@@ -8,9 +8,9 @@ import { Logout } from "../components/logOutHandling/LogoutHandling";
 const DashboardLayout = () => {
   const [open, setOpen] = useState(false);
 
-  const toggleSidebar = () => {
-    setOpen((prev) => !prev);
-  };
+  // const toggleSidebar = () => {
+  //   setOpen((prev) => !prev);
+  // };
 
   const closeSidebar = () => {
     setOpen(false);

@@ -5,10 +5,10 @@ const PersonalDetails = ({ register, errors }) => {
         <label>First Name : </label>
         <input
           type="text"
-          {...register("firstName", { required: "First name is required" })}
+          {...register("firstname", { required: "First name is required" })}
         />
-        {errors.firstName && (
-          <p style={{ color: "red" }}>{errors.firstName.message}</p>
+        {errors.firstname && (
+          <p style={{ color: "red" }}>{errors.firstname.message}</p>
         )}
       </div>
 
@@ -16,10 +16,10 @@ const PersonalDetails = ({ register, errors }) => {
         <label>Last Name : </label>
         <input
           type="text"
-          {...register("lastName", { required: "Last name is required" })}
+          {...register("lastname", { required: "Last name is required" })}
         />
-        {errors.lastName && (
-          <p style={{ color: "red" }}>{errors.lastName.message}</p>
+        {errors.lastname && (
+          <p style={{ color: "red" }}>{errors.lastname.message}</p>
         )}
       </div>
 
@@ -28,10 +28,10 @@ const PersonalDetails = ({ register, errors }) => {
         <input
           type="file"
           accept="image/*"
-          {...register("profileImage", { required: "Image is required" })}
+          {...register("profilePicture")}
         />
-        {errors.profileImage && (
-          <p style={{ color: "red" }}>{errors.profileImage.message}</p>
+        {errors.profilePicture && (
+          <p style={{ color: "red" }}>{errors.profilePicture.message}</p>
         )}
       </div>
     </div>
