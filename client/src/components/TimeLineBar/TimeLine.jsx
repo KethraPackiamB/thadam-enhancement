@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Timeline.css"
+import "./TimeLine.css"
 import { FaCheckCircle, FaChevronCircleRight, FaRegCircle } from "react-icons/fa";
 
 
