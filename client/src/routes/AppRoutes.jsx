@@ -5,20 +5,34 @@ import CustomerTable from "../components/table/CustomerTable";
 import { LandingPage } from "../pages/landingPage/LandingPage";
 import AuthDetailsPage from "../auth/AuthDetails";
 import CustomerFormPage from "../pages/CustomerFormPage/CustomerFormPage";
+import AuthGuard from "../components/authGuard/AuthGuard";
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<LandingPage />} />
+      
 
-      <Route path="/auth/details" element={<AuthDetailsPage />} />
+      <Route path="/auth/details" element={
+        
+          <AuthDetailsPage />
+        } />
 
-      <Route path="/dashboard" element={<DashboardLayout />}>
+      <Route path="/" element={
+        <AuthGuard>
+           <DashboardLayout />
+        </AuthGuard>
+       
+        }>
         <Route index element={<WelcomeMessage />} />
         <Route path="customers" element={<CustomerTable />} />
        
     </Route>
-       <Route path="/add-customer-form" element={<CustomerFormPage/>}></Route>
+       <Route path="/add-customer-form" element={
+        <AuthGuard>
+          <CustomerFormPage/>
+        </AuthGuard>}/>
+    
     </Routes>
   );
 };

@@ -1,8 +1,8 @@
 const Socials = ({ register }) => {
   return (
-    <div className="card border-dark">
-      <h4 className="text-start">Socials - Add your Socialmedia URLs here</h4>
-      <div className="row ms-2">
+    <div>
+     
+      <div className="ms-2">
         <div className="col form-group">
           <label>LinkedIn</label>
           <input type="url" {...register("linkedIn")} />
