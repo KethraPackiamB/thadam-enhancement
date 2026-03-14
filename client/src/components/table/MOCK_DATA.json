@@ -105,7 +105,7 @@
   "lastname": "Brooks",
   "designation": "Frontend Developer",
   "company": "TCS",
-  "role": "Developer",
+  "role": "Lead",
 
   "primaryEmail": "sarahbrooks@gmail.com",
   "secondaryEmail": "sarah.alt@gmail.com",
@@ -113,22 +113,22 @@
  "primaryContactNo": "1234567890",
   "secondaryContactNo": "1234567890",
 
-  
+   "socialMedia":{
     "facebook": "facebook.com/sarahbrooks",
     "linkedIn": "linkedin.com/in/sarahbrooks",
     "twitter": "twitter.com/sarahbrooks",
     "instagram": "instagram.com/sarahbrooks",
-    "youtube": "youtube.com/sarahbrooks",
+    "youtube": "youtube.com/sarahbrooks"},
   
-
+"address": {
  
     "street": "12 Anna Nagar Main Road",
     "city": "Chennai",
     "state": "Tamil Nadu",
     "country": "India",
-    "postCode": "600040",
+    "postCode": "600040"
   
-
+},
  
     "lastContacted": "2026-02-15",
     "referredBy": "John Mathew"

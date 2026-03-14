@@ -14,9 +14,9 @@ const AppRoutes = () => {
       
 
       <Route path="/auth/details" element={
-        <AuthGuard>
+        
           <AuthDetailsPage />
-        </AuthGuard>} />
+        } />
 
       <Route path="/" element={
         <AuthGuard>

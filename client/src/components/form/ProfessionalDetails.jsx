@@ -1,12 +1,18 @@
+const roles = ["Lead","Prospect", "Client", "Partner"]
 const ProfessionalDetails = ({ register, errors }) => {
   return (
     <>
       <div className="form-group">
         <label>Role : </label>
-        <input
-          type="text"
-          {...register("role", { required: "Role is required" })}
-        />
+        <select {...register("role", {required: "Role is required"})} defaultValue= "Prospect"
+         className="form-control">
+          
+          {roles.map((role,index)=>(
+            <option key={index} value={role}>
+              {role}
+            </option>
+          ))}
+        </select>
         {errors.role && <p style={{ color: "red" }}>{errors.role.message}</p>}
       </div>
 

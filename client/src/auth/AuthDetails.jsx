@@ -10,8 +10,9 @@ const AuthDetailsPage = () => {
     localStorage.setItem("token", searchParams.get("accessToken"));
     localStorage.setItem("name", searchParams.get("name"));
 
-    navigate("/dashboard");
+    navigate("/");
   }, []);
+  console.log(searchParams.get("accessToken"))
 
   return <div></div>;
 };

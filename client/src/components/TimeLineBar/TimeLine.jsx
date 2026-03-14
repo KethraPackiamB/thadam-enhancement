@@ -4,7 +4,7 @@ import { FaCheckCircle, FaChevronCircleRight, FaRegCircle } from "react-icons/fa
 
 
 const TimeLine = ({ step }) => {
-    const steps = ["Address", "Contact", "Professional", "Address", "References", "Social"]
+    const steps = ["Personal", "Contact", "Address", "References", "Social"]
     return (
         <div className="timeline-container">
             {steps.map((item, index) => (
