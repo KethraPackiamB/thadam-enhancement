@@ -45,7 +45,7 @@ const getCustomerById = async (req, res) => {
 const deleteCustomer = async (req, res) => {
   try {
     const id = req.params.id;
-    const userId = req.user.id;
+    const userId = req.userId;
 
     if (!id) {
       return res.status(400).json({
@@ -60,7 +60,7 @@ const deleteCustomer = async (req, res) => {
         message: "Invalid Customer ID",
       });
     }
-
+  
     const deletedCustomer = await Customer.findOneAndDelete({
       _id: id,
       createdBy: userId,
