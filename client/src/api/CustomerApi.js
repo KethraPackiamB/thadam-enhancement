@@ -1,6 +1,6 @@
 import axios from "axios";
  
-const API_URL = "http://localhost:5000/api/customers";
+const API_URL = "https://thadam-bsba.onrender.com/api/customers";
  
 const getAuthConfig = () => ({
   headers: {

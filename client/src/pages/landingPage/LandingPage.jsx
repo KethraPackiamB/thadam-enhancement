@@ -1,6 +1,6 @@
  export const LandingPage=()=>{
     const handleLogin = () => {
-    window.location.href = "http://localhost:5000/login";
+    window.location.href = "https://thadam-bsba.onrender.com/login";
   };
     return(
  <button onClick={handleLogin}>
