@@ -46,6 +46,7 @@ export const CustomerContextProvider = ({ children }) => {
           customers,
           isLoading,
           error,
+          totalCustomers:customers.length??0,
           addCustomer: addCustomerMutation.mutate,
           updateCustomer: updateCustomerMutation.mutate,
           deleteCustomer: deleteCustomerMutation.mutate,

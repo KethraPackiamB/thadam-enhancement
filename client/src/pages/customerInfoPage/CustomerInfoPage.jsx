@@ -5,7 +5,7 @@ import CustomerEngagement from "../../components/customer/CustomerEngagement";
 import {getCustomerById} from "../../api/CustomerApi";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-const CustomerDetailPage = () => {
+const CustomerInfoPage= () => {
   const [customer, setCustomer] = useState(null);
   const [error, setError] = useState(null);
   const { id } = useParams();
@@ -62,5 +62,5 @@ const CustomerDetailPage = () => {
     </div>
   );
 };
-export default CustomerDetailPage;
+export default CustomerInfoPage;
 

@@ -1,4 +1,3 @@
-import React from 'react'
 import "./TimeLine.css"
 import { FaCheckCircle, FaChevronCircleRight, FaRegCircle } from "react-icons/fa";
 

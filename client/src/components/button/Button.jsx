@@ -1,13 +1,11 @@
-
-
-const Button = ({type, onClick, buttonText, className}) => {
-
-
+const Button = ({ type, onClick, buttonText, className }) => {
   return (
     <div>
-      <button className={className} type={type} onClick={onClick}>{buttonText}</button>
+      <button className={className} type={type} onClick={onClick}>
+        {buttonText}
+      </button>
     </div>
   );
 };
 
-export default Button
+export default Button;
