@@ -69,56 +69,58 @@ const CustomerFormPage = () => {
     <TimeLine step={step}/>
       {step === 1 && (
         <div>
-          <h4>Personal Information</h4>
+          <h4 className="text-center">Personal Information</h4>
           <PersonalDetails register={register} errors={errors}/>
-          <button type="button" onClick={nextStep}>Next</button>
+            <CompanyDetails register={register} errors={errors} />
+           <ProfessionalDetails register={register} errors={errors}/>
+           <div className="d-flex justify-content-end">
+           <Button type="button" onClick={nextStep} className="btn btn-primary" buttonText="Next"/>
+           </div>
         </div>
       )}
  
       {step === 2 && (
         <div>
-          <h4>Contact Details</h4>
+          <h4 className="text-center">Contact Details</h4>
           <ContactDetails register={register} errors={errors} />
-        <button  type="button" onClick={previousStep}>Previous</button>
-         <button type="button" onClick={nextStep}>Next</button>
+          <div className="mt-3 d-flex align-items-center justify-content-between">
+           <Button type="button" onClick={previousStep} className="btn btn-secondary" buttonText="previous"/>
+           <Button type="button" onClick={nextStep} className="btn btn-primary" buttonText="Next"/>
+           </div>
         </div>
       )}
- 
+
+
+
       {step === 3 && (
         <div>
-          <h4>Professional Information</h4>
-          <CompanyDetails register={register} errors={errors} />
-          <ProfessionalDetails register={register} errors={errors}/>
-          <button type="button" onClick={previousStep}>Previous</button>
-          <button type="button"  onClick={nextStep}>Next</button>
+          <h4 className="text-center">Address Details</h4>
+          <LocationDetails register={register} errors={errors} />
+          <div className="mt-3 d-flex align-items-center justify-content-between">
+           <Button type="button" onClick={previousStep} className="btn btn-secondary" buttonText="previous"/>
+           <Button type="button" onClick={nextStep} className="btn btn-primary" buttonText="Next"/>
+           </div>
         </div>
       )}
- 
+
       {step === 4 && (
         <div>
-          <h4>Address Details</h4>
-          <LocationDetails register={register} errors={errors} />
-          <button type="button" onClick={previousStep}>Previous</button>
-          <button type="button" onClick={nextStep}>Next</button>
+          <h4 className="text-center">References</h4>
+          <EngagementDetails  register={register} errors={errors}/>
+          <div className="mt-3 d-flex align-items-center justify-content-between">
+           <Button type="button" onClick={previousStep} className="btn btn-secondary" buttonText="previous"/>
+           <Button type="button" onClick={nextStep} className="btn btn-primary" buttonText="Next"/>
+           </div>
         </div>
       )}
- 
+
       {step === 5 && (
         <div>
-          <h4>References</h4>
-          <EngagementDetails  register={register} errors={errors}/>
-          <button type="button" onClick={previousStep}>Previous</button>
-          <button type="button" onClick={nextStep} >Next</button>
-        </div>
-      )}
- 
-      {step === 6 && (
-        <div>
-          <h4>Social Media</h4>
+          <h4 className="text-center">Social Media</h4>
           <Socials register={register} errors={errors} />
           <div className="mt-3 gap-2 d-flex align-items-center justify-content-center">
-       <Button type="submit" buttonText={customer ? "Update" : "Add Customer"} />
-          <Button type="" onClick={handleNavigate} buttonText={"Cancel"} />
+          <Button  type="submit" buttonText={customer? "Update" : "Submit"} className = "btn btn-success" />
+          <Button type="" onClick={handleNavigate} buttonText={"Cancel"} className="btn btn-danger"/>
           </div>
         </div>
       )}

@@ -22,18 +22,6 @@ const PersonalDetails = ({ register, errors }) => {
           <p style={{ color: "red" }}>{errors.lastname.message}</p>
         )}
       </div>
-
-      <div className="form-group">
-        <label>Profile Picture : </label>
-        <input
-          type="file"
-          accept="image/*"
-          {...register("profilePicture")}
-        />
-        {errors.profilePicture && (
-          <p style={{ color: "red" }}>{errors.profilePicture.message}</p>
-        )}
-      </div>
     </div>
   );
 };
