@@ -17,10 +17,10 @@ const AppRoutes = () => {
 
       <Route path="/auth/details" element={<AuthDetailsPage />} />
       <Route path="/customer/:id" element={<CustomerDetailPage/>} />
-      <Route path="/auth/details" element={
+      {/* <Route path="/auth/details" element={
         
           <AuthDetailsPage />
-        } />
+        } /> */}
 
       <Route path="/" element={
         <AuthGuard>

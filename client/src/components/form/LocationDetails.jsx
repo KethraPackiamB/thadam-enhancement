@@ -3,34 +3,34 @@ const LocationDetails = ({ register, errors }) => {
     <>
       <div className="form-group">
         <label>Street : </label>
-        <input type="text" {...register("street")} />
+        <input type="text" {...register("address.street")} />
       </div>
       <div className="form-group">
         <label>City : </label>
         <input
           type="text"
-          {...register("city", { required: "City name is required" })}
+          {...register("address.city", { required: "City name is required" })}
         />
-        {errors.city && <p style={{ color: "red" }}>{errors.city.message}</p>}
+        {errors?.addess?.city && <p style={{ color: "red" }}>{errors.addess.city.message}</p>}
       </div>
 
       <div className="form-group">
         <label>State : </label>
         <input
           type="text"
-          {...register("state", { required: "State name is required" })}
+          {...register("address.state", { required: "State name is required" })}
         />
-        {errors.state && <p style={{ color: "red" }}>{errors.state.message}</p>}
+        {errors?.address?.state && <p style={{ color: "red" }}>{errors.address.state.message}</p>}
       </div>
 
       <div className="form-group">
         <label>Country : </label>
         <input
           type="text"
-          {...register("country", { required: "Country name is required" })}
+          {...register("address.country", { required: "Country name is required" })}
         />
-        {errors.country && (
-          <p style={{ color: "red" }}>{errors.country.message}</p>
+        {errors?.address?.country && (
+          <p style={{ color: "red" }}>{errors.address.country.message}</p>
         )}
       </div>
 
@@ -38,10 +38,10 @@ const LocationDetails = ({ register, errors }) => {
         <label>Post Code : </label>
         <input
           type="number"
-          {...register("postCode", { required: "Post Code is required" })}
+          {...register("address.postCode", { required: "Post Code is required" })}
         />
-        {errors.postCode && (
-          <p style={{ color: "red" }}>{errors.postCode.message}</p>
+        {errors?.address?.postCode && (
+          <p style={{ color: "red" }}>{errors.address.postCode.message}</p>
         )}
       </div>
     </>

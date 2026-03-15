@@ -33,6 +33,8 @@ const customerSchema = new mongoose.Schema(
       linkedin: { type: String },
       twitter: { type: String },
       youtube: { type: String },
+      facebook: {type: String},
+      instagram: {type: String},
     },
     lastContactedDate: { type: Date },
     referredBy: { type: String },

@@ -4,15 +4,15 @@ const EngagementDetails = ({ register, errors }) => {
       <div className="col-6 form-group">
         <label> Last Contacted By : </label>
         <input
-          type="date"
-          {...register("lastContacted", {
+          type="date" 
+          {...register("lastContactedDate", {
             required: "Date is required",
             validate: (value) =>
               new Date(value) <= new Date() || "Future date not allowed",
           })}
         />
-        {errors.lastContacted && (
-          <p style={{ color: "red" }}>{errors.lastContacted.message}</p>
+        {errors.lastContactedDate && (
+          <p style={{ color: "red" }}>{errors.lastContactedDate.message}</p>
         )}
       </div>
 

@@ -20,6 +20,7 @@ const CustomerFormPage = () => {
     handleSubmit,
     trigger,
     reset,
+    setValue,
     formState: { errors },
   } = useForm();
  
@@ -30,14 +31,19 @@ const CustomerFormPage = () => {
   const { addCustomer, updateCustomer } = useContext(CustomerTableContext);
  
   const handleNavigate = () => {
-    navigate('/dashboard')
+    navigate('/')
   }
  
-  useEffect(()=>{
-   if(customer){
-     reset(customer)
-   }
-  },[customer,reset])
+useEffect(() => {
+  if (customer) {
+    reset({
+      ...customer,
+      lastContactedDate: customer.lastContactedDate
+        ? customer.lastContactedDate.split("T")[0]
+        : "",
+    });
+  }
+}, [customer, reset]);
  
   const onSubmit = (data) => {
     if (customer) {
@@ -48,7 +54,7 @@ const CustomerFormPage = () => {
   } else {
     addCustomer(data);
   }
-  navigate("/dashboard");
+  navigate("/");
    
   };
  
@@ -106,7 +112,7 @@ const CustomerFormPage = () => {
       {step === 4 && (
         <div>
           <h4 className="text-center">References</h4>
-          <EngagementDetails  register={register} errors={errors}/>
+          <EngagementDetails setValue={setValue}  register={register} errors={errors}/>
           <div className="mt-3 d-flex align-items-center justify-content-between">
            <Button type="button" onClick={previousStep} className="btn btn-secondary" buttonText="previous"/>
            <Button type="button" onClick={nextStep} className="btn btn-primary" buttonText="Next"/>

@@ -4,33 +4,34 @@ import {
   getCoreRowModel,
   flexRender,
   getPaginationRowModel,
-  getFilteredRowModel,
+  // getFilteredRowModel,
 } from "@tanstack/react-table";
-import { useMemo, useState, useContext } from "react";
+import { useMemo, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import { CustomerTableContext } from "../../context/CustomerTableContext";
+// import customer from "../../../../server/models/customer";
 const CustomerTable = () => {
-  const { customers,deleteCustomer} = useContext(CustomerTableContext);
- 
+  const { customers, deleteCustomer, search, setSearch } = useContext(CustomerTableContext);
+
   const navigate = useNavigate();
- 
+
   const handleNavigate = () => {
     navigate('/add-customer-form')
   }
- 
+
   const data = useMemo(() => customers, [customers]);
- 
+
   const columns = [
     {
       header: "profile",
       cell: ({ row }) => {
         const customer = row.original;
 
-        return(
-         <div className="bg-primary text-white d-flex align-items-center justify-content-center rounded-circle"
-     style={{ width: "25px", height: "25px", fontSize: "10px"}}>
-  {customer?.firstname[0] + customer?.lastname[0]}
-</div>
+        return (
+          <div className="bg-primary text-white d-flex align-items-center justify-content-center rounded-circle"
+            style={{ width: "25px", height: "25px", fontSize: "10px" }}>
+            {customer?.firstname[0] + customer?.lastname[0]}
+          </div>
         )
       }
     },
@@ -54,7 +55,7 @@ const CustomerTable = () => {
       header: "Actions",
       cell: ({ row }) => {
         const customer = row.original;
- 
+
         return (
           <div className="d-flex gap-2">
             <button
@@ -71,7 +72,7 @@ const CustomerTable = () => {
             </button>
             <button
               className="btn btn-sm"
-              onClick={()=>handleClick(row)}
+              onClick={() => handleClick(row)}
             >
               <i className="fa-regular fa-eye"></i>
             </button>
@@ -80,25 +81,25 @@ const CustomerTable = () => {
       },
     },
   ];
- 
-  const [filtering, setFiltering] = useState("");
- 
+
+
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    state: {
-      globalFilter: filtering,
-    },
-    onGlobalFilterChange: setFiltering,
+    // getFilteredRowModel: getFilteredRowModel(),
+    // state: {
+    //   globalFilter: filtering,
+    // },
+    // onGlobalFilterChange: setFiltering,
   });
- 
+
   const handleEdit = (customer) => {
-    navigate("/add-customer-form", {state: customer})
+    navigate("/add-customer-form", { state: customer })
   };
- 
+
   const handleDelete = (id) => {
     deleteCustomer(id);
   };
@@ -106,14 +107,16 @@ const CustomerTable = () => {
   const handleClick = (row) => {
     navigate(`/customer/${row.original?._id}`)
   }
- 
+
+  // console.log("customers", customers)
+
   return (
     <div className="container mt-3">
       <div className="d-flex justify-content-end gap-3 p-2 size-sm">
         <input
           type="search"
-          value={filtering}
-          onChange={(e) => setFiltering(e.target.value)}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
           placeholder="Search"
         />
         <button className="btn btn-primary " onClick={handleNavigate}>
@@ -123,18 +126,18 @@ const CustomerTable = () => {
       <div className="table d-flex flex-column mb-5 table-responsive table-sm">
         <table className="table table-hover">
           <thead className="border-bottom" style={{ backgroundColor: "#141010ff" }}>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th key={header.id}>
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext(),
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th key={header.id}>
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext(),
+                    )}
+                  </th>
+                ))}
+              </tr>
+            ))}
           </thead>
           <tbody>
             {table.getRowModel().rows.map((row) => (
@@ -180,5 +183,5 @@ const CustomerTable = () => {
     </div>
   );
 };
- 
+
 export default CustomerTable;

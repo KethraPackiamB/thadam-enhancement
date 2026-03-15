@@ -4,7 +4,7 @@ const ContactDetails = ({ register, errors }) => {
       <div className="form-group">
         <label>Primary Email : </label>
         <input
-          type="email" name="primaryEmail"
+          type="email" autoComplete="email"
           {...register("primaryEmail", {
             required: "Email is required",
             pattern: {
@@ -21,7 +21,7 @@ const ContactDetails = ({ register, errors }) => {
       <div className="form-group">
         <label>Secondary Email : </label>
         <input
-          type="email" name="secondaryEmail"
+          type="email" autoComplete="additional-email"
           {...register("secondaryEmail", {
             pattern: {
               value: /^\S+@\S+\.\S+$/,
