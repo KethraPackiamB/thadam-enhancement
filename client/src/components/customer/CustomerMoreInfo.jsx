@@ -1,19 +1,19 @@
 const CustomerMoreInfo = ({ customer }) => {
   const fieldLeft = [
-    { label: "First Name", value: customer.firstName },
+    { label: "First Name", value: customer.firstname },
     { label: "Primary Email", value: customer.primaryEmail },
-    { label: "Mobile Phone", value: customer.mobilePhone },
-    { label: "Company Name", value: customer.companyName },
-    { label: "Facebook", value: customer.socialMedia.facebook },
-    { label: "Twitter", value: customer.socialMedia.twitter },
+    { label: "Mobile Phone", value: customer.primaryContactNo },
+    { label: "Company Name", value: customer.company },
+    { label: "Facebook", value: customer.socialMedia?.facebook ?? "link not found"},
+    { label: "Twitter", value: customer.socialMedia?.twitter ?? "link not found" },
   ];
   const filedRight = [
-    { label: "Last Name", value: customer.lastName },
+    { label: "Last Name", value: customer.lastname },
     { label: "Secondary Email", value: customer.secondaryEmail },
-    { label: "Secondary Mobile Phone", value: customer.secondaryMobilePhone },
+    { label: "Secondary Mobile Phone", value: customer.secondaryContactNo },
     { label: "Designation", value: customer.designation },
-    { label: "LinkedIn", value: customer.socialMedia.linkedin },
-    { label: "Instagram", value: customer.socialMedia.instagram },
+    { label: "LinkedIn", value: customer.socialMedia?.linkedin ?? "link not found"},
+    { label: "Instagram", value: customer.socialMedia?.instagram ?? "link not found"},
   ];
   return (
     <div className="card h-100 " style={{ backgroundColor: "white"}}>

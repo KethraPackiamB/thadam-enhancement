@@ -20,16 +20,16 @@ const CustomerHeader = ({ customer }) => {
               className="rounded-circle m-3"
               width="130"
               height="130"
-              src={customer.profilePic || noProfile}
+              src={customer?.profilePic || noProfile}
               alt="profilepicture"
             />
           </div>
           <div>
             <h3>
-              {customer.firstName} {customer.lastName}
+              {customer?.firstName} {customer?.lastName}
             </h3>
             <p>
-              {customer.designation} at {customer.companyName}
+              {customer?.designation} at {customer?.company}
             </p>
           </div>
         </div>
@@ -39,15 +39,15 @@ const CustomerHeader = ({ customer }) => {
         <div>
           <p>
             <i className="bi bi-envelope-open-fill pe-2 "></i>
-            {customer.primaryEmail}
+            {customer?.primaryEmail}
           </p>
           <p>
             <i className="bi bi-telephone-fill pe-2"></i>
-            {customer.mobilePhone}
+            {customer?.primaryContactNo}
           </p>
           <p>
             <i className="bi bi-linkedin pe-2"></i>
-            {customer.socialMedia.linkedin}
+            {customer.socialMedia?.linkedin ?? "link not found"}
           </p>
         </div>
       </div>
