@@ -27,25 +27,26 @@ const CustomerFormPage = () => {
   const { addCustomer, updateCustomer } = useContext(CustomerTableContext);
 
   const handleNavigate = () => {
-    navigate("/");
-  };
-
-  useEffect(() => {
-    if (customer) {
-      reset(customer);
-    }
-  }, [customer, reset]);
-
+    navigate('/')
+  }
+ 
+  useEffect(()=>{
+   if(customer){
+     reset(customer)
+   }
+  },[customer,reset])
+ 
   const onSubmit = (data) => {
     if (customer) {
-      updateCustomer({
-        id: customer._id,
-        data,
-      });
-    } else {
-      addCustomer(data);
-    }
-    navigate("/");
+    updateCustomer({
+      id: customer._id,
+      data,
+    });
+  } else {
+    addCustomer(data);
+  }
+  navigate("/");
+   
   };
 
   const nextStep = async () => {
