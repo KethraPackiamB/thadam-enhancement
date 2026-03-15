@@ -4,7 +4,7 @@ const BACKEND_LIVE_BASE_URL= import.meta.env.BACKEND_LIVE_BASE_URL;
 export const LandingPage = () => {
 
   const handleLogin = () => {
-    window.location.href = `${BACKEND_LIVE_BASE_URL}/login"`;
+    window.location.href = `https://thadam-bsba.onrender.com/login`;
   };
 
   return (
