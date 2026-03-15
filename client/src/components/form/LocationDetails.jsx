@@ -1,48 +1,51 @@
 const LocationDetails = ({ register, errors }) => {
   return (
     <>
-      <div className="form-group">
-        <label>Street : </label>
-        <input type="text" {...register("street")} />
-      </div>
-      <div className="form-group">
-        <label>City : </label>
-        <input
-          type="text"
-          {...register("city", { required: "City name is required" })}
-        />
-        {errors.city && <p style={{ color: "red" }}>{errors.city.message}</p>}
-      </div>
+      <div className="row">
+        <div className="mb-3">
+          <label className="form-label">Street : </label>
+          <input type="text" className="form-control bg-light" {...register("street")} />
+        </div>
 
-      <div className="form-group">
-        <label>State : </label>
-        <input
-          type="text"
-          {...register("state", { required: "State name is required" })}
-        />
-        {errors.state && <p style={{ color: "red" }}>{errors.state.message}</p>}
-      </div>
+        <div className="mb-3">
+          <label className="form-label">City : </label>
+          <input
+            type="text"
+            className={`form-control bg-light ${errors.city ? "is-invalid" : ""}`}
+            {...register("city", { required: "City name is required" })}
+          />
+          <div className="invalid-feedback">{errors.city?.message}</div>
+        </div>
 
-      <div className="form-group">
-        <label>Country : </label>
-        <input
-          type="text"
-          {...register("country", { required: "Country name is required" })}
-        />
-        {errors.country && (
-          <p style={{ color: "red" }}>{errors.country.message}</p>
-        )}
-      </div>
+        <div className="mb-3">
+          <label className="form-label">State : </label>
+          <input
+            type="text"
+            className={`form-control bg-light ${errors.state ? "is-invalid" : ""}`}
+            {...register("state", { required: "State name is required" })}
+          />
+          <div className="invalid-feedback">{errors.state?.message}</div>
+        </div>
 
-      <div className="form-group">
-        <label>Post Code : </label>
-        <input
-          type="number"
-          {...register("postCode", { required: "Post Code is required" })}
-        />
-        {errors.postCode && (
-          <p style={{ color: "red" }}>{errors.postCode.message}</p>
-        )}
+        <div className="mb-3">
+          <label className="form-label">Country : </label>
+          <input
+            type="text"
+            className={`form-control bg-light ${errors.country ? "is-invalid" : ""}`}
+            {...register("country", { required: "Country name is required" })}
+          />
+          <div className="invalid-feedback">{errors.country?.message}</div>
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Post Code : </label>
+          <input
+            type="number"
+            className={`form-control bg-light ${errors.postCode ? "is-invalid" : ""}`}
+            {...register("postCode", { required: "Post Code is required" })}
+          />
+          <div className="invalid-feedback">{errors.postCode?.message}</div>
+        </div>
       </div>
     </>
   );

@@ -1,29 +1,44 @@
-const roles = ["Lead","Prospect", "Client", "Partner"]
+const roles = ["Lead", "Prospect", "Client", "Partner"];
+
 const ProfessionalDetails = ({ register, errors }) => {
   return (
     <>
-      <div className="form-group">
-        <label>Role : </label>
-        <select {...register("role", {required: "Role is required"})} defaultValue= "Prospect"
-         className="form-control">
-          
-          {roles.map((role,index)=>(
+      <div className="mb-3">
+        <label className="form-label">Company : </label>
+        <input className="form-control bg-light" {...register("company")} />
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label">Role : </label>
+        <select
+          className={`form-select bg-light ${errors.role ? "is-invalid" : ""}`}
+          {...register("role", { required: "Role is required" })}
+          defaultValue="Prospect"
+        >
+          {roles.map((role, index) => (
             <option key={index} value={role}>
               {role}
             </option>
           ))}
         </select>
-        {errors.role && <p style={{ color: "red" }}>{errors.role.message}</p>}
+
+        {errors.role && (
+          <div className="invalid-feedback">{errors.role.message}</div>
+        )}
       </div>
 
-      <div className="form-group">
-        <label>Designation : </label>
+      <div className="mb-3">
+        <label className="form-label">Designation : </label>
         <input
           type="text"
-          {...register("designation", { required: "Designation is required" })}
+          className={`form-control bg-light ${errors.designation ? "is-invalid" : ""}`}
+          {...register("designation", {
+            required: "Designation is required",
+          })}
         />
+
         {errors.designation && (
-          <p style={{ color: "red" }}>{errors.designation.message}</p>
+          <div className="invalid-feedback">{errors.designation.message}</div>
         )}
       </div>
     </>

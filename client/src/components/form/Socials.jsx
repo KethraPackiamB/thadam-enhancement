@@ -1,34 +1,45 @@
 const Socials = ({ register }) => {
   return (
-    <div>
-     
-      <div className="ms-2">
-        <div className="col form-group">
-          <label>LinkedIn</label>
-          <input type="url" {...register("linkedIn")} />
+    <>
+      <div className="row">
+        <div className="mb-3">
+          <label className="form-label">LinkedIn</label>
+          <input
+            type="url"
+            className="form-control"
+            {...register("linkedIn")}
+          />
         </div>
 
-        <div className="col form-group">
-          <label>YouTube</label>
-          <input type="url" {...register("youtube")} />
+        <div className="mb-3">
+          <label className="form-label">YouTube</label>
+          <input type="url" className="form-control" {...register("youtube")} />
         </div>
 
-        <div className="col form-group">
-          <label>Facebook</label>
-          <input type="url" {...register("facebook")} />
+        <div className="mb-3">
+          <label className="form-label">Facebook</label>
+          <input
+            type="url"
+            className="form-control"
+            {...register("facebook")}
+          />
         </div>
 
-        <div className="col form-group">
-          <label>Twitter</label>
-          <input type="url" {...register("twitter")} />
+        <div className="mb-3">
+          <label className="form-label">Twitter</label>
+          <input type="url" className="form-control" {...register("twitter")} />
         </div>
 
-        <div className="col form-group">
-          <label> Instagram</label>
-          <input type="url" {...register("instagram")} />
+        <div className="mb-3">
+          <label className="form-label">Instagram</label>
+          <input
+            type="url"
+            className="form-control"
+            {...register("instagram")}
+          />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
