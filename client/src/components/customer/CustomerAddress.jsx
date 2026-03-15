@@ -1,10 +1,10 @@
 const CustomerAddress = ({ address }) => {
   const location = [
-    { label: "Street", value: address.street },
-    { label: "City", value: address.city },
-    { label: "State", value: address.state },
-    { label: "Country", value: address.country },
-    { label: "Post Code", value: address.postcode },
+    { label: "Street", value: address?.street },
+    { label: "City", value: address?.city },
+    { label: "State", value: address?.state },
+    { label: "Country", value: address?.country },
+    { label: "Post Code", value: address?.postCode },
   ];
   return (
     <div className="card h-100" style={{ backgroundColor: "white"}}>

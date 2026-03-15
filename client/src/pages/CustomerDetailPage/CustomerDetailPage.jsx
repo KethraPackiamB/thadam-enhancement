@@ -2,7 +2,7 @@ import CustomerHeader from "../../components/customer/CustomerHeader";
 import CustomerMoreInfo from "../../components/customer/CustomerMoreInfo";
 import CustomerAddress from "../../components/customer/CustomerAddress";
 import CustomerEngagement from "../../components/customer/CustomerEngagement";
-import getCustomerById from "../../api/CustomerApi";
+import {getCustomerById} from "../../api/CustomerApi";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 const CustomerDetailPage = () => {
@@ -13,6 +13,7 @@ const CustomerDetailPage = () => {
     const fetchCustomer = async () => {
       try {
         const data = await getCustomerById(id);
+        console.log(data);
         setCustomer(data);
       } catch (err) {
         setError(err.message);
@@ -20,7 +21,7 @@ const CustomerDetailPage = () => {
     };
     fetchCustomer();
   }, [id]);
-
+ 
   if (error) {
     return (
       <div className="text-center mt-5 text-danger ">
@@ -28,7 +29,7 @@ const CustomerDetailPage = () => {
       </div>
     );
   }
-  
+ 
   if (!customer) {
     return <h3 className="text-center mt-5">Loading...</h3>;
   }
@@ -53,7 +54,7 @@ const CustomerDetailPage = () => {
               <CustomerAddress address={customer.address} />
             </div>
             <div className="pt-3">
-              <CustomerEngagement engagement={customer.engagement} />
+              <CustomerEngagement engagement={customer} />
             </div>
           </div>
         </div>
@@ -62,3 +63,4 @@ const CustomerDetailPage = () => {
   );
 };
 export default CustomerDetailPage;
+

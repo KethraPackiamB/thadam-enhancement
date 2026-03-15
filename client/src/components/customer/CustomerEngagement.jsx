@@ -1,7 +1,7 @@
 const CustomerEngagement = ({ engagement }) => {
   const customerEngagement = [
-    { label: "Last Contacted", value: engagement.lastContacted },
-    { label: "Referred By", value: engagement.referredBy },
+    { label: "Last Contacted", value: engagement?.lastContactedDate },
+    { label: "Referred By", value: engagement?.referredBy },
   ];
   return (
     <div className="card h-100" style={{ backgroundColor:"white"}}>

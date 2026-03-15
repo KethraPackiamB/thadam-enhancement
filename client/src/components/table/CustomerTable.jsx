@@ -9,22 +9,30 @@ import {
 import { useMemo, useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import { CustomerTableContext } from "../../context/CustomerTableContext";
-
 const CustomerTable = () => {
-  const { customers } = useContext(CustomerTableContext);
-
+  const { customers,deleteCustomer} = useContext(CustomerTableContext);
+ 
   const navigate = useNavigate();
-
+ 
   const handleNavigate = () => {
     navigate('/add-customer-form')
   }
-
-  const data = useMemo(() => customers, []);
-
+ 
+  const data = useMemo(() => customers, [customers]);
+ 
   const columns = [
     {
-      header: "ID",
-      accessorKey: "id",
+      header: "profile",
+      cell: ({ row }) => {
+        const customer = row.original;
+
+        return(
+         <div className="bg-primary text-white d-flex align-items-center justify-content-center rounded-circle"
+     style={{ width: "25px", height: "25px", fontSize: "10px"}}>
+  {customer?.firstname[0] + customer?.lastname[0]}
+</div>
+        )
+      }
     },
     {
       header: "Name",
@@ -46,7 +54,7 @@ const CustomerTable = () => {
       header: "Actions",
       cell: ({ row }) => {
         const customer = row.original;
-
+ 
         return (
           <div className="d-flex gap-2">
             <button
@@ -57,18 +65,24 @@ const CustomerTable = () => {
             </button>
             <button
               className="btn btn-sm btn-danger"
-              onClick={() => handleDelete(customer.id)}
+              onClick={() => handleDelete(customer._id)}
             >
               <i className="fa-regular fa-trash-can"></i>
+            </button>
+            <button
+              className="btn btn-sm"
+              onClick={()=>handleClick(row)}
+            >
+              <i className="fa-regular fa-eye"></i>
             </button>
           </div>
         );
       },
     },
   ];
-
+ 
   const [filtering, setFiltering] = useState("");
-
+ 
   const table = useReactTable({
     data,
     columns,
@@ -80,15 +94,19 @@ const CustomerTable = () => {
     },
     onGlobalFilterChange: setFiltering,
   });
-
+ 
   const handleEdit = (customer) => {
     navigate("/add-customer-form", {state: customer})
   };
-
+ 
   const handleDelete = (id) => {
-    console.log("Delete customer id:", id);
+    deleteCustomer(id);
   };
 
+  const handleClick = (row) => {
+    navigate(`/customer/${row.original?._id}`)
+  }
+ 
   return (
     <div className="container mt-3">
       <div className="d-flex justify-content-end gap-3 p-2 size-sm">
@@ -120,9 +138,9 @@ const CustomerTable = () => {
           </thead>
           <tbody>
             {table.getRowModel().rows.map((row) => (
-              <tr key={row.id}>
+              <tr key={row.id} >
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id}>
+                  <td key={cell.id} >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
@@ -162,5 +180,5 @@ const CustomerTable = () => {
     </div>
   );
 };
-
+ 
 export default CustomerTable;

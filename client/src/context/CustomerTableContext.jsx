@@ -1,17 +1,59 @@
-import {createContext, useState} from "react";
-import customerData from "../components/table/MOCK_DATA.json";
-
+import { createContext} from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  getCustomers,
+  addCustomer,
+  updateCustomer,
+  deleteCustomer,
+} from "../api/CustomerApi";
 export const CustomerTableContext = createContext();
-
-export const CustomerContextProvider = ({children}) => {
-
- const [customers, setCustomers] = useState(customerData);
-
-    return(
-        <div>
-            <CustomerTableContext.Provider value={{customers, setCustomers}}>
-                {children}
-            </CustomerTableContext.Provider>
-        </div>
-    )
-}
+export const CustomerContextProvider = ({ children }) => {
+  const queryClient = useQueryClient();
+  const {
+    data: customers = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["customers"],
+    queryFn: getCustomers,
+  });
+ 
+  const addCustomerMutation = useMutation({
+    mutationFn: addCustomer,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["customers"]);
+    },
+  });
+ 
+  const updateCustomerMutation = useMutation({
+    mutationFn: updateCustomer,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["customers"]);
+    },
+  });
+ 
+  const deleteCustomerMutation = useMutation({
+  mutationFn: (id) => deleteCustomer(id),
+  onSuccess: () => {
+    queryClient.invalidateQueries({ queryKey: ["customers"] });
+  },
+});
+ 
+  return (
+    <div>
+      <CustomerTableContext.Provider
+        value={{
+          customers,
+          isLoading,
+          error,
+          addCustomer: addCustomerMutation.mutate,
+          updateCustomer: updateCustomerMutation.mutate,
+          deleteCustomer: deleteCustomerMutation.mutate,
+        }}
+      >
+        {children}
+      </CustomerTableContext.Provider>
+    </div>
+  );
+};
+ 

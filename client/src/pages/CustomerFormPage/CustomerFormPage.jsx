@@ -1,6 +1,6 @@
 import "./CustomerFormPage.css";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext} from "react";
 import PersonalDetails from "../../components/form/PersonalDetails";
 import ContactDetails from "../../components/form/ContactDetails";
 import CompanyDetails from "../../components/form/CompanyDetails";
@@ -11,9 +11,9 @@ import Socials from "../../components/form/Socials";
 import Button from "../../components/button/Button";
 import TimeLine from "../../components/TimeLineBar/TimeLine";
 import {useLocation, useNavigate} from "react-router-dom"
-
-
-
+import { CustomerTableContext } from "../../context/CustomerTableContext";
+ 
+ 
 const CustomerFormPage = () => {
   const {
     register,
@@ -22,27 +22,36 @@ const CustomerFormPage = () => {
     reset,
     formState: { errors },
   } = useForm();
-
+ 
   const[step, setStep] = useState(1)
   const navigate = useNavigate()
   const location = useLocation()
   const customer = location.state
-
+  const { addCustomer, updateCustomer } = useContext(CustomerTableContext);
+ 
   const handleNavigate = () => {
     navigate('/dashboard')
   }
-
+ 
   useEffect(()=>{
    if(customer){
      reset(customer)
    }
   },[customer,reset])
-
+ 
   const onSubmit = (data) => {
-    console.log("Form Data:", data);
-    alert("Your details are Submitted successfully");
+    if (customer) {
+    updateCustomer({
+      id: customer._id,
+      data,
+    });
+  } else {
+    addCustomer(data);
+  }
+  navigate("/dashboard");
+   
   };
-
+ 
   const nextStep = async() => {
     const valid = await trigger()
     if(valid){
@@ -52,8 +61,8 @@ const CustomerFormPage = () => {
    const previousStep = () => {
      setStep(step - 1)
    }
-
-
+ 
+ 
   return (
     <div className="card card-container border-dark">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -69,7 +78,7 @@ const CustomerFormPage = () => {
            </div>
         </div>
       )}
-
+ 
       {step === 2 && (
         <div>
           <h4 className="text-center">Contact Details</h4>
@@ -119,5 +128,5 @@ const CustomerFormPage = () => {
     </div>
   );
 };
-
+ 
 export default CustomerFormPage;
