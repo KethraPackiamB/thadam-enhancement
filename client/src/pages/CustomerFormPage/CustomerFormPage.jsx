@@ -30,7 +30,7 @@ const CustomerFormPage = () => {
   const { addCustomer, updateCustomer } = useContext(CustomerTableContext);
  
   const handleNavigate = () => {
-    navigate('/dashboard')
+    navigate('/')
   }
  
   useEffect(()=>{
@@ -48,7 +48,7 @@ const CustomerFormPage = () => {
   } else {
     addCustomer(data);
   }
-  navigate("/dashboard");
+  navigate("/");
    
   };
  
