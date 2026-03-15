@@ -1,28 +1,32 @@
 const PersonalDetails = ({ register, errors }) => {
   return (
-    <div>
-      <div className="form-group">
-        <label>First Name : </label>
+    <>
+      <div className="mb-3">
+        <label className="form-label">First Name : </label>
         <input
           type="text"
+          className={`form-control bg-light ${errors.firstname ? "is-invalid" : ""}`}
           {...register("firstname", { required: "First name is required" })}
         />
+
         {errors.firstname && (
-          <p style={{ color: "red" }}>{errors.firstname.message}</p>
+          <div className="invalid-feedback">{errors.firstname.message}</div>
         )}
       </div>
 
-      <div className="form-group">
-        <label>Last Name : </label>
+      <div className="mb-3">
+        <label className="form-label">Last Name : </label>
         <input
           type="text"
+          className={`form-control bg-light ${errors.lastname ? "is-invalid" : ""}`}
           {...register("lastname", { required: "Last name is required" })}
         />
+
         {errors.lastname && (
-          <p style={{ color: "red" }}>{errors.lastname.message}</p>
+          <div className="invalid-feedback">{errors.lastname.message}</div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,10 +1,11 @@
 const ContactDetails = ({ register, errors }) => {
   return (
     <>
-      <div className="form-group">
-        <label>Primary Email : </label>
+      <div className="mb-3">
+        <label className="form-label">Primary Email : </label>
         <input
-          type="email" name="primaryEmail"
+          type="email"
+          className={`form-control bg-light ${errors.primaryEmail ? "is-invalid" : ""}`}
           {...register("primaryEmail", {
             required: "Email is required",
             pattern: {
@@ -14,30 +15,24 @@ const ContactDetails = ({ register, errors }) => {
           })}
         />
         {errors.primaryEmail && (
-          <p style={{ color: "red" }}>{errors.primaryEmail.message}</p>
+          <div className="invalid-feedback">{errors.primaryEmail?.message}</div>
         )}
       </div>
 
-      <div className="form-group">
-        <label>Secondary Email : </label>
+      <div className="mb-3">
+        <label className="form-label">Secondary Email : </label>
         <input
-          type="email" name="secondaryEmail"
-          {...register("secondaryEmail", {
-            pattern: {
-              value: /^\S+@\S+\.\S+$/,
-              message: "Enter a valid email address",
-            },
-          })}
+          type="email"
+          className="form-control bg-light"
+          {...register("secondaryEmail")}
         />
-        {errors.secondaryEmail && (
-          <p style={{ color: "red" }}>{errors.secondaryEmail.message}</p>
-        )}
       </div>
 
-      <div className="form-group">
-        <label>Primary Contact No. : </label>
+      <div className="mb-3">
+        <label className="form-label">Primary Contact No. : </label>
         <input
           type="text"
+          className={`form-control bg-light ${errors.primaryContactNo ? "is-invalid" : ""}`}
           {...register("primaryContactNo", {
             required: "Contact number is required",
             pattern: {
@@ -47,24 +42,19 @@ const ContactDetails = ({ register, errors }) => {
           })}
         />
         {errors.primaryContactNo && (
-          <p style={{ color: "red" }}>{errors.primaryContactNo.message}</p>
+          <div className="invalid-feedback">
+            {errors.primaryContactNo?.message}
+          </div>
         )}
       </div>
 
-      <div className="form-group">
-        <label>Secondary Contact No. : </label>
+      <div className="mb-3">
+        <label className="form-label">Secondary Contact No. : </label>
         <input
           type="text"
-          {...register("secondaryContactNo", {
-            pattern: {
-              value: /^[0-9]{10}$/,
-              message: "Phone number must be 10 digits",
-            },
-          })}
+          className="form-control bg-light"
+          {...register("secondaryContactNo")}
         />
-        {errors.secondaryContactNo && (
-          <p style={{ color: "red" }}>{errors.secondaryContactNo.message}</p>
-        )}
       </div>
     </>
   );
