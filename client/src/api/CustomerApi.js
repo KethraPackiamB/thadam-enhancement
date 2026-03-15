@@ -1,6 +1,7 @@
 import axios from "axios";
+const BACKEND_LIVE_BASE_URL= import.meta.env.BACKEND_LIVE_BASE_URL;
  
-const API_URL = "https://thadam-bsba.onrender.com/api/customers";
+const API_URL = `${BACKEND_LIVE_BASE_URL}/api/customers`;
  
 const getAuthConfig = () => ({
   headers: {
