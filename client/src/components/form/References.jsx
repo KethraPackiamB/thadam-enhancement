@@ -2,23 +2,23 @@ const References = ({ register, errors }) => {
   return (
     <div className="row mt-4">
       <div className="mb-3">
-        <label className="form-label">Last Contacted By</label>
+        <label className="form-label">Last Contacted By:<span className="text-danger">*</span></label>
 
         <input
           type="date"
-          className={`form-control bg-light ${errors.lastContacted ? "is-invalid" : ""}`}
-          {...register("lastContacted", {
+          className={`form-control bg-light ${errors.lastContactedDate ? "is-invalid" : ""}`}
+          {...register("lastContactedDate", {
             required: "Date is required",
             validate: (value) =>
               new Date(value) <= new Date() || "Future date not allowed",
           })}
         />
 
-        <div className="invalid-feedback">{errors.lastContacted?.message}</div>
+        <div className="invalid-feedback">{errors.lastContactedDate?.message}</div>
       </div>
 
       <div className="mb-3">
-        <label className="form-label">Referred By</label>
+        <label className="form-label">Referred By:<span className="text-danger">*</span></label>
 
         <input
           type="text"

@@ -2,7 +2,7 @@ const PersonalDetails = ({ register, errors }) => {
   return (
     <>
       <div className="mb-3">
-        <label className="form-label">First Name : </label>
+        <label className="form-label">First Name :<span className="text-danger">*</span></label>
         <input
           type="text"
           className={`form-control bg-light ${errors.firstname ? "is-invalid" : ""}`}
@@ -15,7 +15,7 @@ const PersonalDetails = ({ register, errors }) => {
       </div>
 
       <div className="mb-3">
-        <label className="form-label">Last Name : </label>
+        <label className="form-label">Last Name:<span className="text-danger">*</span></label>
         <input
           type="text"
           className={`form-control bg-light ${errors.lastname ? "is-invalid" : ""}`}

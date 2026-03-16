@@ -3,7 +3,19 @@ const mongoose = require("mongoose");
 
 const getAllCustomers = async (req, res) => {
   try {
-    const customers = await Customer.find({ createdBy: req.userId });
+
+    const filter = { createdBy: req.userId };
+
+    if (req.query.search) {
+      filter.$or = [
+        { firstname: { $regex: req.query.search, $options: "i" } },
+        { lastname: { $regex: req.query.search, $options: "i" } },
+        { primaryEmail: { $regex: req.query.search, $options: "i" } },
+      ];
+    }
+
+    const customers = await Customer.find(filter)
+    // const customers = await Customer.find({ createdBy: req.userId });
     res.json({
       success: true,
       message: "got customers data",

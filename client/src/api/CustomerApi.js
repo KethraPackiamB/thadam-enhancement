@@ -1,7 +1,7 @@
 import axios from "axios";
-const BACKEND_LIVE_BASE_URL= import.meta.env.BACKEND_LIVE_BASE_URL;
+const VITE_BACKEND_LIVE_BASE_URL= import.meta.env.VITE_BACKEND_LIVE_BASE_URL;
  
-const API_URL = `${BACKEND_LIVE_BASE_URL}/api/customers`;
+const API_URL = `${VITE_BACKEND_LIVE_BASE_URL}/api/customers`;
  
 const getAuthConfig = () => ({
   headers: {
@@ -14,10 +14,19 @@ export const getCustomerById = async (id) => {
   return res.data.data[0];
 };
 
-export const getCustomers = async () => {
-  const res = await axios.get(API_URL, getAuthConfig());
+export const getCustomers = async (search) => {
+  const url = search
+    ? `${API_URL}?search=${search}`
+    : API_URL;
+
+  const res = await axios.get(url, getAuthConfig());
   return res.data.data;
 };
+
+// export const getCustomers = async () => {
+//   const res = await axios.get(API_URL, getAuthConfig());
+//   return res.data.data;
+// };
  
 export const addCustomer = async (data) => {
   const res = await axios.post(API_URL, data, getAuthConfig());

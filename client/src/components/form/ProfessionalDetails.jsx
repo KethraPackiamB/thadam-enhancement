@@ -4,12 +4,12 @@ const ProfessionalDetails = ({ register, errors }) => {
   return (
     <>
       <div className="mb-3">
-        <label className="form-label">Company : </label>
+        <label className="form-label">Company: </label>
         <input className="form-control bg-light" {...register("company")} />
       </div>
 
       <div className="mb-3">
-        <label className="form-label">Role : </label>
+        <label className="form-label">Role :<span className="text-danger">*</span></label>
         <select
           className={`form-select bg-light ${errors.role ? "is-invalid" : ""}`}
           {...register("role", { required: "Role is required" })}
@@ -28,7 +28,7 @@ const ProfessionalDetails = ({ register, errors }) => {
       </div>
 
       <div className="mb-3">
-        <label className="form-label">Designation : </label>
+        <label className="form-label">Designation: <span className="text-danger">*</span></label>
         <input
           type="text"
           className={`form-control bg-light ${errors.designation ? "is-invalid" : ""}`}

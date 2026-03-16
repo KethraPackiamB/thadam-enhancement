@@ -1,10 +1,10 @@
 import React from "react";
 import thadam from "../../assets/thadamLogo.svg";
-const BACKEND_LIVE_BASE_URL= import.meta.env.BACKEND_LIVE_BASE_URL;
+const VITE_BACKEND_LIVE_BASE_URL= import.meta.env.VITE_BACKEND_LIVE_BASE_URL
  const LandingPage = () => {
 
   const handleLogin = () => {
-    window.location.href = `${BACKEND_LIVE_BASE_URL}/login`;
+    window.location.href = `${VITE_BACKEND_LIVE_BASE_URL}/login`;
   };
 
   return (
