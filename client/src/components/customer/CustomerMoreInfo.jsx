@@ -4,16 +4,16 @@ const CustomerMoreInfo = ({ customer }) => {
     { label: "Primary Email", value: customer.primaryEmail },
     { label: "Mobile Phone", value: customer.primaryContactNo },
     { label: "Company Name", value: customer.company },
-    { label: "Facebook", value: customer.socialMedia?.facebook ?? "link not found"},
-    { label: "Twitter", value: customer.socialMedia?.twitter ?? "link not found" },
+    { label: "Facebook", value: customer.socialMedia?.facebook || "URL not found"},
+    { label: "Twitter", value: customer.socialMedia?.twitter || "URL not found" },
   ];
   const filedRight = [
     { label: "Last Name", value: customer.lastname },
-    { label: "Secondary Email", value: customer.secondaryEmail },
-    { label: "Secondary Mobile Phone", value: customer.secondaryContactNo },
+    { label: "Secondary Email", value: customer.secondaryEmail || "Detail not found"},
+    { label: "Secondary Mobile Phone", value: customer.secondaryContactNo || "Detail not found"},
     { label: "Designation", value: customer.designation },
-    { label: "LinkedIn", value: customer.socialMedia?.linkedin ?? "link not found"},
-    { label: "Instagram", value: customer.socialMedia?.instagram ?? "link not found"},
+    { label: "LinkedIn", value: customer.socialMedia?.linkedin || "URL not found"},
+    { label: "Instagram", value: customer.socialMedia?.instagram || "URL not found"},
   ];
   return (
     <div className="card h-100 " style={{ backgroundColor: "white"}}>
