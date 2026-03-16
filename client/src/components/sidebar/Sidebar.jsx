@@ -1,10 +1,12 @@
 import thadam from "../../assets/thadamLogo.svg";
 import { NavLink } from "react-router-dom";
-const Sidebar = ({ handleLogout }) => {
+import "./Sidebar.css";
+const Sidebar = ({ handleLogout, open }) => {
   return (
     <div
-      className="d-flex flex-column bg-white border-end p-3"
-      style={{ width: "240px", height: "100vh" }}
+      className={`bg-white border-end p-3 position-fixed position-md-static d-flex flex-column sidebar-style ${
+        open ? "sidebar-open" : ""
+      }`}
     >
       <div className="text-center mb-4">
         <img
