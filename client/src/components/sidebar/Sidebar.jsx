@@ -1,5 +1,6 @@
 import thadam from "../../assets/thadamLogo.svg";
 import { NavLink } from "react-router-dom";
+import Button from "../button/Button";
 import "./Sidebar.css";
 
 const Sidebar = ({ open, handleLogout }) => {
@@ -27,10 +28,12 @@ const Sidebar = ({ open, handleLogout }) => {
         </NavLink>
       </nav>
 
-      <div className="mt-auto border-top pt-3">
-        <button className="btn btn-outline-danger w-100" onClick={handleLogout}>
-          Logout
-        </button>
+      <div className="mt-auto pt-3 border-top">
+        <Button
+          className="btn btn-outline-danger w-100"
+          onClick={handleLogout}
+          buttonText="Logout"
+        />
       </div>
     </div>
   );
