@@ -2,11 +2,11 @@ import CustomerHeader from "../../components/customer/CustomerHeader";
 import CustomerMoreInfo from "../../components/customer/CustomerMoreInfo";
 import CustomerAddress from "../../components/customer/CustomerAddress";
 import CustomerEngagement from "../../components/customer/CustomerEngagement";
-import {getCustomerById} from "../../api/CustomerApi";
+import { getCustomerById } from "../../api/CustomerApi";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/button/Button";
-const CustomerDetailPage = () => {
+const CustomerInfoPage = () => {
   const [customer, setCustomer] = useState(null);
   const [error, setError] = useState(null);
   const { id } = useParams();
@@ -23,7 +23,7 @@ const CustomerDetailPage = () => {
     fetchCustomer();
   }, [id]);
 
-const navigate = useNavigate()
+  const navigate = useNavigate();
 
   if (error) {
     return (
@@ -32,7 +32,7 @@ const navigate = useNavigate()
       </div>
     );
   }
- 
+
   if (!customer) {
     return <h3 className="text-center mt-5">Loading...</h3>;
   }
@@ -62,9 +62,12 @@ const navigate = useNavigate()
           </div>
         </div>
       </div>
-      <Button buttonText="Back to Dashboard" className="btn btn-primary mt-3 ms-4" onClick={() => navigate("/")}></Button>
+      <Button
+        buttonText="Back to Dashboard"
+        className="btn btn-primary mt-3 ms-4"
+        onClick={() => navigate("/")}
+      ></Button>
     </div>
   );
 };
-export default CustomerDetailPage;
-
+export default CustomerInfoPage;

@@ -6,20 +6,23 @@ import AppRoutes from "./routes/AppRoutes";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { GooeyToaster } from "goey-toast";
+import "goey-toast/styles.css";
 
 function App() {
   const queryClient = new QueryClient();
-  return (
-      <QueryClientProvider client={queryClient}>
-   <BrowserRouter>
-      <WelcomeMessageContext>
-        <CustomerContextProvider>
-          <AppRoutes />
-        </CustomerContextProvider>
-      </WelcomeMessageContext>
-    </BrowserRouter>
-     </QueryClientProvider>
 
+  return (
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <GooeyToaster position="top-center" />
+        <WelcomeMessageContext>
+          <CustomerContextProvider>
+            <AppRoutes />
+          </CustomerContextProvider>
+        </WelcomeMessageContext>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 

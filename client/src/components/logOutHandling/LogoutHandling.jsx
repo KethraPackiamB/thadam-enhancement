@@ -1,8 +1,8 @@
 export const Logout = async () => {
-  const BACKEND_LIVE_BASE_URL= import.meta.env.BACKEND_LIVE_BASE_URL;
+  const VITE_BACKEND_LIVE_BASE_URL= import.meta.env.VITE_BACKEND_LIVE_BASE_URL;
   const token = localStorage.getItem("token") ?? "";
 
-  const res = await fetch(`https://thadam-bsba.onrender.com/logout`, {
+  const res = await fetch(`${VITE_BACKEND_LIVE_BASE_URL}/logout`, {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
