@@ -10,6 +10,7 @@ import {
 import { useMemo, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CustomerTableContext } from "../../context/CustomerTableContext";
+import Button from "../button/Button";
 
 
 
@@ -67,26 +68,23 @@ const CustomerTable = () => {
 
         return (
           <div className="d-flex gap-2">
-            <button
+            <Button
               className="btn btn-sm btn-warning"
               onClick={() => handleEdit(customer)}
-            >
-              <i className="fa-regular fa-pen-to-square"></i>
-            </button>
+              icon={<i className="fa-regular fa-pen-to-square"></i>}
+            />
 
-            <button
+            <Button
               className="btn btn-sm btn-danger"
               onClick={() => openDeleteConfirm(customer._id)}
-            >
-              <i className="fa-regular fa-trash-can"></i>
-            </button>
+              icon={<i className="fa-regular fa-trash-can"></i>}
+            />
 
-            <button
+            <Button
               className="btn btn-sm btn-secondary"
               onClick={() => handleClick(row)}
-            >
-              <i className="fa-regular fa-eye"></i>
-            </button>
+              icon={<i className="fa-regular fa-eye"></i>}
+            />
           </div>
         );
       },
