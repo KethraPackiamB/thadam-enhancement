@@ -1,6 +1,6 @@
 const CustomerAddress = ({ address }) => {
   const location = [
-    { label: "Street", value: address?.street },
+    { label: "Street", value: address?.street || "Detail not found"},
     { label: "City", value: address?.city },
     { label: "State", value: address?.state },
     { label: "Country", value: address?.country },

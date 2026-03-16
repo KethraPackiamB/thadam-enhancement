@@ -47,7 +47,7 @@ const CustomerHeader = ({ customer }) => {
           </p>
           <p>
             <i className="bi bi-linkedin pe-2"></i>
-            {customer.socialMedia?.linkedin ?? "link not found"}
+            {customer.socialMedia?.linkedin || "URL not found"}
           </p>
         </div>
       </div>

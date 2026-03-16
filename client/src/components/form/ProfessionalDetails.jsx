@@ -4,8 +4,18 @@ const ProfessionalDetails = ({ register, errors }) => {
   return (
     <>
       <div className="mb-3">
-        <label className="form-label">Company: </label>
-        <input className="form-control bg-light" {...register("company")} />
+        <label className="form-label">Company : <span className="text-danger">*</span></label>
+        <input
+          type="text"
+          className={`form-control bg-light ${errors.company ? "is-invalid" : ""}`}
+          {...register("company", {
+            required: "Company is required",
+          })}
+        />
+
+        {errors.company && (
+          <div className="invalid-feedback">{errors.company.message}</div>
+        )}
       </div>
 
       <div className="mb-3">
