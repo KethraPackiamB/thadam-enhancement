@@ -1,10 +1,11 @@
 import thadam from "../../assets/thadamLogo.svg";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
-const Sidebar = ({ handleLogout, open }) => {
+
+const Sidebar = ({ open, handleLogout }) => {
   return (
     <div
-      className={`bg-white border-end p-3 position-fixed position-md-static d-flex flex-column sidebar-style ${
+      className={`bg-white border-end p-3 d-flex flex-column sidebar-style ${
         open ? "sidebar-open" : ""
       }`}
     >
@@ -13,11 +14,11 @@ const Sidebar = ({ handleLogout, open }) => {
           src={thadam}
           alt="logo"
           className="img-fluid"
-          style={{ maxWidth: "180px" }}
+          style={{ maxWidth: "150px" }}
         />
       </div>
 
-      <nav className="nav flex-column flex-grow-1 mt-3">
+      <nav className="nav flex-column flex-grow-1">
         <NavLink
           to="/"
           className="nav-link bg-primary-subtle text-primary rounded mb-2"
@@ -26,7 +27,7 @@ const Sidebar = ({ handleLogout, open }) => {
         </NavLink>
       </nav>
 
-      <div className="mt-auto pt-3 border-top">
+      <div className="mt-auto border-top pt-3">
         <button className="btn btn-outline-danger w-100" onClick={handleLogout}>
           Logout
         </button>
