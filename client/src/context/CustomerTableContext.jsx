@@ -1,4 +1,4 @@
-import { createContext} from "react";
+import { createContext, useState} from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   getCustomers,
@@ -9,13 +9,14 @@ import {
 export const CustomerTableContext = createContext();
 export const CustomerContextProvider = ({ children }) => {
   const queryClient = useQueryClient();
+  const [search, setSearch] = useState()
   const {
     data: customers = [],
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["customers"],
-    queryFn: getCustomers,
+    queryKey: ["customers",search],
+    queryFn: () => getCustomers(search),
   });
  
   const addCustomerMutation = useMutation({
@@ -46,6 +47,8 @@ export const CustomerContextProvider = ({ children }) => {
           customers,
           isLoading,
           error,
+          search,
+          setSearch,
           addCustomer: addCustomerMutation.mutate,
           updateCustomer: updateCustomerMutation.mutate,
           deleteCustomer: deleteCustomerMutation.mutate,

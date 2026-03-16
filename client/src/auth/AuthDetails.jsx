@@ -12,7 +12,7 @@ const AuthDetailsPage = () => {
 
     navigate("/");
   }, []);
-  console.log(searchParams.get("accessToken"))
+
 
   return <div></div>;
 };

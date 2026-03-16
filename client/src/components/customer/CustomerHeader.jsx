@@ -26,7 +26,7 @@ const CustomerHeader = ({ customer }) => {
           </div>
           <div>
             <h3>
-              {customer?.firstName} {customer?.lastName}
+              {customer?.firstname} {customer?.lastname}
             </h3>
             <p>
               {customer?.designation} at {customer?.company}

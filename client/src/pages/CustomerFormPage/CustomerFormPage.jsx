@@ -30,11 +30,16 @@ const CustomerFormPage = () => {
     navigate('/')
   }
  
-  useEffect(()=>{
-   if(customer){
-     reset(customer)
-   }
-  },[customer,reset])
+useEffect(() => {
+  if (customer) {
+    reset({
+      ...customer,
+      lastContactedDate: customer.lastContactedDate
+        ? customer.lastContactedDate.split("T")[0]
+        : "",
+    });
+  }
+}, [customer, reset]);
  
   const onSubmit = (data) => {
     if (customer) {
@@ -142,7 +147,7 @@ const CustomerFormPage = () => {
             {step === 4 && (
               <div className="d-flex flex-column flex-grow-1">
                 <h4 className="text-center">References</h4>
-                <References register={register} errors={errors} />
+                <References  register={register} errors={errors} />
                 <div className="d-flex justify-content-between mt-auto">
                   <Button
                     type="button"

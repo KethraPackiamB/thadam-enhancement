@@ -5,14 +5,14 @@ import {
   getCoreRowModel,
   flexRender,
   getPaginationRowModel,
-  getFilteredRowModel,
+  // getFilteredRowModel,
 } from "@tanstack/react-table";
 import { useMemo, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CustomerTableContext } from "../../context/CustomerTableContext";
 
 const CustomerTable = () => {
-  const { customers, deleteCustomer } = useContext(CustomerTableContext);
+  const { customers, deleteCustomer, search, setSearch } = useContext(CustomerTableContext);
 
   const navigate = useNavigate();
 
@@ -90,18 +90,17 @@ const CustomerTable = () => {
     },
   ];
 
-  const [filtering, setFiltering] = useState("");
 
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    state: {
-      globalFilter: filtering,
-    },
-    onGlobalFilterChange: setFiltering,
+    // getFilteredRowModel: getFilteredRowModel(),
+    // state: {
+    //   globalFilter: filtering,
+    // },
+    // onGlobalFilterChange: setFiltering,
   });
 
   const handleEdit = (customer) => {
@@ -133,8 +132,8 @@ const CustomerTable = () => {
       <div className="d-flex justify-content-end gap-3 p-2 size-sm">
         <input
           type="search"
-          value={filtering}
-          onChange={(e) => setFiltering(e.target.value)}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
           placeholder="Search"
         />
         <button className="btn btn-primary" onClick={handleNavigate}>

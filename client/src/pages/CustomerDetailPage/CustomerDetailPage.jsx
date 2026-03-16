@@ -4,7 +4,8 @@ import CustomerAddress from "../../components/customer/CustomerAddress";
 import CustomerEngagement from "../../components/customer/CustomerEngagement";
 import {getCustomerById} from "../../api/CustomerApi";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Button from "../../components/button/Button";
 const CustomerDetailPage = () => {
   const [customer, setCustomer] = useState(null);
   const [error, setError] = useState(null);
@@ -21,7 +22,9 @@ const CustomerDetailPage = () => {
     };
     fetchCustomer();
   }, [id]);
- 
+
+const navigate = useNavigate()
+
   if (error) {
     return (
       <div className="text-center mt-5 text-danger ">
@@ -59,6 +62,7 @@ const CustomerDetailPage = () => {
           </div>
         </div>
       </div>
+      <Button buttonText="Back to Dashboard" className="btn btn-primary mt-3 ms-4" onClick={() => navigate("/")}></Button>
     </div>
   );
 };

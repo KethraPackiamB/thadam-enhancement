@@ -7,13 +7,13 @@ const Socials = ({ register }) => {
           <input
             type="url"
             className="form-control"
-            {...register("linkedIn")}
+            {...register("socialMedia.linkedin")}
           />
         </div>
 
         <div className="mb-3">
           <label className="form-label">YouTube</label>
-          <input type="url" className="form-control" {...register("youtube")} />
+          <input type="url" className="form-control" {...register("socialMedia.youtube")} />
         </div>
 
         <div className="mb-3">
@@ -21,13 +21,13 @@ const Socials = ({ register }) => {
           <input
             type="url"
             className="form-control"
-            {...register("facebook")}
+            {...register("socialMedia.facebook")}
           />
         </div>
 
         <div className="mb-3">
           <label className="form-label">Twitter</label>
-          <input type="url" className="form-control" {...register("twitter")} />
+          <input type="url" className="form-control" {...register("socialMedia.twitter")} />
         </div>
 
         <div className="mb-3">
@@ -35,7 +35,7 @@ const Socials = ({ register }) => {
           <input
             type="url"
             className="form-control"
-            {...register("instagram")}
+            {...register("socialMedia.instagram")}
           />
         </div>
       </div>

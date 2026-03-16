@@ -2,9 +2,9 @@ const ContactDetails = ({ register, errors }) => {
   return (
     <>
       <div className="mb-3">
-        <label className="form-label">Primary Email : </label>
+        <label className="form-label">Primary Email :<span className="text-danger">*</span></label>
         <input
-          type="email"
+          type="email" autoComplete="email"
           className={`form-control bg-light ${errors.primaryEmail ? "is-invalid" : ""}`}
           {...register("primaryEmail", {
             required: "Email is required",
@@ -22,14 +22,18 @@ const ContactDetails = ({ register, errors }) => {
       <div className="mb-3">
         <label className="form-label">Secondary Email : </label>
         <input
-          type="email"
-          className="form-control bg-light"
-          {...register("secondaryEmail")}
+          type="email" autoComplete="additional-email" className="form-control bg-light"
+          {...register("secondaryEmail", {
+            pattern: {
+              value: /^\S+@\S+\.\S+$/,
+              message: "Enter a valid email address",
+            },
+          })}
         />
       </div>
 
       <div className="mb-3">
-        <label className="form-label">Primary Contact No. : </label>
+        <label className="form-label">Primary Contact No :<span className="text-danger">*</span></label>
         <input
           type="text"
           className={`form-control bg-light ${errors.primaryContactNo ? "is-invalid" : ""}`}
