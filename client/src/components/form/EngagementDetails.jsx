@@ -2,7 +2,7 @@ const EngagementDetails = ({ register, errors }) => {
   return (
     <div className="row">
       <div className="col-6 form-group">
-        <label> Last Contacted By : </label>
+        <label> Last Contacted By :<span className="text-danger">*</span></label>
         <input
           type="date" 
           {...register("lastContactedDate", {
@@ -17,7 +17,7 @@ const EngagementDetails = ({ register, errors }) => {
       </div>
 
       <div className="col-6 form-group">
-        <label>Referred By : </label>
+        <label>Referred By : <span className="text-danger">*</span></label>
         <input
           type="text"
           {...register("referredBy", {

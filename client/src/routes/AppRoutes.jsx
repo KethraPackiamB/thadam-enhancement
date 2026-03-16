@@ -15,7 +15,7 @@ const AppRoutes = () => {
       <Route path="/login" element={<LandingPage />} />
       
 
-      <Route path="/auth/details" element={<AuthDetailsPage />} />
+     
       <Route path="/customer/:id" element={<CustomerDetailPage/>} />
       {/* <Route path="/auth/details" element={
         

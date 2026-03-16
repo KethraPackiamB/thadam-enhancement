@@ -1,4 +1,5 @@
-import "./CustomerTable.css"
+import "./CustomerTable.css";
+import DeleteConfirmation from "../deleteConfirmation/DeleteConfirmation";
 import {
   useReactTable,
   getCoreRowModel,
@@ -6,20 +7,23 @@ import {
   getPaginationRowModel,
   // getFilteredRowModel,
 } from "@tanstack/react-table";
-import { useMemo, useContext } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useMemo, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { CustomerTableContext } from "../../context/CustomerTableContext";
-// import customer from "../../../../server/models/customer";
+
 const CustomerTable = () => {
   const { customers, deleteCustomer, search, setSearch } = useContext(CustomerTableContext);
 
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate('/add-customer-form')
-  }
+    navigate("/add-customer-form");
+  };
 
   const data = useMemo(() => customers, [customers]);
+
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [customerToDelete, setCustomerToDelete] = useState(null);
 
   const columns = [
     {
@@ -28,12 +32,14 @@ const CustomerTable = () => {
         const customer = row.original;
 
         return (
-          <div className="bg-primary text-white d-flex align-items-center justify-content-center rounded-circle"
-            style={{ width: "25px", height: "25px", fontSize: "10px" }}>
+          <div
+            className="bg-primary text-white d-flex align-items-center justify-content-center rounded-circle"
+            style={{ width: "25px", height: "25px", fontSize: "10px" }}
+          >
             {customer?.firstname[0] + customer?.lastname[0]}
           </div>
-        )
-      }
+        );
+      },
     },
     {
       header: "Name",
@@ -64,12 +70,14 @@ const CustomerTable = () => {
             >
               <i className="fa-regular fa-pen-to-square"></i>
             </button>
+
             <button
               className="btn btn-sm btn-danger"
-              onClick={() => handleDelete(customer._id)}
+              onClick={() => openDeleteConfirm(customer._id)}
             >
               <i className="fa-regular fa-trash-can"></i>
             </button>
+
             <button
               className="btn btn-sm"
               onClick={() => handleClick(row)}
@@ -81,7 +89,6 @@ const CustomerTable = () => {
       },
     },
   ];
-
 
 
   const table = useReactTable({
@@ -97,18 +104,28 @@ const CustomerTable = () => {
   });
 
   const handleEdit = (customer) => {
-    navigate("/add-customer-form", { state: customer })
+    navigate("/add-customer-form", { state: customer });
   };
 
-  const handleDelete = (id) => {
-    deleteCustomer(id);
+  const openDeleteConfirm = (id) => {
+    setCustomerToDelete(id);
+    setShowConfirm(true);
+  };
+
+  const confirmDelete = () => {
+    deleteCustomer(customerToDelete);
+    setShowConfirm(false);
+    setCustomerToDelete(null);
+  };
+
+  const cancelDelete = () => {
+    setShowConfirm(false);
+    setCustomerToDelete(null);
   };
 
   const handleClick = (row) => {
-    navigate(`/customer/${row.original?._id}`)
-  }
-
-  // console.log("customers", customers)
+    navigate(`/customer/${row.original?._id}`);
+  };
 
   return (
     <div className="container mt-3">
@@ -119,32 +136,40 @@ const CustomerTable = () => {
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search"
         />
-        <button className="btn btn-primary " onClick={handleNavigate}>
+        <button className="btn btn-primary" onClick={handleNavigate}>
           <i className="fa-solid fa-plus"></i> Add Customer
         </button>
       </div>
+
       <div className="table d-flex flex-column mb-5 table-responsive table-sm">
         <table className="table table-hover">
-          <thead className="border-bottom" style={{ backgroundColor: "#141010ff" }}>
+          <thead
+            className="border-bottom"
+            style={{ backgroundColor: "#141010ff" }}
+          >
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th key={header.id}>
                     {flexRender(
                       header.column.columnDef.header,
-                      header.getContext(),
+                      header.getContext()
                     )}
                   </th>
                 ))}
               </tr>
             ))}
           </thead>
+
           <tbody>
             {table.getRowModel().rows.map((row) => (
-              <tr key={row.id} >
+              <tr key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  <td key={cell.id}>
+                    {flexRender(
+                      cell.column.columnDef.cell,
+                      cell.getContext()
+                    )}
                   </td>
                 ))}
               </tr>
@@ -152,6 +177,7 @@ const CustomerTable = () => {
           </tbody>
         </table>
       </div>
+
       <div className="my-2">
         <button
           className="btn btn-outline-secondary btn-sm"
@@ -180,6 +206,12 @@ const CustomerTable = () => {
           Last Page
         </button>
       </div>
+
+      <DeleteConfirmation
+        show={showConfirm}
+        onConfirm={confirmDelete}
+        onCancel={cancelDelete}
+      />
     </div>
   );
 };
