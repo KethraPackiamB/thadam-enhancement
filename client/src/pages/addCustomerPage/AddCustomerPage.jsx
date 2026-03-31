@@ -64,7 +64,8 @@ useEffect(() => {
 
       navigate("/");
     } catch (error) {
-      gooeyToast.error(`Something went wrong `);
+      const message=error?.respone?.data?.message||`Something went wrong `
+      gooeyToast.error(message);
       console.log(error);
     }
   };
