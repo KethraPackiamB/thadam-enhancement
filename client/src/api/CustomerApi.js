@@ -14,14 +14,28 @@ export const getCustomerById = async (id) => {
   return res.data.data[0];
 };
 
-export const getCustomers = async (search) => {
-  const url = search
-    ? `${API_URL}?search=${search}`
-    : API_URL;
+export const getCustomers = async (search,location,role,designation) => {
+  let url = API_URL;
+
+  const params = [];
+
+  if (search) params.push(`search=${search}`);
+  if (location) params.push(`location=${location}`);
+  if (role) params.push(`role=${role}`)
+  if (designation) params.push(`designation=${designation}`)
+
+  if (params.length > 0) {
+    url += `?${params.join("&")}`;
+  }
 
   const res = await axios.get(url, getAuthConfig());
   return res.data.data;
 };
+
+export const getCustomerFilter = async() => {
+  const res = await axios.get(`${API_URL}/filters`, getAuthConfig())
+  return res.data.data
+}
 
 // export const getCustomers = async () => {
 //   const res = await axios.get(API_URL, getAuthConfig());
