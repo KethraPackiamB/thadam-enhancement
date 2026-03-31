@@ -14,19 +14,30 @@ export const getCustomerById = async (id) => {
   return res.data.data[0];
 };
 
-export const getCustomers = async (search) => {
-  const url = search
-    ? `${CUSTOMER_API_URL}?search=${search}`
-    : CUSTOMER_API_URL;
+export const getCustomers = async (search,location,role,designation) => {
+  let url =CUSTOMER_API_URL;
+
+  const params = [];
+
+  if (search) params.push(`search=${search}`);
+  if (location) params.push(`location=${location}`);
+  if (role) params.push(`role=${role}`)
+  if (designation) params.push(`designation=${designation}`)
+
+  if (params.length > 0) {
+    url += `?${params.join("&")}`;
+  }
 
   const res = await axios.get(url, getAuthConfig());
   return res.data.data;
 };
 
-// export const getCustomers = async () => {
-//   const res = await axios.get(API_URL, getAuthConfig());
-//   return res.data.data;
-// };
+export const getCustomerFilter = async() => {
+  const res = await axios.get(`${CUSTOMER_API_URL}/filters`, getAuthConfig())
+  return res.data.data
+}
+
+
  
 export const addCustomer = async (data) => {
   const res = await axios.post(CUSTOMER_API_URL, data, getAuthConfig());

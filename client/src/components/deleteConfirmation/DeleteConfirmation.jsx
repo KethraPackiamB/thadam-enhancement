@@ -1,4 +1,5 @@
 import { gooeyToast } from "goey-toast";
+import Button from "../button/Button";
 
 const DeleteConfirmation = ({ show, onCancel, onConfirm }) => {
   if (!show) return null;
@@ -36,11 +37,11 @@ const DeleteConfirmation = ({ show, onCancel, onConfirm }) => {
               Delete Customer
             </h5>
 
-            <button
+            <Button
               type="button"
               className="btn-close"
               onClick={onCancel}
-            ></button>
+            />
           </div>
 
           {/* Body */}
@@ -56,20 +57,18 @@ const DeleteConfirmation = ({ show, onCancel, onConfirm }) => {
           {/* Footer */}
           <div className="modal-footer justify-content-center">
 
-            <button
+            <Button
               className="btn btn-outline-secondary"
               onClick={onCancel}
-            >
-              Cancel
-            </button>
+              buttonText="Cancel"
+            />
 
-            <button
+            <Button
               className="btn btn-danger"
               onClick={handleDelete}
-            >
-              <i className="bi bi-trash me-1"></i>
-              Delete
-            </button>
+              icon={<i className="bi bi-trash me-1"></i>}
+              buttonText="Delete"
+            />
 
           </div>
 
