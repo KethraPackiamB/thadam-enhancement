@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 
 const Sidebar = ({ open, handleLogout }) => {
+ 
   return (
     <div
       className={`bg-white border-end p-3 d-flex flex-column sidebar-style ${
@@ -26,6 +27,7 @@ const Sidebar = ({ open, handleLogout }) => {
           Dashboard
         </NavLink>
       </nav>
+    
 
       <div className="mt-auto border-top pt-3">
         <button className="btn btn-outline-danger w-100" onClick={handleLogout}>

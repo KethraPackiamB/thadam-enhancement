@@ -13,7 +13,7 @@ const {
 
 router.delete("/customers/:id", verifyToken, deleteCustomer);
 router.get("/customers", verifyToken, getAllCustomers);
-router.get("/customers/:id", verifyToken, getCustomerById);
+router.get("/customer/:id", verifyToken, getCustomerById);
 router.put("/customers/:id", verifyToken, updateCustomer);
 router.post("/customers", verifyToken, addCustomer);
 module.exports = router;
