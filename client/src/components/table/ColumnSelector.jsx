@@ -8,7 +8,7 @@ const ColumnSelector = ({table}) => {
         <div className='dropdown-menu p-3'>
             {table
             .getAllLeafColumns()
-            .filter((column) => column.id !== "Actions")
+            // .filter((column) => column.id !== "Actions")
             .map((column)=>(
             <div key={column.id} className='form-check'>
             <input type="checkbox" className='form-check-input' id={column.id} checked={column.getIsVisible()} onChange={column.getToggleVisibilityHandler()}/>
@@ -21,4 +21,4 @@ const ColumnSelector = ({table}) => {
   )
 }
 
-export default ColumnSelector
+export default ColumnSelector;

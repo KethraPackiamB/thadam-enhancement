@@ -37,7 +37,7 @@ const CustomerTable = () => {
         return (
           <div className="d-flex gap-3">
               <div
-                className="bg-primary text-white d-flex align-items-center justify-content-center rounded-circle"
+                className="bg-primary text-white d-flex align-items-center justify-content-center rounded-circle flex-shrink-0"
                 style={{ width: "30px", height: "30px", fontSize: "12px" }}
               >
                 {customer?.firstname?.[0]}
@@ -153,8 +153,9 @@ const CustomerTable = () => {
       <div className="d-flex">
       <CustomerControl table={table}/>
      </div>
-      <div className="table-responsive border rounded-3 py-1">
-        <table className="table table-hover align-middle p-2">
+      <div className="table-responsive border rounded-3">
+        {/* <table className="table table-hover align-middle p-2"> */}
+           <table className="table table-hover align-middle p-2">
           <thead className="table-light">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
