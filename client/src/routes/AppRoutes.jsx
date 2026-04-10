@@ -2,19 +2,13 @@ import { Routes, Route } from "react-router-dom";
 import AuthDetailsPage from "../auth/AuthDetails";
 import AuthGuard from "../components/authGuard/AuthGuard";
 
-import {
-
-
-  DashboardPage,
- 
-} from "../pages/dashboard/DashboardPage";
+import { DashboardPage } from "../pages/dashboard/DashboardPage";
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/login" element={<LandingPage />} />
 
-    
       <Route path="/auth/details" element={<AuthDetailsPage />} />
 
       <Route
@@ -24,11 +18,8 @@ const AppRoutes = () => {
             <DashboardPage />
           </AuthGuard>
         }
-      >
-      
-      </Route>
-      </Routes>
-     
+      ></Route>
+    </Routes>
   );
 };
 
