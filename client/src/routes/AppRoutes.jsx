@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import AuthDetailsPage from "../auth/AuthDetails";
 import AuthGuard from "../components/authGuard/AuthGuard";
-
 import { DashboardPage } from "../pages/dashboard/DashboardPage";
 
 const AppRoutes = () => {
