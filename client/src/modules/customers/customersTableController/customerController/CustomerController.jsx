@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-// import { CustomerTableContext } from "../../context/CustomerTableContext";
 import { useState } from "react";
 import { FaFilter } from "react-icons/fa";
 import Button from "../../../../ui/button/Button";
@@ -18,7 +17,7 @@ const CustomerController = ({ table }) => {
     setContactType,
     designation,
     setDesignation,
-  } = useContext(CustomerTableContext);
+  } = useContext(CustomerTableControllerContext);
   const [showFilter, setShowFilter] = useState(false);
   const { view, handleView } = useContext(CustomerTableControllerContext);
 

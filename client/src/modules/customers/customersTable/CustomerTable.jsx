@@ -13,8 +13,8 @@ import CustomerController from "../customersTableController/customerController/C
 import CustomerCards from "../customerCards/CustomerCards";
 import { CustomerTableControllerContext } from "../../../contexts/customerTableControllerContext/CustomerTableControllerContext";
 
-const CustomerTable = ({ data, columns }) => {
-  const totalCustomers = data.length;
+const CustomerTable = ({ data = [], columns = [] }) => {
+ const totalCustomers = data?.length || 0;
   const { view } = useContext(CustomerTableControllerContext);
 
   const navigate = useNavigate();
@@ -28,19 +28,13 @@ const CustomerTable = ({ data, columns }) => {
     localStorage.setItem("columnVisibility", JSON.stringify(columnVisibility));
   }, [columnVisibility]);
 
-  useEffect(() => {
-    if (view === "table") {
-      table.setPageSize(10);
-    } else {
-      table.setPageSize(12);
-    }
-  }, [view]);
+ 
 
   const [sorting, setSorting] = useState([]);
 
   const table = useReactTable({
-    data,
-    columns,
+    data : data || [],
+    columns : columns || [],
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -54,6 +48,7 @@ const CustomerTable = ({ data, columns }) => {
     onColumnVisibilityChange: setColumnVisibility,
     onSortingChange: setSorting,
   });
+
 
   const handleClick = (row) => {
     navigate(`/customer/${row.original?._id}`);
@@ -141,7 +136,7 @@ const CustomerTable = ({ data, columns }) => {
       )}
       {view === "card" && <CustomerCards table={table} />}
 
-      {data.length > 10 && <Pagination table={table} />}
+     <Pagination table={table} />
       <FloatingButton />
     </div>
   );

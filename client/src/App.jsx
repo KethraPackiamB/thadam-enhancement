@@ -11,6 +11,8 @@ import { CustomerTableControllerProvider } from "./contexts/customerTableControl
 
 
 const App = () => {
+
+   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
