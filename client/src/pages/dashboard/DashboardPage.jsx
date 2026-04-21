@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Sidebar from "../../layout/sidebar/Sidebar";
 import WelcomeCard from "../../layout/welcomeCard/WelcomCard";
 import CustomerTable from "../../components/table/CustomerTable";
 import { Logout } from "../../components/logOutHandling/LogoutHandling";
+import Sidebar from "../../modules/layout/sidebar/Sidebar";
 
 const DashboardPage = () => {
   const [open, setOpen] = useState(false);
