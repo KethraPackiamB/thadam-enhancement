@@ -8,9 +8,9 @@ import { GooeyToaster } from "goey-toast";
 import "goey-toast/styles.css";
 import { CustomerTableControllerProvider } from "./contexts/customerTableControllerContext/CustomerTableControllerContext";
 
-function App() {
-  const queryClient = new QueryClient();
 
+
+const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
@@ -23,4 +23,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

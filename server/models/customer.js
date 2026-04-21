@@ -62,7 +62,14 @@ const customerSchema = new mongoose.Schema(
       },
     ],
 
-    lastContactedDate: { type: Date },
+    logMeeting:{
+      date:{type: Date, default: Date.now},
+      meetingType: {
+        type: String,
+        enum: ["Call","Email","Video","In-person"]
+      },
+      description: {type: String}
+    },
     referredBy: { type: String },
 
     createdBy: { type: String, required: true },
