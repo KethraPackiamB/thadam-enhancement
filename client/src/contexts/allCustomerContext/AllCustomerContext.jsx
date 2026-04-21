@@ -8,4 +8,4 @@ const AllCustomerContext = () => {
   )
 }
 
-export default AllCustomerContext
+export default AllCustomerContext;

@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
-import { useEffect, useContext } from "react";
+import { useEffect} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { CustomerTableContext } from "../../../contexts/customerTableContext/customerTableContext";
 import { gooeyToast } from "goey-toast";
+import { useAddCustomer } from "../../hooks/customer/useAddCustomer";
+import { useUpdateCustomer } from "../../hooks/customer/useUpdateCustomer";
 import PersonalDetails from "../../../modules/customer/personalDetails/PersonalDetails";
 import OrganizationDetails from "../../../modules/customer/organizationDetails/OrganizationDetails";
 import SocialLinks from "../../../modules/customer/socialLinks/SocialLinks";
@@ -21,8 +22,8 @@ const AddCustomerPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const customer = location.state;
-
-  const { addCustomer, updateCustomer } = useContext(CustomerTableContext);
+  const { mutate: addCustomer, isPending: isAdding } = useAddCustomer();
+  const { mutate: updateCustomer, isPending: isUpdating } = useUpdateCustomer();
 
   useEffect(() => {
     if (customer) {
@@ -130,9 +131,9 @@ const AddCustomerPage = () => {
           type="submit"
           form="form"
           className="btn btn-primary"
-          disabled={addCustomer.isPending || updateCustomer.isPending}
+          disabled={isAdding || isUpdating}
         >
-          {addCustomer.isPending || updateCustomer.isPending
+          {isAdding || isUpdating
             ? "Saving..."
             : "Save Contact"}
         </button>

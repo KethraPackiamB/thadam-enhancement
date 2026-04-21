@@ -1,7 +1,6 @@
-import thadam from "../../assets/thadamLogo.svg";
+import thadam from "../../../assets/thadamLogo.svg";
 import { NavLink } from "react-router-dom";
-import Button from "../../components/button/Button";
-import "./Sidebar.css";
+import Button from "../../../ui/button/Button";
 
 const Sidebar = ({ open, setOpen, handleLogout }) => {
   return (

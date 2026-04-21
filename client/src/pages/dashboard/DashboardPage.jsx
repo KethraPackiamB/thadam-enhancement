@@ -1,8 +1,8 @@
 import { useState } from "react";
-import WelcomeCard from "../../layout/welcomeCard/WelcomCard";
-import CustomerTable from "../../components/table/CustomerTable";
-import { Logout } from "../../components/logOutHandling/LogoutHandling";
-import Sidebar from "../../modules/layout/sidebar/Sidebar";
+import Sidebar from "../../modules/layout/sidebar/Sidebar"
+import WelcomeCard from "../../modules/layout/welcomeCard/WelcomeCard"
+// import { Logout } from "../../components/logOutHandling/LogoutHandling";
+import CustomerTable from "../../modules/customers/customersTable/CustomerTable";
 
 const DashboardPage = () => {
   const [open, setOpen] = useState(false);
@@ -10,7 +10,7 @@ const DashboardPage = () => {
   return (
     <div className="d-flex vh-100 position-relative">
      
-      <Sidebar open={open} setOpen={setOpen} handleLogout={Logout} />
+      <Sidebar open={open} setOpen={setOpen} />
 
       
       <div className="flex-grow-1 d-flex flex-column bg-light overflow-auto">
