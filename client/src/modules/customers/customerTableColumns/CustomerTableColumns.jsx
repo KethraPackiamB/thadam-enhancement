@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useMemo, useState } from "react";
 import DeleteConfirmation from "../deleteConfirmation/DeleteConfirmation";
-// import { formatPhoneNumber } from "../../utils/formatPhone";
+import { formatPhoneNumber } from "../../utils/formatPhone";
 import CustomerTable from "../customersTable/CustomerTable";
 import Button from "../../../ui/button/Button";
 import { useGetAllCustomer } from "../../hooks/customer/useGetAllCustomer";
@@ -61,6 +61,87 @@ const CustomerTableColumns = () => {
       );
     },
   },
+  {
+      header: "Email",
+      accessorKey: "primaryEmail",
+      cell: ({row}) => {
+        const email = row.original.primaryEmail;
+        return(
+          <div className="d-inline-block text-truncate customer-access align-items-center" style={{maxWidth: "180px", }}>
+          <span className="me-1"><i className="fa-solid fa-envelope"></i></span>
+          {email}
+          </div>
+        )
+      }
+    },
+    {
+      header: "Designation",
+      accessorKey: "designation",
+      cell: ({ row }) => {
+        const designation = row.original.designation;
+        return (
+          <span className="badge rounded-pill bg-success-subtle text-success">
+            {designation}
+          </span>
+        );
+      },
+    },
+    {
+      header: "Phone",
+      accessorKey: "primaryContactNo",
+      cell: ({ row }) => {
+        const phone = formatPhoneNumber(row.original.primaryContactNo);
+        return (
+          <div className="d-flex gap-1 customer-access align-items-center">
+            <span style={{ fontSize: "14px" }}>
+              <i className="fa-solid fa-phone"></i>
+            </span>
+            {phone}
+          </div>
+        );
+      },
+    },
+    {
+      header: "Company",
+      accessorKey: "company",
+    },
+    {
+      header: "Type",
+      accessorKey: "contactType",
+      cell: ({row}) => {
+        const type = row.original.contactType;
+        return (
+          <span className="badge rounded-pill bg-danger-subtle text-danger">{type}</span>
+        )
+      }
+    },
+   {
+  id: "city",
+  header: "City",
+  accessorFn: (row) => row.address?.city,
+},
+{
+  id: "state",
+  header: "State",
+  accessorFn: (row) => row.address?.state,
+},
+{
+  id: "country",
+  header: "Country",
+  accessorFn: (row) => row.address?.country,
+},
+    {
+      header: "Last_Contacted",
+      accessorKey: "lastContactedDate",
+      cell : ({row}) => {
+        const lastContacted = row.original.lastContactedDate;
+      return (
+        <div className="text-truncate" style={{maxWidth: "130px", }}>
+          {lastContacted}
+        </div>
+      )}
+    },
+
 
 
 
