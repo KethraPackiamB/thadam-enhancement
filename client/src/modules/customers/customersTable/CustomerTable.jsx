@@ -7,7 +7,6 @@ import {
 } from "@tanstack/react-table";
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { CustomerTableContext } from "../../context/CustomerTableContext";
 import Pagination from "../customersTableController/pagination/Pagination";
 import FloatingButton from "../../../ui/button/FloatingButton";
 import CustomerController from "../customersTableController/customerController/CustomerController";
@@ -15,7 +14,7 @@ import CustomerCards from "../customerCards/CustomerCards";
 import { CustomerTableControllerContext } from "../../../contexts/customerTableControllerContext/CustomerTableControllerContext";
 
 const CustomerTable = ({ data, columns }) => {
-  const { customers, totalCustomers } = useContext(CustomerTableContext);
+  const totalCustomers = data.length;
   const { view } = useContext(CustomerTableControllerContext);
 
   const navigate = useNavigate();
@@ -142,7 +141,7 @@ const CustomerTable = ({ data, columns }) => {
       )}
       {view === "card" && <CustomerCards table={table} />}
 
-      {customers.length > 10 && <Pagination table={table} />}
+      {data.length > 10 && <Pagination table={table} />}
       <FloatingButton />
     </div>
   );

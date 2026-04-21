@@ -1,21 +1,20 @@
 import { Routes, Route } from "react-router-dom";
-import AuthDetailsPage from "../auth/AuthDetails";
-import AuthGuard from "../components/authGuard/AuthGuard";
-import { DashboardPage } from "../pages/dashboard/DashboardPage";
+import AuthDetails from "../auth/AuthDetails";
+import  DashboardPage from "../pages/dashboard/DashboardPage";
+import LandingPage from "../pages/landingPage/LandingPage";
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/login" element={<LandingPage />} />
 
-      <Route path="/auth/details" element={<AuthDetailsPage />} />
+      <Route path="/auth/details" element={<AuthDetails />} />
 
       <Route
         path="/"
         element={
-          <AuthGuard>
             <DashboardPage />
-          </AuthGuard>
+          
         }
       ></Route>
     </Routes>

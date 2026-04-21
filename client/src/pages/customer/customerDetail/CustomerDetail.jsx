@@ -2,8 +2,7 @@ import CustomerHeader from "../../../modules/customer/header/CustomerHeader";
 import CustomerMoreInfo from "../../../modules/customer/moreInfo/moreInformation/CustomerMoreInfo";
 import CustomerAddress from "../../../modules/customer/moreInfo/address/CustomerAddress";
 import CustomerEngagement from "../../components/customer/CustomerEngagement";
-import { getCustomerById } from "../../api/CustomerApi";
-import { useEffect, useState } from "react";
+import { useGetCustomer } from "../../hooks/customer/useGetCustomer";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/button/Button";
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -11,41 +10,29 @@ import CustomerSocials from "../../../modules/customer/socialLinks/CustomerSocia
 import CustomerNotes from "../notes/CustomerNotes";
 import DeleteButton from "../../../modules/actions/deleteCustomer/DeleteButton";
 const CustomerInfoPage = () => {
-  const [customer, setCustomer] = useState(null);
-  const [error, setError] = useState(null);
   const { id } = useParams();
-  useEffect(() => {
-    const fetchCustomer = async () => {
-      try {
-        const data = await getCustomerById(id);
-        setCustomer(data);
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-    fetchCustomer();
-  }, [id]);
+  const { data: customer, isLoading, isError, error } = useGetCustomer(id);
 
   const navigate = useNavigate();
   const handleEdit = (customer) => {
     navigate("/add-customer-form", { state: customer });
   };
-  if (error) {
+  if (isError) {
     return (
       <div className="text-center mt-5 text-danger ">
-        <h3>{error}</h3>
+        <h3>{error?.message || "Something went wrong"}</h3>
       </div>
     );
   }
 
-  if (!customer) {
-    return (
-      <div className="d-flex flex-column  justify-content-center align-items-center vh-100">
-        <div className="spinner-border text-primar-y mb-2"></div>
-        <p>Loading...</p>
-      </div>
-    );
-  }
+  if (isLoading) {
+  return (
+    <div className="d-flex flex-column justify-content-center align-items-center vh-100">
+      <div className="spinner-border text-primary mb-2"></div>
+      <p>Loading...</p>
+    </div>
+  );
+}
   return (
     <div className="d-flex">
       <div style={{ width: "240px", flexShrink: 0 }}>
@@ -114,4 +101,3 @@ const CustomerInfoPage = () => {
   );
 };
 export default CustomerInfoPage;
-

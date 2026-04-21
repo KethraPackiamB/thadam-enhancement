@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
-import { CustomerTableContext } from "../../context/CustomerTableContext";
-import DeleteConfirmation from "../deleteConfirmation/DeleteConfirmation";
+// import { CustomerTableContext } from "../../context/CustomerTableContext";
+// import DeleteConfirmation from "../deleteConfirmation/DeleteConfirmation";
 
 const CustomerCards = ({ table }) => {
   const [showConfirm, setShowConfirm] = useState(false);
