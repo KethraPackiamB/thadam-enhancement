@@ -3,7 +3,6 @@ import { useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CustomerTableContext } from "../../../contexts/customerTableContext/customerTableContext";
 import { gooeyToast } from "goey-toast";
-
 import PersonalDetails from "../../../modules/customer/personalDetails/PersonalDetails";
 import OrganizationDetails from "../../../modules/customer/organizationDetails/OrganizationDetails";
 import SocialLinks from "../../../modules/customer/socialLinks/SocialLinks";
