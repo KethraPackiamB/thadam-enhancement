@@ -6,6 +6,7 @@ import CustomerTable from "../../modules/customers/customersTable/CustomerTable"
 
 const DashboardPage = () => {
   const [open, setOpen] = useState(false);
+  console.log("rendering")
 
   return (
     <div className="d-flex vh-100 position-relative">

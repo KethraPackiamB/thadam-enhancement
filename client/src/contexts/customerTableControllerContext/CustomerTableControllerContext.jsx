@@ -12,7 +12,7 @@ export const CustomerTableControllerProvider = ({ children }) => {
   const [role, setRole] = useState(""); 
   const [designation, setDesignation] = useState("");
   const [view, setView] = useState("table");
-
+  const[contactType,setContactType]=useState("")
   
   const {
     data: customers = [],
@@ -44,11 +44,7 @@ export const CustomerTableControllerProvider = ({ children }) => {
         isError,
         error,
         totalCustomers: customers.length,
-
-        
         filters,
-
-        
         search,
         setSearch,
         location,
@@ -57,8 +53,8 @@ export const CustomerTableControllerProvider = ({ children }) => {
         setRole,
         designation,
         setDesignation,
-
-       
+        contactType,
+        setContactType,       
         view,
         handleView,
       }}
