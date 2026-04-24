@@ -1,5 +1,5 @@
-import Header from "../customerdetailHeader/Header";
-import FieldRender from "../fieldRender/FieldRender";
+import FieldRender from "../../actions/fieldRender/FieldRender";
+import Header from "../ui/Header";
 const CustomerSocials = ({ customer }) => {
   const fields = [
     { label: "Facebook", value: customer.socialMedia?.facebook },
@@ -19,6 +19,8 @@ const CustomerSocials = ({ customer }) => {
               type="link"
               value={field.value}
             />
+            
+          
           ))}
       </div>
     </div>

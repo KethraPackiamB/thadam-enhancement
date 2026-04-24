@@ -1,5 +1,6 @@
-import FieldColumn from "../customerDetailHeader/FieldColumn";
-import Header from "../customerdetailHeader/Header";
+import FormHeader from "../../../../ui/formHeader/formHeader";
+import FieldColumn from "../../ui/FieldColumn";
+import Header from "../../ui/Header";
 const CustomerMoreInfo = ({ customer }) => {
   const fieldLeft = [
      {label:"referred by",value:customer.referredBy},

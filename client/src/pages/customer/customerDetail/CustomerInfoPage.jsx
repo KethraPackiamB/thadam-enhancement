@@ -1,17 +1,23 @@
 import CustomerHeader from "../../../modules/customer/header/CustomerHeader";
 import CustomerMoreInfo from "../../../modules/customer/moreInfo/moreInformation/CustomerMoreInfo";
 import CustomerAddress from "../../../modules/customer/moreInfo/address/CustomerAddress";
-import CustomerEngagement from "../../components/customer/CustomerEngagement";
-import { useGetCustomer } from "../../hooks/customer/useGetCustomer";
-import { useNavigate, useParams } from "react-router-dom";
-import Button from "../../components/button/Button";
-import Sidebar from "../../components/sidebar/Sidebar";
+// import CustomerEngagement from "../../components/customer/CustomerEngagement";
+// import { useGetCustomer } from "../../hooks/customer/useGetCustomer";
+import { useNavigate } from "react-router-dom";
+import Button from "../../../ui/button/Button";
 import CustomerSocials from "../../../modules/customer/socialLinks/CustomerSocials";
-import CustomerNotes from "../notes/CustomerNotes";
-import DeleteButton from "../../../modules/actions/deleteCustomer/DeleteButton";
+import CustomerNotes from "../../../modules/customer/notes/CustomerNotes";
+// import DeleteButton from "../../../modules/actions/deleteCustomer/DeleteButton";
+import Sidebar from "../../../modules/layout/sidebar/Sidebar";
+import customer from "../../../mockdata";
 const CustomerInfoPage = () => {
-  const { id } = useParams();
-  const { data: customer, isLoading, isError, error } = useGetCustomer(id);
+  // const { id } = useParams();
+  // const { data: customer, isLoading, isError, error } = useGetCustomer(id);
+  
+
+  const isLoading = false;
+  const isError = false;
+  const error = null;
 
   const navigate = useNavigate();
   const handleEdit = (customer) => {
@@ -26,13 +32,13 @@ const CustomerInfoPage = () => {
   }
 
   if (isLoading) {
-  return (
-    <div className="d-flex flex-column justify-content-center align-items-center vh-100">
-      <div className="spinner-border text-primary mb-2"></div>
-      <p>Loading...</p>
-    </div>
-  );
-}
+    return (
+      <div className="d-flex flex-column justify-content-center align-items-center vh-100">
+        <div className="spinner-border text-primary mb-2"></div>
+        <p>Loading...</p>
+      </div>
+    );
+  }
   return (
     <div className="d-flex">
       <div style={{ width: "240px", flexShrink: 0 }}>
@@ -62,14 +68,14 @@ const CustomerInfoPage = () => {
                 icon={<i className="bi bi-pencil-square me-2"></i>}
               />
 
-              <DeleteButton
+              {/* <DeleteButton
                 id={customer._id}
                 redirect
                 text="Delete"
                 className="btn btn-primary rounded-0 d-flex align-items-center justify-content-center"
                 style={{ height: "35px", width: "90px" }}
                 icon={<i className="bi bi-trash3-fill me-2 "></i>}
-              />
+              /> */}
             </div>
           </div>
           <CustomerHeader customer={customer} />
@@ -88,7 +94,6 @@ const CustomerInfoPage = () => {
               </div>
             </div>
             <div className="pt-3">
-              {/* <CustomerEngagement engagement={customer} /> */}
               <CustomerSocials customer={customer} />
             </div>
             <div className="pt-3">

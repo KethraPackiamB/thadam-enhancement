@@ -1,5 +1,5 @@
-import logo from "../../assets/thadamLogo.svg";
-import noProfile from "../../assets/noprofile.jpg";
+// import logo from "../../assets/thadamLogo.svg";
+import noProfile from "../../../assets/noprofile.jpg";
 import FieldRender from "../../actions/fieldRender/FieldRender";
 const CustomerHeader = ({ customer }) => {
   return (
