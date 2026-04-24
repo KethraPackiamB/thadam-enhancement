@@ -6,10 +6,12 @@ const Sidebar = ({ open, setOpen, handleLogout }) => {
   return (
     <>
       <div
-        className={`bg-white border-end p-3 d-flex flex-column sidebar-style ${
-          open ? "sidebar-open" : ""
-        }`}
-      >
+  className={`bg-white border-end p-3 d-flex flex-column sidebar-style ${
+    open ? "sidebar-open" : ""
+  }`}
+  style={{ minHeight: "100vh" }}  
+>
+        
         <div className="text-center mb-4">
           <img
             src={thadam}

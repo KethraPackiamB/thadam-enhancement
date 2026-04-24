@@ -1,6 +1,5 @@
-import FieldColumn from "../customerDetailHeader/FieldColumn";
-import Header from "../customerdetailHeader/Header";
-
+import FieldColumn from "../../ui/FieldColumn";
+import Header from "../../ui/Header";
 const CustomerAddress = ({ address }) => {
   const fieldLeft = [
     { label: "Street", value: address?.street || "Detail not found"},
