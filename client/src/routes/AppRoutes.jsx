@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
+import AuthDetailsPage from "../auth/AuthDetails"
+import  DashboardPage from "../pages/dashboard/DashboardPage";
 import LandingPage from "../pages/landing/LandingPage";
-import DashboardPage from "../pages/dashboard/DashboardPage";
-import AuthDetailsPage from "../auth/AuthDetails";
-
+import AddCustomerPage from "../pages/customer/addCustomer/AddCustomer";
 
 const AppRoutes = () => {
   return (
@@ -18,6 +18,13 @@ const AppRoutes = () => {
           
         }
       ></Route>
+
+      <Route
+        path="/add-contact-form"
+        element={
+            <AddCustomerPage/>
+        }
+      />
     </Routes>
   );
 };

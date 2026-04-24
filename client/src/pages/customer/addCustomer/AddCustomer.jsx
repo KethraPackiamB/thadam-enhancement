@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import { useEffect} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { gooeyToast } from "goey-toast";
-import { useAddCustomer } from "../../hooks/customer/useAddCustomer";
-import { useUpdateCustomer } from "../../hooks/customer/useUpdateCustomer";
+import {useAddCustomer} from "../../../services/useAddCustomer"
+import {useUpdateCustomer} from "../../../services/useUpdateCustomer"
 import PersonalDetails from "../../../modules/customer/personalDetails/PersonalDetails";
 import OrganizationDetails from "../../../modules/customer/organizationDetails/OrganizationDetails";
 import SocialLinks from "../../../modules/customer/socialLinks/SocialLinks";
