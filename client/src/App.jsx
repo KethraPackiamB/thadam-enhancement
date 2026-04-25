@@ -7,7 +7,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { GooeyToaster } from "goey-toast";
 import "goey-toast/styles.css";
 import { CustomerTableControllerProvider } from "./contexts/customerTableControllerContext/CustomerTableControllerContext";
-
+import { CustomerProvider } from "./contexts/customerContext/CustomerContext";
+import { AllCustomerProvider } from "./contexts/allCustomerContext/AllCustomerContext";
 
 
 const App = () => {
@@ -17,9 +18,13 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <GooeyToaster position="top-center" />
+        <AllCustomerProvider>
+        <CustomerProvider>
         <CustomerTableControllerProvider>
         <AppRoutes />
         </CustomerTableControllerProvider>
+        </CustomerProvider>
+        </AllCustomerProvider>
       </BrowserRouter>
     </QueryClientProvider>
   );

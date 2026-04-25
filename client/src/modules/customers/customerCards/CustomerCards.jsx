@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
-// import { CustomerTableContext } from "../../context/CustomerTableContext";
-// import DeleteConfirmation from "../deleteConfirmation/DeleteConfirmation";
+import { AllCustomerContext } from "../../../contexts/allCustomerContext/AllCustomerContext";
+import DeleteConfirmation from "../../actions/deleteCustomer/DeleteCustomer";
 
 const CustomerCards = ({ table }) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [customerToDelete, setCustomerToDelete] = useState(null);
-  const { deleteCustomer } = useContext(CustomerTableContext);
+  const { deleteCustomer } = useContext(AllCustomerContext);
 
   const navigate = useNavigate();
 
@@ -101,11 +101,11 @@ const CustomerCards = ({ table }) => {
                   </p>
 
                   <p className="mb-1 text-secondary">
-                    <strong>Company:</strong> {customer.company}
+                    <span><i className="fa-solid fa-building"></i></span> <span>{customer.company}</span>
                   </p>
 
-                  <p className="mb-0 text-secondary">
-                    <strong>City:</strong> {customer.address?.city}
+                  <p className="mb-1 text-secondary">
+                    <span><i className="fa-solid fa-location-dot"></i></span> <span>{customer.address?.city}</span>
                   </p>
                 </div>
               </div>

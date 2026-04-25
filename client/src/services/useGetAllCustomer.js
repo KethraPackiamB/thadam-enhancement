@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getCustomers } from "../../api/customerApi";
+import { getCustomers } from "../api/CustomerApi";
 
 export const useGetAllCustomer = (filters) => {
   return useQuery({
@@ -13,4 +13,3 @@ export const useGetAllCustomer = (filters) => {
       ),
   });
 };
-

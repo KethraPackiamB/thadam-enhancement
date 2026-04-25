@@ -1,14 +1,14 @@
 import { useForm } from "react-hook-form";
-import { useEffect} from "react";
+import { useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { gooeyToast } from "goey-toast";
-import {useAddCustomer} from "../../../services/useAddCustomer"
-import {useUpdateCustomer} from "../../../services/useUpdateCustomer"
+
 import PersonalDetails from "../../../modules/customer/personalDetails/PersonalDetails";
 import OrganizationDetails from "../../../modules/customer/organizationDetails/OrganizationDetails";
 import SocialLinks from "../../../modules/customer/socialLinks/SocialLinks";
 import MoreInformation from "../../../modules/customer/moreInfo/moreInformation/moreInformation";
 import Button from "../../../ui/button/Button";
+import { AllCustomerContext } from "../../../contexts/allCustomerContext/AllCustomerContext";
 const AddCustomerPage = () => {
   const {
     register,
@@ -22,8 +22,8 @@ const AddCustomerPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const customer = location.state;
-  const { mutate: addCustomer, isPending: isAdding } = useAddCustomer();
-  const { mutate: updateCustomer, isPending: isUpdating } = useUpdateCustomer();
+
+  const { addCustomer, updateCustomer } = useContext(AllCustomerContext);
 
   useEffect(() => {
     if (customer) {
@@ -131,9 +131,9 @@ const AddCustomerPage = () => {
           type="submit"
           form="form"
           className="btn btn-primary"
-          disabled={isAdding || isUpdating}
+          disabled={addCustomer.isPending || updateCustomer.isPending}
         >
-          {isAdding || isUpdating
+          {addCustomer.isPending || updateCustomer.isPending
             ? "Saving..."
             : "Save Contact"}
         </button>

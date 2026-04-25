@@ -12,10 +12,12 @@ import FloatingButton from "../../../ui/button/FloatingButton";
 import CustomerController from "../customersTableController/customerController/CustomerController";
 import CustomerCards from "../customerCards/CustomerCards";
 import { CustomerTableControllerContext } from "../../../contexts/customerTableControllerContext/CustomerTableControllerContext";
+import { AllCustomerContext } from "../../../contexts/allCustomerContext/AllCustomerContext";
 
-const CustomerTable = ({ data = [], columns = [] }) => {
+const CustomerTable = ({ data, columns }) => {
  const totalCustomers = data?.length || 0;
   const { view } = useContext(CustomerTableControllerContext);
+  const {customers} = useContext(AllCustomerContext);
 
   const navigate = useNavigate();
 
@@ -28,13 +30,19 @@ const CustomerTable = ({ data = [], columns = [] }) => {
     localStorage.setItem("columnVisibility", JSON.stringify(columnVisibility));
   }, [columnVisibility]);
 
- 
+ useEffect(() => {
+  if (view === "table") {
+    table.setPageSize(10);
+  } else {
+    table.setPageSize(12);
+  }
+}, [view]);
 
   const [sorting, setSorting] = useState([]);
 
   const table = useReactTable({
-    data : data || [],
-    columns : columns || [],
+     data,
+    columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -136,7 +144,7 @@ const CustomerTable = ({ data = [], columns = [] }) => {
       )}
       {view === "card" && <CustomerCards table={table} />}
 
-     <Pagination table={table} />
+     {customers.length > 10 &&<Pagination table={table} />}
       <FloatingButton />
     </div>
   );

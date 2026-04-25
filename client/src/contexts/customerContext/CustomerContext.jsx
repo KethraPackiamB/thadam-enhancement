@@ -1,11 +1,26 @@
-import React from 'react'
+import { createContext } from "react";
+import { useParams } from "react-router-dom";
+import { useGetCustomer } from "../../services/useGetCustomer";
 
-const CustomerContext = () => {
+export const CustomerContext = createContext();
+
+export const CustomerProvider = ({ children }) => {
+   const { id } = useParams();
+  const {
+    data: customer,
+    isLoading,
+    error,
+  } = useGetCustomer(id);
+
   return (
-    <div>
-      <p>Customer Context</p>
-    </div>
-  )
-}
-
-export default CustomerContext
+    <CustomerContext.Provider
+      value={{
+        customer,
+        isLoading,
+        error,
+      }}
+    >
+      {children}
+    </CustomerContext.Provider>
+  );
+};
