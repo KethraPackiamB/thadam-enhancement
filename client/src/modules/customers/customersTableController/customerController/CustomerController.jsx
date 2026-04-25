@@ -23,9 +23,9 @@ const CustomerController = ({ table }) => {
 
   const navigate = useNavigate();
   const handleNavigate = () => {
-    setLocation("");
-    setContactType("");
-    setDesignation("");
+    // setLocation("");
+    // setContactType("");
+    // setDesignation("");
     navigate("/add-contact-form");
   };
 

@@ -2,10 +2,10 @@ import FieldRender from "../../actions/fieldRender/FieldRender";
 import Header from "../ui/Header";
 const CustomerSocials = ({ customer }) => {
   const fields = [
-    { label: "Facebook", value: customer.socialMedia?.facebook },
-    { label: "Twitter", value: customer.socialMedia?.twitter },
-    { label: "Instagram", value: customer.socialMedia?.instagram },
-    {label:"linkedIn",value:customer.socialMedia?.linkedin}
+    { label: "Facebook", value: customer?.socialMedia?.facebook },
+    { label: "Twitter", value: customer?.socialMedia?.twitter },
+    { label: "Instagram", value: customer?.socialMedia?.instagram },
+    {label:"linkedIn",value:customer?.socialMedia?.linkedin}
   ];
   return (
     <div className="card p-3" >

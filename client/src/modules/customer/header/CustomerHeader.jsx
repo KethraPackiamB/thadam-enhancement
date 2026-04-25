@@ -40,11 +40,11 @@ const CustomerHeader = ({ customer }) => {
         <div>
           <p>
             <i className="bi bi-envelope-open-fill pe-2 "></i>
-            <FieldRender type="email" value={customer.primaryEmail} />
+            <FieldRender type="email" value={customer?.primaryEmail} />
           </p>
           <p>
             <i className="bi bi-telephone-fill pe-2"></i>
-            <FieldRender type="phone" value={customer.primaryContactNo} />
+            <FieldRender type="phone" value={customer?.primaryContactNo} />
           </p>
           {/* <p>
             <i className="bi bi-linkedin pe-2"></i>

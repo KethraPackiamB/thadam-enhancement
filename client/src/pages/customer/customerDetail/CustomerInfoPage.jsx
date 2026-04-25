@@ -9,21 +9,25 @@ import CustomerSocials from "../../../modules/customer/socialLinks/CustomerSocia
 import CustomerNotes from "../../../modules/customer/notes/CustomerNotes";
 // import DeleteButton from "../../../modules/actions/deleteCustomer/DeleteButton";
 import Sidebar from "../../../modules/layout/sidebar/Sidebar";
-import customer from "../../../mockdata";
+// import customer from "../../../mockdata";
+import { useContext } from "react";  
+import { CustomerContext } from "../../../contexts/customerContext/CustomerContext";
+
 const CustomerInfoPage = () => {
   // const { id } = useParams();
-  // const { data: customer, isLoading, isError, error } = useGetCustomer(id);
+   const { customer, isLoading, error } = useContext(CustomerContext);
+  const navigate = useNavigate();
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading customer</p>;
+
   
 
-  const isLoading = false;
-  const isError = false;
-  const error = null;
-
-  const navigate = useNavigate();
+ 
   const handleEdit = (customer) => {
     navigate("/add-customer-form", { state: customer });
   };
-  if (isError) {
+  if (error) {
     return (
       <div className="text-center mt-5 text-danger ">
         <h3>{error?.message || "Something went wrong"}</h3>
@@ -90,7 +94,7 @@ const CustomerInfoPage = () => {
             </div>
             <div className="col-5">
               <div className="">
-                <CustomerAddress address={customer.address} />
+                <CustomerAddress address={customer?.address} />
               </div>
             </div>
             <div className="pt-3">

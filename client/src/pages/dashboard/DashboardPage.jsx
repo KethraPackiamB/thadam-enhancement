@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Sidebar from "../../modules/layout/sidebar/Sidebar"
 import WelcomeCard from "../../modules/layout/welcomeCard/WelcomeCard"
+import CustomerTableColumns from "../../modules/customers/customerTableColumns/CustomerTableColumns";
 // import { Logout } from "../../components/logOutHandling/LogoutHandling";
-import CustomerTable from "../../modules/customers/customersTable/CustomerTable";
+// import CustomerTable from "../../modules/customers/customersTable/CustomerTable";
+
 
 const DashboardPage = () => {
   const [open, setOpen] = useState(false);
@@ -30,7 +32,7 @@ const DashboardPage = () => {
           <WelcomeCard />
 
           <div>
-            <CustomerTable />
+           <CustomerTableColumns/>
           </div>
         </div>
       </div>
