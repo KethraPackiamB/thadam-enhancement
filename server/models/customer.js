@@ -1,5 +1,15 @@
 const mongoose = require("mongoose");
 
+const logMeetingSchema = new mongoose.Schema({
+  date: { type: Date, default: Date.now },
+  meetingType: {
+    type: String,
+    enum: ["Call", "Email", "Video", "In-person"]
+  },
+  meetingTitle: { type: String },
+  description: { type: String }
+});
+
 const customerSchema = new mongoose.Schema(
   {
     firstname: { type: String, required: true, trim: true },
@@ -62,14 +72,7 @@ const customerSchema = new mongoose.Schema(
       },
     ],
 
-    logMeeting:{
-      date:{type: Date, default: Date.now},
-      meetingType: {
-        type: String,
-        enum: ["Call","Email","Video","In-person"]
-      },
-      description: {type: String}
-    },
+     logMeeting: [logMeetingSchema],
     referredBy: { type: String },
 
     createdBy: { type: String, required: true },
@@ -77,6 +80,6 @@ const customerSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const customer = mongoose.model("Customer", customerSchema);
+const Customer = mongoose.models.Customer || mongoose.model("Customer", customerSchema);
 
-module.exports = customer;
+module.exports = Customer;

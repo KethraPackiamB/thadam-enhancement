@@ -9,7 +9,7 @@ export const CustomerTableControllerContext = createContext();
 export const CustomerTableControllerProvider = ({ children }) => {
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("");
-  const [role, setRole] = useState(""); 
+  // const [role, setRole] = useState(""); 
   const [designation, setDesignation] = useState("");
   const [view, setView] = useState("table");
   const[contactType,setContactType]=useState("")
@@ -20,9 +20,9 @@ export const CustomerTableControllerProvider = ({ children }) => {
     isError,
     error,
   } = useQuery({
-    queryKey: ["customers", search, location, role, designation],
+    queryKey: ["customers", search, location, contactType, designation],
     queryFn: () =>
-      getCustomers(search, location, role, designation),
+      getCustomers(search, location, contactType, designation),
   });
 
   
@@ -49,8 +49,6 @@ export const CustomerTableControllerProvider = ({ children }) => {
         setSearch,
         location,
         setLocation,
-        role,
-        setRole,
         designation,
         setDesignation,
         contactType,

@@ -4,10 +4,11 @@ import { AllCustomerContext } from "../../../contexts/allCustomerContext/AllCust
 import CustomerTable from "../customersTable/CustomerTable";
 import Button from "../../../ui/button/Button";
 import DeleteConfirmation from "../../actions/deleteCustomer/DeleteCustomer";
+import { CustomerTableControllerContext } from "../../../contexts/customerTableControllerContext/CustomerTableControllerContext";
 
 
 const CustomerTableColumns = () => {
-  const { customers, deleteCustomer } = useContext(AllCustomerContext);
+  const { customers, deleteCustomer } = useContext(CustomerTableControllerContext);
 
   const [showConfirm, setShowConfirm] = useState(false);
   const [customerToDelete, setCustomerToDelete] = useState(null);
@@ -102,8 +103,8 @@ const CustomerTableColumns = () => {
             <span style={{ fontSize: "14px" }}>
               <i className="fa-solid fa-phone"></i>
             </span>
-             <a href={"tel:+91"+phone}>{phone}</a>
-            
+            <a href={"tel:+91" + phone}>{phone}</a>
+
           </div>
         );
       },
@@ -141,12 +142,15 @@ const CustomerTableColumns = () => {
     },
     {
       header: "Last_Contacted",
-      accessorKey: "lastContactedDate",
+      accessorKey: "logMeeting[0].date",
       cell: ({ row }) => {
-        const lastContacted = row.original.lastContactedDate;
+        const date = row.original.logMeeting[0]?.date;
+        const formattedDate = date
+          ? date.split("T")[0]
+          : "";
         return (
           <div className="text-truncate" style={{ maxWidth: "130px" }}>
-            {lastContacted}
+            {formattedDate}
           </div>
         );
       },

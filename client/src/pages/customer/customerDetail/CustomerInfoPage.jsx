@@ -1,35 +1,26 @@
 import CustomerHeader from "../../../modules/customer/header/CustomerHeader";
 import CustomerMoreInfo from "../../../modules/customer/moreInfo/moreInformation/CustomerMoreInfo";
 import CustomerAddress from "../../../modules/customer/moreInfo/address/CustomerAddress";
-// import CustomerEngagement from "../../components/customer/CustomerEngagement";
-// import { useGetCustomer } from "../../hooks/customer/useGetCustomer";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../ui/button/Button";
 import CustomerSocials from "../../../modules/customer/socialLinks/CustomerSocials";
 import CustomerNotes from "../../../modules/customer/notes/CustomerNotes";
-// import DeleteButton from "../../../modules/actions/deleteCustomer/DeleteButton";
 import Sidebar from "../../../modules/layout/sidebar/Sidebar";
-// import customer from "../../../mockdata";
-import { useContext } from "react";  
+import { useContext } from "react";
 import { CustomerContext } from "../../../contexts/customerContext/CustomerContext";
+import LogmeetingCard from "../../../modules/customer/moreInfo/updates/LogmeetingCard";
 
 const CustomerInfoPage = () => {
-  // const { id } = useParams();
-   const { customer, isLoading, error } = useContext(CustomerContext);
+  const { customer, isLoading, error } = useContext(CustomerContext);
   const navigate = useNavigate();
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading customer</p>;
-
-  
-
- 
   const handleEdit = (customer) => {
-    navigate("/add-customer-form", { state: customer });
+    navigate("/add-contact-form", { state: customer });
   };
+
   if (error) {
     return (
-      <div className="text-center mt-5 text-danger ">
+      <div className="text-center mt-5 text-danger">
         <h3>{error?.message || "Something went wrong"}</h3>
       </div>
     );
@@ -43,6 +34,7 @@ const CustomerInfoPage = () => {
       </div>
     );
   }
+
   return (
     <div className="d-flex">
       <div style={{ width: "240px", flexShrink: 0 }}>
@@ -52,16 +44,12 @@ const CustomerInfoPage = () => {
         className="flex-grow-1 vh-100"
         style={{ overflowX: "hidden", overflowY: "auto" }}
       >
-        <div
-          className=" py-0 gradient-bg  sticky-top"
-          // style={{ backgroundColor:  "#2563eb", color: "#eef2ff"}}
-        >
+        <div className="py-0 gradient-bg sticky-top">
           <div>
             <Button
-              className="btn "
+              className="btn"
               onClick={() => navigate("/")}
               icon={<i className="fa-solid fa-arrow-left fa-lg text-light"></i>}
-              class="bi bi-caret-left-square"
             />
             <div className="d-flex align-items-center justify-content-end gap-2 me-3">
               <Button
@@ -71,33 +59,26 @@ const CustomerInfoPage = () => {
                 onClick={() => handleEdit(customer)}
                 icon={<i className="bi bi-pencil-square me-2"></i>}
               />
-
-              {/* <DeleteButton
-                id={customer._id}
-                redirect
-                text="Delete"
-                className="btn btn-primary rounded-0 d-flex align-items-center justify-content-center"
-                style={{ height: "35px", width: "90px" }}
-                icon={<i className="bi bi-trash3-fill me-2 "></i>}
-              /> */}
             </div>
           </div>
           <CustomerHeader customer={customer} />
         </div>
+
         <div>
           <div
             className="row p-3 mx-0"
             style={{ backgroundColor: "white", color: "#2563eb" }}
           >
-            <div className="col-7 ">
+            <div className="col-7">
               <CustomerMoreInfo customer={customer} />
             </div>
             <div className="col-5">
-              <div className="">
-                <CustomerAddress address={customer?.address} />
-              </div>
+              <CustomerAddress address={customer?.address} />
             </div>
-            <div className="pt-3">
+            <div className="col-7">
+              <LogmeetingCard />
+            </div>
+            <div className="col-5 pt-3">
               <CustomerSocials customer={customer} />
             </div>
             <div className="pt-3">
@@ -109,4 +90,5 @@ const CustomerInfoPage = () => {
     </div>
   );
 };
+
 export default CustomerInfoPage;

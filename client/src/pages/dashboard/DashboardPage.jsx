@@ -8,7 +8,7 @@ import CustomerTableColumns from "../../modules/customers/customerTableColumns/C
 
 const DashboardPage = () => {
   const [open, setOpen] = useState(false);
-  console.log("rendering")
+  // console.log("rendering")
 
   return (
     <div className="d-flex vh-100 position-relative">

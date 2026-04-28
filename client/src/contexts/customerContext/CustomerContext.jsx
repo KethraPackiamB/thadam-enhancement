@@ -5,11 +5,12 @@ import { useGetCustomer } from "../../services/useGetCustomer";
 export const CustomerContext = createContext();
 
 export const CustomerProvider = ({ children }) => {
-   const { id } = useParams();
+  const { id } = useParams();
   const {
     data: customer,
     isLoading,
     error,
+    refetch,
   } = useGetCustomer(id);
 
   return (
@@ -18,6 +19,7 @@ export const CustomerProvider = ({ children }) => {
         customer,
         isLoading,
         error,
+        refetch,
       }}
     >
       {children}

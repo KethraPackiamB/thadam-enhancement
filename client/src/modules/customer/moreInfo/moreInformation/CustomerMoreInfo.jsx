@@ -4,7 +4,7 @@ import Header from "../../ui/Header";
 const CustomerMoreInfo = ({ customer }) => {
   const fieldLeft = [
      {label:"referred by",value:customer?.referredBy},
-    {label:"Last Contacted",value:customer?.lastContactedDate,type:"date"}
+    {label:"Last Contacted",value:customer?.logMeeting.date,type:"date"}
   ];
   const filedRight = [
     { label: "Secondary Email", value: customer?.secondaryEmail, type: "email" },

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaFilter } from "react-icons/fa";
@@ -20,17 +20,14 @@ const CustomerController = ({ table }) => {
   } = useContext(CustomerTableControllerContext);
   const [showFilter, setShowFilter] = useState(false);
   const { view, handleView } = useContext(CustomerTableControllerContext);
+  const filterRef = useRef(null) 
 
   const navigate = useNavigate();
   const handleNavigate = () => {
-    // setLocation("");
-    // setContactType("");
-    // setDesignation("");
+    setLocation("");
+    setContactType("");
+    setDesignation("");
     navigate("/add-contact-form");
-  };
-
-  const applyFilter = () => {
-    setShowFilter(false);
   };
 
   const clearFilter = () => {
@@ -40,7 +37,20 @@ const CustomerController = ({ table }) => {
     setShowFilter(false);
   };
 
- 
+  useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (filterRef.current && !filterRef.current.contains(event.target)) {
+      setShowFilter(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
+
   return (
     <div className="d-flex justify-content-between gap-3 mb-3 w-100">
       <div className="d-flex gap-2">
@@ -60,6 +70,7 @@ const CustomerController = ({ table }) => {
 
           {showFilter && (
             <div
+              ref={filterRef}
               className="card shadow p-3"
               style={{
                 width: "250px",
@@ -117,12 +128,6 @@ const CustomerController = ({ table }) => {
                 </select>
               </div>
               <div className="d-flex gap-2">
-                <button
-                  className="btn btn-outline-primary btn-sm mt-2 w-100"
-                  onClick={applyFilter}
-                >
-                  Apply
-                </button>
                 <button
                   className="btn btn-outline-danger btn-sm mt-2 w-100"
                   onClick={clearFilter}
