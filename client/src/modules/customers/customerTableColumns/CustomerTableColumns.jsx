@@ -4,7 +4,6 @@ import { AllCustomerContext } from "../../../contexts/allCustomerContext/AllCust
 import CustomerTable from "../customersTable/CustomerTable";
 import Button from "../../../ui/button/Button";
 import DeleteConfirmation from "../../actions/deleteCustomer/DeleteCustomer";
-import { AllCustomerContext } from "../../../contexts/allCustomerContext/AllCustomerContext";
 
 
 const CustomerTableColumns = () => {
