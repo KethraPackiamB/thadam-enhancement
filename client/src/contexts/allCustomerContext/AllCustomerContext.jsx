@@ -7,7 +7,7 @@ import { useDeleteCustomer } from "../../services/useDeleteCustomer";
 export const AllCustomerContext = createContext();
 
 export const AllCustomerProvider = ({ children }) => {
-  const filters = {}; // later you can pass filters dynamically
+  const filters = {};
 
   const {
     data: customers = [],
@@ -25,9 +25,11 @@ export const AllCustomerProvider = ({ children }) => {
         customers,
         isLoading,
         error,
-        addCustomer: addMutation.mutate,
-        updateCustomer: updateMutation.mutate,
-        deleteCustomer: deleteMutation.mutate,
+        addCustomer: addMutation.mutateAsync,
+        updateCustomer: updateMutation.mutateAsync,
+        deleteCustomer: deleteMutation.mutateAsync,
+        isAdding: addMutation.isPending,
+        isUpdating: updateMutation.isPending,
       }}
     >
       {children}

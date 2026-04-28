@@ -3,7 +3,7 @@ import Address from "../address/Address";
 import ContactDetails from "../contact/ContactDetails";
 import Updates from "../updates/Updates";
 
-const MoreInformation = ({ register, errors }) => {
+const MoreInformation = ({ register, errors, customer }) => {
   const [activeTab, setActiveTab] = useState("address");
 
   return (
@@ -29,15 +29,15 @@ const MoreInformation = ({ register, errors }) => {
           </button>
         </li>
 
-        <li className="nav-item">
+        { customer == null && <li className="nav-item"> 
           <button
             type="button"
             className={`nav-link ${activeTab === "updates" ? "active" : ""}`}
-            onClick={() => setActiveTab("updates")}
+            onClick={() => setActiveTab("updates")} 
           >
             Updates
           </button>
-        </li>
+        </li>}
       </ul>
       <div className="p-3 border">
         {activeTab === "address" && (

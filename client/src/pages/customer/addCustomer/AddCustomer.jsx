@@ -29,9 +29,12 @@ const AddCustomerPage = () => {
     if (customer) {
       reset({
         ...customer,
-        lastContactedDate: customer.lastContactedDate
-          ? customer.lastContactedDate.split("T")[0]
-          : "",
+        logMeeting: {
+          ...customer.logMeeting,
+          date: customer.logMeeting?.date
+            ? customer.logMeeting.date.split("T")[0]
+            : "",
+        },
       });
     }
   }, [customer, reset]);
@@ -111,7 +114,7 @@ const AddCustomerPage = () => {
 
         <div className="row p-3">
           <div className="col-md-7">
-            <MoreInformation register={register} errors={errors} />
+            <MoreInformation register={register} errors={errors} customer={customer}/>
           </div>
           <div className="col-md-5">
             <SocialLinks register={register} control={control} />
@@ -135,7 +138,9 @@ const AddCustomerPage = () => {
         >
           {addCustomer.isPending || updateCustomer.isPending
             ? "Saving..."
-            : "Save Contact"}
+            : customer
+              ? "Update Contact"
+              : "Save Contact"}
         </button>
       </div>
     </div>

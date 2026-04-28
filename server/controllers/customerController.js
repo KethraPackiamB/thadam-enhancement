@@ -144,7 +144,7 @@ const updateCustomer = async (req, res) => {
       req.body,
       { returnDocument: "after" },
     );
-
+    // console.log(req.body)
     if (!updatedCustomer) {
       return res.status(404).json({ message: "Customer not found" });
     }
@@ -154,6 +154,7 @@ const updateCustomer = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 //Add Customer API
 const addCustomer = async (req, res) => {
   console.log(req.user);
