@@ -6,12 +6,11 @@ const Sidebar = ({ open, setOpen, handleLogout }) => {
   return (
     <>
       <div
-  className={`bg-white border-end p-3 d-flex flex-column sidebar-style ${
-    open ? "sidebar-open" : ""
-  }`}
-  style={{ minHeight: "100vh" }}  
->
-        
+        className={`bg-white border-end p-3 d-flex flex-column sidebar-style ${
+          open ? "sidebar-open" : ""
+        }`}
+        style={{ minHeight: "100vh" }}
+      >
         <div className="text-center mb-4">
           <img
             src={thadam}
@@ -24,9 +23,20 @@ const Sidebar = ({ open, setOpen, handleLogout }) => {
         <nav className="nav flex-column flex-grow-1">
           <NavLink
             to="/"
-            className="nav-link bg-primary-subtle text-primary rounded mb-2"
+            className={({ isActive }) =>
+              isActive ? "nav-link bg-primary-subtle text-primary rounded" : "nav-link"
+            }
           >
-            Dashboard
+            Contacts
+          </NavLink>
+
+          <NavLink
+            to="/clients"
+            className={({ isActive }) =>
+              isActive ? "nav-link bg-primary-subtle text-primary rounded" : "nav-link"
+            }
+          >
+            Clients
           </NavLink>
         </nav>
 

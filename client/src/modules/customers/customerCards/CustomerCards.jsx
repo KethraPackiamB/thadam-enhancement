@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { AllCustomerContext } from "../../../contexts/allCustomerContext/AllCustomerContext";
 import DeleteConfirmation from "../../actions/deleteCustomer/DeleteCustomer";
+import FieldRender from "../../actions/fieldRender/FieldRender";
 
 const CustomerCards = ({ table }) => {
   const [showConfirm, setShowConfirm] = useState(false);
@@ -66,7 +67,7 @@ const CustomerCards = ({ table }) => {
                     <div
                       className="dropdown position-absolute top-0 end-0 m-2 "
                       onClick={(e) => e.stopPropagation()}
-                      style={{zIndex : 1000}}
+                      style={{ zIndex: 1000 }}
                     >
                       <button
                         className="btn btn-light"
@@ -92,20 +93,29 @@ const CustomerCards = ({ table }) => {
 
                   <p className="mb-1 text-truncate text-secondary">
                     <i className="fa-solid fa-envelope me-2"></i>
-                 <a href={"mailto:"+customer.primaryEmail}>{customer.primaryEmail}</a>
+                    <FieldRender type="email" value={customer.primaryEmail} />
                   </p>
 
                   <p className="mb-1 text-secondary">
                     <i className="fa-solid fa-phone me-2"></i>
-                    <a href={"tel:+91"+customer.primaryContactNo}>{customer.primaryContactNo}</a>
+                    <FieldRender
+                      type="phone"
+                      value={customer.primaryContactNo}
+                    />
                   </p>
 
                   <p className="mb-1 text-secondary">
-                    <span><i className="fa-solid fa-building"></i></span> <span>{customer.company}</span>
+                    <span>
+                      <i className="fa-solid fa-building"></i>
+                    </span>{" "}
+                    <span>{customer.company}</span>
                   </p>
 
                   <p className="mb-1 text-secondary">
-                    <span><i className="fa-solid fa-location-dot"></i></span> <span>{customer.address?.city}</span>
+                    <span>
+                      <i className="fa-solid fa-location-dot"></i>
+                    </span>{" "}
+                    <span>{customer.address?.city}</span>
                   </p>
                 </div>
               </div>

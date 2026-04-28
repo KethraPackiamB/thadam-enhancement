@@ -12,7 +12,7 @@ const CustomerSocials = ({ customer }) => {
     <Header label="Socials"/>
       <div className="d-flex gap-3">
         {fields
-          .filter((field) => field.value) // hide empty
+          .filter((field) => field.value)
           .map((field) => (
             <FieldRender
               key={field.label}
