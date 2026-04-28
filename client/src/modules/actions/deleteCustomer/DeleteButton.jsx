@@ -1,11 +1,11 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { CustomerTableContext } from "../../context/CustomerTableContext";
 import Button from "../button/Button";
 import DeleteConfirmation from "../deleteConfirmation/DeleteConfirmation";
+import { CustomerTableControllerContext } from "../../../contexts/customerTableControllerContext/CustomerTableControllerContext";
 
 const DeleteButton = ({ id, redirect = false ,icon,style,className="btn btn-sm",text}) => {
-  const { deleteCustomer } = useContext(CustomerTableContext);
+  const { deleteCustomer } = useContext(CustomerTableControllerContext);
   const [showConfirm, setShowConfirm] = useState(false);
   const navigate = useNavigate();
 
