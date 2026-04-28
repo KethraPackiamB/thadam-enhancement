@@ -5,7 +5,6 @@ import CustomerTable from "../customersTable/CustomerTable";
 import Button from "../../../ui/button/Button";
 import DeleteConfirmation from "../../actions/deleteCustomer/DeleteCustomer";
 
-
 const CustomerTableColumns = () => {
   const { customers, deleteCustomer } = useContext(AllCustomerContext);
 
@@ -103,7 +102,6 @@ const CustomerTableColumns = () => {
               <i className="fa-solid fa-phone"></i>
             </span>
             <a href={"tel:+91" + phone}>{phone}</a>
-
           </div>
         );
       },
@@ -141,12 +139,12 @@ const CustomerTableColumns = () => {
     },
     {
       header: "Last_Contacted",
-      accessorKey: "logMeeting[0].date",
-      cell: ({ row }) => {
-        const date = row.original.logMeeting[0]?.date;
-        const formattedDate = date
-          ? date.split("T")[0]
-          : "";
+      accessorFn: (row) => row.logMeeting?.[0]?.date,
+      cell: ({ getValue }) => {
+        const date = getValue();
+
+        const formattedDate = date ? date.split("T")[0] : "";
+
         return (
           <div className="text-truncate" style={{ maxWidth: "130px" }}>
             {formattedDate}
