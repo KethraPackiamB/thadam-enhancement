@@ -35,6 +35,8 @@ export const CustomerTableControllerProvider = ({ children }) => {
   const handleView = () => {
     setView((prev) => (prev === "table" ? "card" : "table"));
   };
+  const deleteCustomer = (id) => {
+};
 
   return (
     <CustomerTableControllerContext.Provider
@@ -55,6 +57,7 @@ export const CustomerTableControllerProvider = ({ children }) => {
         setContactType,       
         view,
         handleView,
+         deleteCustomer
       }}
     >
       {children}

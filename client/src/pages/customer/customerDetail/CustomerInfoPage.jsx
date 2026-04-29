@@ -9,6 +9,7 @@ import Sidebar from "../../../modules/layout/sidebar/Sidebar";
 import { useContext } from "react";
 import { CustomerContext } from "../../../contexts/customerContext/CustomerContext";
 import LogmeetingCard from "../../../modules/customer/moreInfo/updates/LogmeetingCard";
+import DeleteButton from "../../../modules/actions/deleteCustomer/DeleteButton";
 
 const CustomerInfoPage = () => {
   const { customer, isLoading, error } = useContext(CustomerContext);
@@ -45,11 +46,12 @@ const CustomerInfoPage = () => {
         style={{ overflowX: "hidden", overflowY: "auto" }}
       >
         <div className="py-0 gradient-bg sticky-top">
-          <div>
+           <div className="d-flex align-items-center justify-content-between pt-2 px-2">
             <Button
               className="btn"
               onClick={() => navigate("/")}
-              icon={<i className="fa-solid fa-arrow-left fa-lg text-light"></i>}
+                style={{ fontSize: "20px" }}
+              icon={<i className="fa-solid fa-arrow-left fa-lg text-light "></i>}
             />
             <div className="d-flex align-items-center justify-content-end gap-2 me-3">
               <Button
@@ -59,9 +61,17 @@ const CustomerInfoPage = () => {
                 onClick={() => handleEdit(customer)}
                 icon={<i className="bi bi-pencil-square me-2"></i>}
               />
+              <DeleteButton
+                id={customer._id}
+                redirect
+                text="Delete"
+                className="btn btn-primary rounded-0 d-flex align-items-center justify-content-center"
+                style={{ height: "35px", width: "90px" }}
+                icon={<i className="bi bi-trash3-fill me-2 "></i>}
+              />
             </div>
           </div>
-          <CustomerHeader customer={customer} />
+          <div > <CustomerHeader customer={customer} /></div>     
         </div>
 
         <div>
@@ -75,11 +85,11 @@ const CustomerInfoPage = () => {
             <div className="col-5">
               <CustomerAddress address={customer?.address} />
             </div>
-            <div className="col-7">
-              <LogmeetingCard />
+            <div className="col-7 pt-2 d-flex flex-column">
+              <LogmeetingCard className="flex-grow-1" />
             </div>
-            <div className="col-5 pt-3">
-              <CustomerSocials customer={customer} />
+            <div className="col-5 pt-3 d-flex flex-column">
+              <CustomerSocials customer={customer} className="flex-grow-1" />
             </div>
             <div className="pt-3">
               <CustomerNotes />

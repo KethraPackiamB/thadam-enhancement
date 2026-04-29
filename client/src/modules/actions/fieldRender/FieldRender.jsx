@@ -1,6 +1,6 @@
-import { extractUrlId, formatEmail, formatPhone } from "../../../utils/formatters";
+import {formatEmail, formatPhone } from "../../../utils/formatters";
 
-const FieldRender = ({ type = "text", value }) => {
+const FieldRender = ({ type = "text", value,style={ color: "black" } }) => {
   if (!value) return " ";
 
   const formattedLink = value.startsWith("http") ? value : `https://${value}`;
@@ -31,13 +31,13 @@ const FieldRender = ({ type = "text", value }) => {
 
     case "email":
       return (
-        <a href={formatEmail(value)} style={{ color: "white" }}>
+        <a href={formatEmail(value)} style={style}>
           {value}
         </a>
       );
     case "phone":
       return (
-        <a href={formatPhone(value)} style={{ color: "white" }}>
+        <a href={formatPhone(value)} style={style}>
           {value}
         </a>
       );

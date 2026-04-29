@@ -1,15 +1,16 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../button/Button";
-import DeleteConfirmation from "../deleteConfirmation/DeleteConfirmation";
-import { CustomerTableControllerContext } from "../../../contexts/customerTableControllerContext/CustomerTableControllerContext";
+import DeleteConfirmation from "../../actions/deleteCustomer/DeleteCustomer";
+import { AllCustomerContext } from "../../../contexts/allCustomerContext/AllCustomerContext";
+import Button from "../../../ui/button/Button";
 
 const DeleteButton = ({ id, redirect = false ,icon,style,className="btn btn-sm",text}) => {
-  const { deleteCustomer } = useContext(CustomerTableControllerContext);
+  const { deleteCustomer } = useContext(AllCustomerContext);
   const [showConfirm, setShowConfirm] = useState(false);
   const navigate = useNavigate();
 
   const handleDelete = () => {
+     console.log("DELETE CLICKED");
     deleteCustomer(id);
     setShowConfirm(false);
 
@@ -30,6 +31,7 @@ const DeleteButton = ({ id, redirect = false ,icon,style,className="btn btn-sm",
         className={className}
        buttonText={text} 
       />
+
 
       <DeleteConfirmation
         show={showConfirm}

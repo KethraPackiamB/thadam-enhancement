@@ -6,8 +6,7 @@ const FieldColumn = ({fields}) => {
            <div className=" ps-2" key={field.label}>
                 <p className="m-2 ps-2" style={{color:"gray"}}>{field.label}</p>
                 <p className="ps-3">
-                  <FieldRender type={field.type} value={field.value} />
-                  
+                  <FieldRender type={field.type} value={field.value} />                 
                 </p>
               </div>
         ))}

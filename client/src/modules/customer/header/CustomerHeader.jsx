@@ -39,12 +39,12 @@ const CustomerHeader = ({ customer }) => {
       <div className="col d-flex justify-content-center align-items-center ">
         <div>
           <p>
-            <i className="bi bi-envelope-open-fill pe-2 "></i>
-            <FieldRender type="email" value={customer?.primaryEmail} />
+            <i className="bi bi-envelope-open-fill pe-2" st></i>
+            <FieldRender style={{color:"white"}} type="email" value={customer?.primaryEmail} />
           </p>
           <p>
             <i className="bi bi-telephone-fill pe-2"></i>
-            <FieldRender type="phone" value={customer?.primaryContactNo} />
+            <FieldRender style={{color:"white"}} type="phone" value={customer?.primaryContactNo} />
           </p>
           {/* <p>
             <i className="bi bi-linkedin pe-2"></i>
