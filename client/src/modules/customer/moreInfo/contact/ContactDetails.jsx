@@ -18,17 +18,20 @@ const ContactDetails = ({ register, errors }) => {
         <label>Secondary Phone No.</label>
         <input
           type="text"
+          maxLength={10}
+          inputMode="numeric"
           className={`form-control bg-light ${errors.secondaryContactNo ? "is-invalid" : ""}`}
           {...register("secondaryContactNo", {
-            pattern: {
-              value: /^[0-9]{10}$/,
-              message: "Must be 10 digits",
-            },
+            required: "Phone required",
+            pattern: { value: /^[0-9]{10}$/, message: "Must be 10 digits" },
           })}
         />
-        <div className="invalid-feedback">
-          {errors.secondaryContactNo?.message}
-        </div>
+
+        {errors.secondaryContactNo && (
+          <div className="invalid-feedback">
+            {errors.secondaryContactNo.message}
+          </div>
+        )}
       </div>
     </>
   );

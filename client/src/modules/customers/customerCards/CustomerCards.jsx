@@ -101,7 +101,7 @@ const CustomerCards = ({ table }) => {
                     <FieldRender
                       type="phone"
                       value={customer.primaryContactNo}
-                    />
+                    />  
                   </p>
 
                   <p className="mb-1 text-secondary">

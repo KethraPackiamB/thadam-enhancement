@@ -73,45 +73,24 @@ const PersonalDetails = ({ register, errors }) => {
             />
           </div>
 
-          {/* <div className="col-md-6 mb-2">
-            {" "}
-            <label>Phone No.</label>{" "}
+          <div className="col-md-6 mb-2">
+            <label>Phone No.</label>
             <input
               type="text"
+              maxLength={10}
+              inputMode="numeric"
               className={`form-control bg-light ${errors.primaryContactNo ? "is-invalid" : ""}`}
               {...register("primaryContactNo", {
                 required: "Phone required",
                 pattern: { value: /^[0-9]{10}$/, message: "Must be 10 digits" },
               })}
-            />{" "}
-          </div> */}
-
-          <div className="col-md-6 mb-2">
-            <label>Phone No.</label>
-
-            <input
-              type="text"
-              maxLength={11}
-              className={`form-control bg-light ${
-                errors.primaryContactNo ? "is-invalid" : ""
-              }`}
-              {...register("primaryContactNo", {
-                required: "Phone required",
-                validate: (value) => {
-                  const digits = value.replace(/\s/g, "");
-                  return digits.length === 10 || "Must be 10 digits";
-                },
-              })}
-              onChange={(e) => {
-                let value = e.target.value.replace(/\D/g, "");
-
-                if (value.length > 5) {
-                  value = value.slice(0, 5) + " " + value.slice(5, 10);
-                }
-
-                e.target.value = value;
-              }}
             />
+
+            {errors.primaryContactNo && (
+              <div className="invalid-feedback">
+                {errors.primaryContactNo.message}
+              </div>
+            )}
           </div>
         </div>
 

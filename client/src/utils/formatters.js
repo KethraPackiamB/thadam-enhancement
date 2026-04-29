@@ -16,8 +16,15 @@ export const formatEmail = (email) => {
 };
 
 export const formatPhone = (phone) => {
-  if (!phone) return "";
-  return `tel:${phone.trim()}`;
+  if (!phone) return { display: "", link: "" };
+
+  const format = phone.toString().replace(/\D/g, "").slice(-10);
+
+  return {
+    display:
+      format.length === 10 ? `${format.slice(0, 5)} ${format.slice(5)}` : phone,
+    link: `tel:${format}`,
+  };
 };
 
 export const extractUrlId = (url) => {
