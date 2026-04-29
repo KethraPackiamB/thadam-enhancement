@@ -29,10 +29,10 @@ const LogmeetingCard = () => {
 
   return (
     <div className="card h-100 p-3 mt-2" style={{ backgroundColor: "white" }}>
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <Header label="Meeting History" />
+      <div className="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">  
+          <Header label="Meeting History" className="mb-0" />  
         <button
-          className="btn btn-primary"
+          className="btn btn-primary btn-sm"
           onClick={() => {
             setEditData(null);
             setShow(true);

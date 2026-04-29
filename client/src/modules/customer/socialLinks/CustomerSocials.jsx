@@ -8,7 +8,7 @@ const CustomerSocials = ({ customer }) => {
     {label:"linkedIn",value:customer?.socialMedia?.linkedin}
   ];
   return (
-    <div className="card p-3" >
+    <div className="card h-100 p-3" >
     <Header label="Socials"/>
       <div className="d-flex gap-3">
         {fields
@@ -19,8 +19,6 @@ const CustomerSocials = ({ customer }) => {
               type="link"
               value={field.value}
             />
-            
-          
           ))}
       </div>
     </div>

@@ -21,7 +21,7 @@ const Updates = ({ register, errors }) => {
         </div>
 
         <div className="col-md-6 mb-3">
-          <label>Meeting Title</label>
+          <Header label="Meeting Title"/>
           <input
             type="text"
             className={`form-control bg-light ${errors?.logMeeting?.meetingTitle ? "is-invalid" : ""}`}

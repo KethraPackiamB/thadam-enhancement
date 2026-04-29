@@ -6,6 +6,7 @@ const Button = ({
   icon,
   form,
   disabled,
+  style
 }) => {
   return (
     <div>
@@ -15,6 +16,7 @@ const Button = ({
         onClick={onClick}
         disabled={disabled}
         form={form}
+        style={style}
       >
         {icon}
         {buttonText}
