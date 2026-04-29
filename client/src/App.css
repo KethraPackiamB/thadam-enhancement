@@ -48,4 +48,17 @@ input:focus {
     content: "|";
   }
 }
-.gradient-bg { color: white; background: linear-gradient(270deg,#2563eb,#3b82f6); }
+.gradient-bg {
+  color: white;
+  background: linear-gradient(270deg, #2563eb, #3b82f6);
+}
+
+.redirect-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.redirect-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

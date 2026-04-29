@@ -1,5 +1,4 @@
 import FormHeader from "../../../../ui/formHeader/formHeader";
-
 // Fields are always registered under "logMeeting.*"
 // so AddCustomer.jsx can reliably extract: const { logMeeting, ...customerData } = data
 const Updates = ({ register, errors }) => {
@@ -21,7 +20,7 @@ const Updates = ({ register, errors }) => {
         </div>
 
         <div className="col-md-6 mb-3">
-          <Header label="Meeting Title"/>
+          <FormHeader label="Meeting Title"/>
           <input
             type="text"
             className={`form-control bg-light ${errors?.logMeeting?.meetingTitle ? "is-invalid" : ""}`}

@@ -1,6 +1,6 @@
-import {formatEmail, formatPhone } from "../../../utils/formatters";
+import { formatEmail, formatPhone } from "../../../utils/formatters";
 
-const FieldRender = ({ type = "text", value,style={ color: "black" } }) => {
+const FieldRender = ({ type = "text", value, style = { color: "black" } }) => {
   if (!value) return " ";
 
   const formattedLink = value.startsWith("http") ? value : `https://${value}`;
@@ -31,16 +31,19 @@ const FieldRender = ({ type = "text", value,style={ color: "black" } }) => {
 
     case "email":
       return (
-        <a href={formatEmail(value)} style={style}>
+        <a href={formatEmail(value)} className="redirect-link" style={style}>
           {value}
         </a>
       );
-    case "phone":
+    case "phone": {
+      const { display, link } = formatPhone(value);
+
       return (
-        <a href={formatPhone(value)} style={style}>
-          {value}
+        <a href={link} className="redirect-link" style={style}>
+          {display}
         </a>
       );
+    }
     case "date":
       return <span>{formattedDate}</span>;
 
