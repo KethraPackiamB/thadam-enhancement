@@ -9,6 +9,7 @@ import "goey-toast/styles.css";
 import { CustomerTableControllerProvider } from "./contexts/customerTableControllerContext/CustomerTableControllerContext";
 import { CustomerProvider } from "./contexts/customerContext/CustomerContext";
 import { AllCustomerProvider } from "./contexts/allCustomerContext/AllCustomerContext";
+import ClientTableColumns from "./modules/clients/clientTableColumns/ClientTableColumns";
 
 
 const App = () => {
@@ -27,6 +28,9 @@ const App = () => {
         </AllCustomerProvider>
       </BrowserRouter>
     </QueryClientProvider>
+    // <div>
+    //   <ClientTableColumns/>
+    // </div>
   );
 }
 
