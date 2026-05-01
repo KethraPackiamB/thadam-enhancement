@@ -8,7 +8,7 @@ import { useState } from "react";
 export const AllCustomerContext = createContext();
 
 export const AllCustomerProvider = ({ children }) => {
-  const [view, setView] = useState("table")
+  const [view, setView] = useState("table");
   const filters = {};
 
   const {

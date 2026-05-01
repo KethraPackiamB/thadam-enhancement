@@ -4,6 +4,7 @@ import { AllCustomerContext } from "../../../contexts/allCustomerContext/AllCust
 import CustomerTable from "../customersTable/CustomerTable";
 import Button from "../../../ui/button/Button";
 import DeleteConfirmation from "../../actions/deleteCustomer/DeleteCustomer";
+import FieldRender from "../../actions/fieldRender/FieldRender";
 import { CustomerTableControllerContext } from "../../../contexts/customerTableControllerContext/CustomerTableControllerContext";
 
 const CustomerTableColumns = () => {
@@ -77,6 +78,7 @@ const CustomerTableColumns = () => {
             </span>
 
             <a href={"mailto:" + email}>{email}</a>
+            {/* <FieldRender type="email" value={email} /> */}
           </div>
         );
       },
@@ -104,6 +106,7 @@ const CustomerTableColumns = () => {
               <i className="fa-solid fa-phone"></i>
             </span>
             <a href={"tel:+91" + phone}>{phone}</a>
+            {/* <FieldRender type="phone" value={phone} />  */}
           </div>
         );
       },

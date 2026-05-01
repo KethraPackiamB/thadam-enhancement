@@ -1,6 +1,10 @@
+import Sidebar from "../../modules/layout/sidebar/Sidebar"
+import WelcomeCard from "../../modules/layout/welcomeCard/WelcomeCard"
+import CustomerTableColumns from "../../modules/customers/customerTableColumns/CustomerTableColumns";
+// import { Logout } from "../../components/logOutHandling/LogoutHandling";
 import { useState, useContext } from "react";
-import Sidebar from "../../modules/layout/sidebar/Sidebar";
-import WelcomeCard from "../../modules/layout/welcomeCard/WelcomeCard";
+// import Sidebar from "../../modules/layout/sidebar/Sidebar";
+// import WelcomeCard from "../../modules/layout/welcomeCard/WelcomeCard";
 import { AllCustomerContext } from "../../contexts/allCustomerContext/AllCustomerContext";
 
 const getInitials = (firstname = "", lastname = "") => {

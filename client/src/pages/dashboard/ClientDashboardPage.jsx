@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Sidebar from "../../modules/layout/sidebar/Sidebar"
 import WelcomeCard from "../../modules/layout/welcomeCard/WelcomeCard"
+import ClientTableColumns from "../../modules/clients/clientTableColumns/ClientTableColumns";
 // import CustomerTableColumns from "../../modules/customers/customerTableColumns/CustomerTableColumns";
 // import { Logout } from "../../components/logOutHandling/LogoutHandling";
 // import CustomerTable from "../../modules/customers/customersTable/CustomerTable";
@@ -31,9 +32,9 @@ const ClientDashboardPage= () => {
         <div className="p-4">
           <WelcomeCard />
 
-          {/* <div>
-           <CustomerTableColumns/>
-          </div> */}
+          <div>
+          <ClientTableColumns/>
+          </div>
         </div>
       </div>
     </div>
