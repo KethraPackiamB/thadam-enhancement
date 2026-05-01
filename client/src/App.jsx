@@ -10,6 +10,7 @@ import { CustomerTableControllerProvider } from "./contexts/customerTableControl
 import { CustomerProvider } from "./contexts/customerContext/CustomerContext";
 import { AllCustomerProvider } from "./contexts/allCustomerContext/AllCustomerContext";
 import ClientTableColumns from "./modules/clients/clientTableColumns/ClientTableColumns";
+import { UserProvider } from "./contexts/userContext/UserContext";
 
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <GooeyToaster position="top-center" />
+         <UserProvider>
         <AllCustomerProvider>
         <CustomerProvider>
         <CustomerTableControllerProvider>
@@ -26,10 +28,18 @@ const App = () => {
         </CustomerTableControllerProvider>
         </CustomerProvider>
         </AllCustomerProvider>
+        </UserProvider>
       </BrowserRouter>
     </QueryClientProvider>
     // <div>
+    //     <QueryClientProvider client={queryClient}>
+    //       <BrowserRouter>
+    //   <CustomerTableControllerProvider>
+        
     //   <ClientTableColumns/>
+    //   </CustomerTableControllerProvider>
+    //   </BrowserRouter>
+    //   </QueryClientProvider>
     // </div>
   );
 }
