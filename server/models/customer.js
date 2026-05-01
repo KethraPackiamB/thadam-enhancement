@@ -34,15 +34,7 @@ const customerSchema = new mongoose.Schema(
 
     contactType: {
       type: String,
-      enum: [
-        "Lead",
-        "Prospect",
-        "Client",
-        "Partner",
-        "Networking",
-        "Referral",
-        "Other",
-      ],
+      trim: true,
       default: "Prospect",
     },
 

@@ -15,14 +15,15 @@ export const getCustomerById = async (id) => {
 };
 
 export const getCustomers = async (search, location, contactType, designation) => {
-  let url = CUSTOMER_API_URL;
-  const params = [];
-  if (search) params.push(`search=${search}`);
-  if (location) params.push(`location=${location}`);
-  if (contactType) params.push(`contactType=${contactType}`);
-  if (designation) params.push(`designation=${designation}`);
-  if (params.length > 0) url += `?${params.join("&")}`;
-  const res = await axios.get(url, getAuthConfig());
+  const res = await axios.get(CUSTOMER_API_URL, {
+    ...getAuthConfig(),
+    params: {
+      search: search || undefined,
+      location: location || undefined,
+      contactType: contactType || undefined,
+      designation: designation || undefined,
+    },
+  });
   return res.data.data;
 };
 

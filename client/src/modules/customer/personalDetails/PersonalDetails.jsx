@@ -1,28 +1,53 @@
-// import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormHeader from "../../../ui/formHeader/formHeader";
 
-// const contactTypes = [
-//   "Lead",
-//   "Prospect",
-//   "Client",
-//   "Networking",
-//   "Partner",
-//   "Referral",
-//   "Other",
-// ];
+const contactTypeChoices = [
+  "Lead",
+  "Prospect",
+  "Client",
+  "Networking",
+  "Partner",
+  "Referral",
+];
 
-const PersonalDetails = ({ register, errors }) => {
-  // const [selectedType, setSelectedType] = useState("Prospect");
+const PersonalDetails = ({ register, errors, setValue, customer }) => {
+  const [selectedType, setSelectedType] = useState("Prospect");
+  const [customType, setCustomType] = useState("");
 
-  // const handleTypeChange = (e) => {
-  //   const value = e.target.value;
-  //   setSelectedType(value);
-  //   setValue("contactType", value);
+  useEffect(() => {
+    const savedType = customer?.contactType || "Prospect";
 
-  //   if (value !== "Other") {
-  //     setValue("contactType", value, { shouldValidate: true });
-  //   }
-  // };
+    if (contactTypeChoices.includes(savedType)) {
+      setSelectedType(savedType);
+      setCustomType("");
+      setValue("contactType", savedType);
+      return;
+    }
+
+    setSelectedType("Other");
+    setCustomType(savedType);
+    setValue("contactType", savedType);
+  }, [customer, setValue]);
+
+  const handleTypeChange = (e) => {
+    const value = e.target.value;
+    setSelectedType(value);
+
+    if (value === "Other") {
+      setValue("contactType", customType, { shouldValidate: true });
+      return;
+    }
+
+    setCustomType("");
+    setValue("contactType", value, { shouldValidate: true });
+  };
+
+  const handleCustomTypeChange = (e) => {
+    const value = e.target.value;
+    setCustomType(value);
+    setValue("contactType", value, { shouldValidate: true });
+  };
+
   return (
     <div className="card mb-2 flex-fill">
       <div className="card-body">
@@ -95,36 +120,40 @@ const PersonalDetails = ({ register, errors }) => {
         </div>
 
         <div className="row">
-          {/* <div className="col-md-6 mb-2">
-            <label className="form-label">Contact Type</label>
-
-            <input type="hidden" {...register("contactType")} />
-
+          <div className="col-md-6 mb-2">
+            <label>Contact Type</label>
+            <input
+              type="hidden"
+              {...register("contactType", {
+                validate: (value) =>
+                  value?.trim() ? true : "Contact Type is required",
+              })}
+            />
             <select
               className={`form-select bg-light ${errors.contactType ? "is-invalid" : ""}`}
-              onChange={handleTypeChange}
               value={selectedType}
+              onChange={handleTypeChange}
             >
-              {contactTypes.map((type, index) => (
-                <option key={index} value={type}>
+              {contactTypeChoices.map((type) => (
+                <option key={type} value={type}>
                   {type}
                 </option>
               ))}
+              <option value="Other">Other</option>
             </select>
 
             {selectedType === "Other" && (
               <input
                 type="text"
-                placeholder="Enter custom type"
-                className="form-control mt-2"
-                onChange={(e) =>
-                  setValue("contactType", e.target.value, {
-                    shouldValidate: true,
-                  })
-                }
+                className={`form-control bg-light mt-2 ${errors.contactType ? "is-invalid" : ""}`}
+                placeholder="Enter contact type"
+                value={customType}
+                onChange={handleCustomTypeChange}
               />
             )}
-          </div> */}
+
+            <div className="invalid-feedback">{errors.contactType?.message}</div>
+          </div>
 
           <div className="col-md-6 mb-2">
             <label>Referred By</label>

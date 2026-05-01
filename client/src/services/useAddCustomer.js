@@ -8,6 +8,7 @@ export const useAddCustomer = () => {
     mutationFn: addCustomer,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["customers"] });
+      queryClient.invalidateQueries({ queryKey: ["filters"] });
     },
   });
 };

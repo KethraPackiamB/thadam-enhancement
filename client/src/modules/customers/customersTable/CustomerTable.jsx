@@ -12,12 +12,10 @@ import FloatingButton from "../../../ui/button/FloatingButton";
 import CustomerController from "../customersTableController/customerController/CustomerController";
 import CustomerCards from "../customerCards/CustomerCards";
 import { CustomerTableControllerContext } from "../../../contexts/customerTableControllerContext/CustomerTableControllerContext";
-import { AllCustomerContext } from "../../../contexts/allCustomerContext/AllCustomerContext";
 
 const CustomerTable = ({ data, columns }) => {
  const totalCustomers = data?.length || 0;
   const { view } = useContext(CustomerTableControllerContext);
-  const {customers} = useContext(AllCustomerContext);
 
   const navigate = useNavigate();
 
@@ -145,7 +143,7 @@ const CustomerTable = ({ data, columns }) => {
       )}
       {view === "card" && <CustomerCards table={table} />}
 
-     {customers.length > 10 &&<Pagination table={table} />}
+     {totalCustomers > 10 &&<Pagination table={table} />}
       <FloatingButton />
     </div>
   );
