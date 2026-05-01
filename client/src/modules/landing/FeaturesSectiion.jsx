@@ -55,7 +55,7 @@ const FeaturesSection
                         <Button
                             className="btn btn-outline-primary btn"
                             onClick={handleLogin}
-                            buttonText={<>Get Started <i class="bi bi-arrow-right"></i></>}
+                            buttonText={<>Get Started <i className="bi bi-arrow-right"></i></>}
                         />
                     </motion.div>
                     <div className="d-flex mt-4 gap-3 flex-wrap">
