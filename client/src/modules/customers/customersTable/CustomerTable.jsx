@@ -46,6 +46,7 @@ const CustomerTable = ({ data, columns }) => {
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    
     state: {
       columnVisibility,
       sorting,
