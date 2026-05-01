@@ -1,6 +1,20 @@
 const Customer = require("../models/customer");
 const mongoose = require("mongoose");
 
+const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+const cleanFilterOptions = (values) =>
+  [...new Set(values
+    .filter(Boolean)
+    .map((value) => value.trim())
+    .filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b));
+
+const normalizeCustomerPayload = (data) => ({
+  ...data,
+  contactType: data.contactType?.trim() || "Prospect",
+});
+
 const getAllCustomers = async (req, res) => {
   try {
     const filter = { createdBy: req.userId };
@@ -16,7 +30,10 @@ const getAllCustomers = async (req, res) => {
       filter["address.city"] = { $regex: req.query.location, $options: "i" };
     }
     if (req.query.contactType) {
-      filter["contactType"] = { $regex: req.query.contactType, $options: "i" };
+      filter["contactType"] = {
+        $regex: `^${escapeRegex(req.query.contactType.trim())}$`,
+        $options: "i",
+      };
     }
     if (req.query.designation) {
       filter["designation"] = { $regex: req.query.designation, $options: "i" };
@@ -40,17 +57,17 @@ const getAllCustomers = async (req, res) => {
 
 const getCustomerFilter = async (req, res) => {
   try {
-    const locations = await Customer.distinct("address.city", {
+    const locations = cleanFilterOptions(await Customer.distinct("address.city", {
       createdBy: req.userId,
-    });
+    }));
 
-    const contactTypes = await Customer.distinct("contactType", {
+    const contactTypes = cleanFilterOptions(await Customer.distinct("contactType", {
       createdBy: req.userId,
-    });
+    }));
 
-    const designations = await Customer.distinct("designation", {
+    const designations = cleanFilterOptions(await Customer.distinct("designation", {
       createdBy: req.userId,
-    });
+    }));
 
     res.json({
       success: true,
@@ -139,9 +156,10 @@ const deleteCustomer = async (req, res) => {
 
 const updateCustomer = async (req, res) => {
   try {
+    const customerData = normalizeCustomerPayload(req.body);
     const updatedCustomer = await Customer.findOneAndUpdate(
       { _id: req.params.id, createdBy: req.userId },
-      req.body,
+      customerData,
       { returnDocument: "after" },
     );
     // console.log(req.body)
@@ -159,7 +177,8 @@ const updateCustomer = async (req, res) => {
 const addCustomer = async (req, res) => {
   console.log(req.user);
   try {
-    const { firstname, primaryEmail, primaryContactNo } = req.body;
+    const customerData = normalizeCustomerPayload(req.body);
+    const { firstname, primaryEmail, primaryContactNo } = customerData;
     if (!firstname || !primaryEmail || !primaryContactNo) {
       return res.status(400).json({
         success: false,
@@ -190,7 +209,7 @@ const addCustomer = async (req, res) => {
       });
     }
     const newCustomer = new Customer({
-      ...req.body,
+      ...customerData,
       createdBy: req.userId,
     });
     const savedCustomer = await newCustomer.save();

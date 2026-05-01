@@ -105,6 +105,7 @@ const AddCustomerPage = () => {
               register={register}
               errors={errors}
               setValue={setValue}
+              customer={customer}
             />
           </div>
           <div className="col-md-5 d-flex">

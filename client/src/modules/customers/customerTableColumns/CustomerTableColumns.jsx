@@ -1,12 +1,14 @@
 import React, { useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AllCustomerContext } from "../../../contexts/allCustomerContext/AllCustomerContext";
+import { CustomerTableControllerContext } from "../../../contexts/customerTableControllerContext/CustomerTableControllerContext";
 import CustomerTable from "../customersTable/CustomerTable";
 import Button from "../../../ui/button/Button";
 import DeleteConfirmation from "../../actions/deleteCustomer/DeleteCustomer";
 
 const CustomerTableColumns = () => {
-  const { customers, deleteCustomer } = useContext(AllCustomerContext);
+  const { deleteCustomer } = useContext(AllCustomerContext);
+  const { customers } = useContext(CustomerTableControllerContext);
 
   const [showConfirm, setShowConfirm] = useState(false);
   const [customerToDelete, setCustomerToDelete] = useState(null);

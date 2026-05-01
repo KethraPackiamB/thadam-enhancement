@@ -97,16 +97,16 @@ const CustomerController = ({ table }) => {
               </div>
 
               <div className="mb-2">
-                <label className="form-label">Role</label>
+                <label className="form-label">Contact Type</label>
                 <select
                   className="form-select"
                   value={contactType}
                   onChange={(e) => setContactType(e.target.value)}
                 >
                   <option value="">All</option>
-                  {filters.contactTypes?.map((rol) => (
-                    <option key={rol} value={rol}>
-                      {rol}
+                  {filters.contactTypes?.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
                     </option>
                   ))}
                 </select>
