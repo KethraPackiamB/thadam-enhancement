@@ -63,6 +63,7 @@ const customerSchema = new mongoose.Schema(
       github: { type: String },
       facebook: { type: String },
       instagram: { type: String },
+
     },
 
     additionalSocialLinks: [
