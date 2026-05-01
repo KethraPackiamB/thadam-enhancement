@@ -11,7 +11,7 @@ export const CustomerTableControllerProvider = ({ children }) => {
   const [location, setLocation] = useState("");
   // const [role, setRole] = useState(""); 
   const [designation, setDesignation] = useState("");
-  const [view, setView] = useState("table");
+  // const [view, setView] = useState("table");
   const[contactType,setContactType]=useState("")
   
   const {
@@ -32,9 +32,9 @@ export const CustomerTableControllerProvider = ({ children }) => {
   });
 
   
-  const handleView = () => {
-    setView((prev) => (prev === "table" ? "card" : "table"));
-  };
+  // const handleView = () => {
+  //   setView((prev) => (prev === "table" ? "card" : "table"));
+  // };
   const deleteCustomer = (id) => {
 };
 
@@ -55,8 +55,8 @@ export const CustomerTableControllerProvider = ({ children }) => {
         setDesignation,
         contactType,
         setContactType,       
-        view,
-        handleView,
+        // view,
+        // handleView,
          deleteCustomer
       }}
     >

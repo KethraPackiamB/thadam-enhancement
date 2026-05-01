@@ -5,9 +5,11 @@ import CustomerTable from "../customersTable/CustomerTable";
 import Button from "../../../ui/button/Button";
 import DeleteConfirmation from "../../actions/deleteCustomer/DeleteCustomer";
 import FieldRender from "../../actions/fieldRender/FieldRender";
+import { CustomerTableControllerContext } from "../../../contexts/customerTableControllerContext/CustomerTableControllerContext";
 
 const CustomerTableColumns = () => {
-  const { customers, deleteCustomer } = useContext(AllCustomerContext);
+  const { deleteCustomer } = useContext(AllCustomerContext);
+  const {customers} = useContext(CustomerTableControllerContext)
 
   const [showConfirm, setShowConfirm] = useState(false);
   const [customerToDelete, setCustomerToDelete] = useState(null);

@@ -4,6 +4,7 @@ import { CustomerTableControllerContext } from '../../../contexts/customerTableC
 import ColumnSelector from '../../customers/customersTableController/columnSelector/ColumnSelector';
 import Button from '../../../ui/button/Button';
 import { useNavigate } from 'react-router-dom';
+import { AllCustomerContext } from '../../../contexts/allCustomerContext/AllCustomerContext';
 
 const ClientController = ({table}) => {
 
@@ -19,7 +20,7 @@ const ClientController = ({table}) => {
     setDesignation,
   } = useContext(CustomerTableControllerContext);
   const [showFilter, setShowFilter] = useState(false);
-  const { view, handleView } = useContext(CustomerTableControllerContext);
+  const { view, handleView } = useContext(AllCustomerContext);
   const filterRef = useRef(null) 
 
   const navigate = useNavigate();

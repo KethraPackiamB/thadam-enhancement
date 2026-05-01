@@ -8,11 +8,12 @@ import { useContext } from 'react';
 import { CustomerTableControllerContext } from '../../../contexts/customerTableControllerContext/CustomerTableControllerContext';
 import ClientCards from '../clientsCards/ClientCards';
 import { useState, useEffect} from 'react';
+import { AllCustomerContext } from '../../../contexts/allCustomerContext/AllCustomerContext';
 
 
 const ClientTable = ({columns, data}) => {
 
-   const { view } = useContext(CustomerTableControllerContext);
+   const { view } = useContext(AllCustomerContext);
     const totalClients = data?.length || 0;
 
     const [columnVisibility, setColumnVisibility] = useState(() => {
