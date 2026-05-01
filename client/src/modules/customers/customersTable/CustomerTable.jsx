@@ -11,13 +11,14 @@ import Pagination from "../customersTableController/pagination/Pagination";
 import FloatingButton from "../../../ui/button/FloatingButton";
 import CustomerController from "../customersTableController/customerController/CustomerController";
 import CustomerCards from "../customerCards/CustomerCards";
-import { CustomerTableControllerContext } from "../../../contexts/customerTableControllerContext/CustomerTableControllerContext";
+// import { CustomerTableControllerContext } from "../../../contexts/customerTableControllerContext/CustomerTableControllerContext";
 import { AllCustomerContext } from "../../../contexts/allCustomerContext/AllCustomerContext";
 
 const CustomerTable = ({ data, columns }) => {
  const totalCustomers = data?.length || 0;
-  const { view } = useContext(CustomerTableControllerContext);
-  const {customers} = useContext(AllCustomerContext);
+  // const { view } = useContext(CustomerTableControllerContext);
+  const {customers,view} = useContext(AllCustomerContext);
+  // console.log("view:", view);
 
   const navigate = useNavigate();
 
@@ -25,19 +26,7 @@ const CustomerTable = ({ data, columns }) => {
     const savedColumns = localStorage.getItem("columnVisibility");
     return savedColumns ? JSON.parse(savedColumns) : {};
   });
-
-  useEffect(() => {
-    localStorage.setItem("columnVisibility", JSON.stringify(columnVisibility));
-  }, [columnVisibility]);
-
- useEffect(() => {
-  if (view === "table") {
-    table.setPageSize(10);
-  } else {
-    table.setPageSize(12);
-  }
-}, [view]);
-
+  
   const [sorting, setSorting] = useState([]);
 
   const table = useReactTable({
@@ -57,6 +46,19 @@ const CustomerTable = ({ data, columns }) => {
     onColumnVisibilityChange: setColumnVisibility,
     onSortingChange: setSorting,
   });
+
+
+  useEffect(() => {
+    localStorage.setItem("columnVisibility", JSON.stringify(columnVisibility));
+  }, [columnVisibility]);
+
+ useEffect(() => {
+  if (view === "table") {
+    table.setPageSize(10);
+  } else {
+    table.setPageSize(12);
+  }
+}, [view]);
 
 
   const handleClick = (row) => {

@@ -19,10 +19,17 @@ const Sidebar = ({ open, setOpen, handleLogout }) => {
             style={{ maxWidth: "150px" }}
           />
         </div>
-
-        <nav className="nav flex-column flex-grow-1">
+          <nav className="nav flex-column flex-grow-1">
           <NavLink
             to="/"
+            className={({ isActive }) =>
+              isActive ? "nav-link bg-primary-subtle text-primary rounded" : "nav-link"
+            }
+          >
+            Dashboard
+          </NavLink>
+          <NavLink
+            to="/contact"
             className={({ isActive }) =>
               isActive ? "nav-link bg-primary-subtle text-primary rounded" : "nav-link"
             }

@@ -5,6 +5,7 @@ import { FaFilter } from "react-icons/fa";
 import Button from "../../../../ui/button/Button";
 import ColumnSelector from "../columnSelector/ColumnSelector";
 import { CustomerTableControllerContext } from "../../../../contexts/customerTableControllerContext/CustomerTableControllerContext";
+import { AllCustomerContext } from "../../../../contexts/allCustomerContext/AllCustomerContext";
 
 const CustomerController = ({ table }) => {
   const {
@@ -19,7 +20,7 @@ const CustomerController = ({ table }) => {
     setDesignation,
   } = useContext(CustomerTableControllerContext);
   const [showFilter, setShowFilter] = useState(false);
-  const { view, handleView } = useContext(CustomerTableControllerContext);
+  const { view, handleView } = useContext(AllCustomerContext);
   const filterRef = useRef(null) 
 
   const navigate = useNavigate();
