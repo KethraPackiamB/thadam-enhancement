@@ -11,4 +11,4 @@ const ResourceCard = ({ stepheading,text}) => {
   )
 }
 
-export default ResourceCard
+export default ResourceCard;

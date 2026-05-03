@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { FaFilter } from "react-icons/fa";
-import Button from "../../../../ui/button/Button";
-import ColumnSelector from "../columnSelector/ColumnSelector";
-import { CustomerTableControllerContext } from "../../../../contexts/customerTableControllerContext/CustomerTableControllerContext";
-import { AllCustomerContext } from "../../../../contexts/allCustomerContext/AllCustomerContext";
+import React from 'react'
+import { useContext, useRef, useState, useEffect } from 'react';
+import { CustomerTableControllerContext } from '../../../contexts/customerTableControllerContext/CustomerTableControllerContext';
+import ColumnSelector from '../../customers/customersTableController/columnSelector/ColumnSelector';
+import Button from '../../../ui/button/Button';
+import { useNavigate } from 'react-router-dom';
+import { AllCustomerContext } from '../../../contexts/allCustomerContext/AllCustomerContext';
 
-const CustomerController = ({ table }) => {
-  const {
+const ClientController = ({table}) => {
+
+    const {
     search,
     setSearch,
     filters,
@@ -151,6 +151,6 @@ const CustomerController = ({ table }) => {
       </div>
     </div>
   );
-};
+}
 
-export default CustomerController;
+export default ClientController

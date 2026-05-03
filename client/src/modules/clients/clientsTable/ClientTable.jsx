@@ -1,91 +1,77 @@
-import {
-  useReactTable,
-  getCoreRowModel,
-  flexRender,
-  getPaginationRowModel,
-  getSortedRowModel,
-} from "@tanstack/react-table";
-import { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Pagination from "../customersTableController/pagination/Pagination";
-import FloatingButton from "../../../ui/button/FloatingButton";
-import CustomerController from "../customersTableController/customerController/CustomerController";
-import CustomerCards from "../customerCards/CustomerCards";
-// import { CustomerTableControllerContext } from "../../../contexts/customerTableControllerContext/CustomerTableControllerContext";
-import { AllCustomerContext } from "../../../contexts/allCustomerContext/AllCustomerContext";
+import { useReactTable } from '@tanstack/react-table';
+import { getCoreRowModel, flexRender, getPaginationRowModel, getSortedRowModel } from '@tanstack/react-table';
+import React from 'react';
+import Pagination from '../../customers/customersTableController/pagination/Pagination';
+import FloatingButton from '../../../ui/button/FloatingButton';
+import ClientController from '../clientsTableController/ClientController';
+import { useContext } from 'react';
+import { CustomerTableControllerContext } from '../../../contexts/customerTableControllerContext/CustomerTableControllerContext';
+import ClientCards from '../clientsCards/ClientCards';
+import { useState, useEffect} from 'react';
+import { AllCustomerContext } from '../../../contexts/allCustomerContext/AllCustomerContext';
 
-const CustomerTable = ({ data, columns }) => {
- const totalCustomers = data?.length || 0;
-  // const { view } = useContext(CustomerTableControllerContext);
-  const {customers,view} = useContext(AllCustomerContext);
-  // console.log("view:", view);
 
-  const navigate = useNavigate();
+const ClientTable = ({columns, data}) => {
 
-  const [columnVisibility, setColumnVisibility] = useState(() => {
-    const savedColumns = localStorage.getItem("columnVisibility");
-    return savedColumns ? JSON.parse(savedColumns) : {};
-  });
-  
-  const [sorting, setSorting] = useState([]);
+   const { view } = useContext(AllCustomerContext);
+    const totalClients = data?.length || 0;
 
-  const table = useReactTable({
-     data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
+    const [columnVisibility, setColumnVisibility] = useState(() => {
+        const savedColumns = localStorage.getItem("columnVisibility");
+        return savedColumns ? JSON.parse(savedColumns) : {};
+      });
     
-    state: {
+      useEffect(() => {
+        localStorage.setItem("columnVisibility", JSON.stringify(columnVisibility));
+      }, [columnVisibility]);
+    
+     useEffect(() => {
+      if (view === "table") {
+        clientTable.setPageSize(10);
+      } else {
+        clientTable.setPageSize(12);
+      }
+    }, [view]);
+    
+      const [sorting, setSorting] = useState([]);
+
+    const clientTable = useReactTable({
+        data,
+        columns,
+        getCoreRowModel: getCoreRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
+         getSortedRowModel: getSortedRowModel(),
+         pagination: {
+      pageSize: 10,
+    },
+     state: {
       columnVisibility,
       sorting,
     },
-    pagination: {
-      pageSize: 10,
-    },
     onColumnVisibilityChange: setColumnVisibility,
     onSortingChange: setSorting,
-  });
-
-
-  useEffect(() => {
-    localStorage.setItem("columnVisibility", JSON.stringify(columnVisibility));
-  }, [columnVisibility]);
-
- useEffect(() => {
-  if (view === "table") {
-    table.setPageSize(10);
-  } else {
-    table.setPageSize(12);
-  }
-}, [view]);
-
-
-  const handleClick = (row) => {
-    navigate(`/customer/${row.original?._id}`);
-  };
-
+    });
+    
   return (
     <div className="container-fluid mt-3">
-      <div className="row mb-4">
+       <div className="row mb-4">
         <div className="col-md-3">
           <div className="card shadow-sm border-0">
             <div className="card-body">
-              <h6 className="text-muted mb-2">Total Customers</h6>
-              <h3 className="fw-bold text-primary">{totalCustomers}</h3>
+              <h6 className="text-muted mb-2">Total Clients</h6>
+              <h3 className="fw-bold text-primary">{totalClients}</h3>
             </div>
           </div>
         </div>
       </div>
-
       <div className="d-flex">
-        <CustomerController table={table} />
+        <ClientController table={clientTable} />
       </div>
-      {view === "table" && (
-        <div className="table-responsive border rounded-3">
+       {view === "table" && (
+      <div className="table-responsive border rounded-3">
           <table className="table table-borderless table-hover align-middle p-2">
             <thead className="table-light">
-              {table.getHeaderGroups().map((headerGroup) => (
+              {clientTable.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
                     <th
@@ -122,11 +108,10 @@ const CustomerTable = ({ data, columns }) => {
             </thead>
 
             <tbody>
-              {table.getRowModel().rows.map((row) => (
+              {clientTable.getRowModel().rows.map((row) => (
                 <tr
                   key={row.id}
                   style={{ cursor: "pointer" }}
-                  onClick={() => handleClick(row)}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <td
@@ -144,13 +129,12 @@ const CustomerTable = ({ data, columns }) => {
             </tbody>
           </table>
         </div>
-      )}
-      {view === "card" && <CustomerCards table={table} />}
-
-     {customers.length > 10 &&<Pagination table={table} />}
-      <FloatingButton />
+       )}
+         {view === "card" && <ClientCards table={clientTable} />}
+         {data.length > 10 &&<Pagination table={clientTable} />}
+         <FloatingButton />
     </div>
-  );
-};
+  )
+}
 
-export default CustomerTable;
+export default ClientTable;

@@ -1,20 +1,19 @@
 import { useState } from "react";
 import Sidebar from "../../modules/layout/sidebar/Sidebar"
 import WelcomeCard from "../../modules/layout/welcomeCard/WelcomeCard"
-import { Logout } from "../../modules/actions/handleLogout/Logout";
-import ClientTableColumns from "../../modules/clients/clientTableColumns/ClientTableColumns";
-// import CustomerTableColumns from "../../modules/customers/customerTableColumns/CustomerTableColumns";
+import CustomerTableColumns from "../../modules/customers/customerTableColumns/CustomerTableColumns"
+// import { Logout } from "../../components/logOutHandling/LogoutHandling";
 // import CustomerTable from "../../modules/customers/customersTable/CustomerTable";
 
 
-const ClientDashboardPage= () => {
+const ContactDashboardPage = () => {
   const [open, setOpen] = useState(false);
-  console.log("rendering")
+  // console.log("rendering")
 
   return (
     <div className="d-flex vh-100 position-relative">
      
-      <Sidebar open={open} setOpen={setOpen} handleLogout={Logout} />
+      <Sidebar open={open} setOpen={setOpen} />
 
       
       <div className="flex-grow-1 d-flex flex-column bg-light overflow-auto">
@@ -33,7 +32,7 @@ const ClientDashboardPage= () => {
           <WelcomeCard />
 
           <div>
-          <ClientTableColumns/>
+           <CustomerTableColumns />
           </div>
         </div>
       </div>
@@ -41,4 +40,4 @@ const ClientDashboardPage= () => {
   );
 };
 
-export default ClientDashboardPage;
+export default ContactDashboardPage;
