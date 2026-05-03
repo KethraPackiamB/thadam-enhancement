@@ -1,11 +1,8 @@
 import Sidebar from "../../modules/layout/sidebar/Sidebar"
 import WelcomeCard from "../../modules/layout/welcomeCard/WelcomeCard"
 import CustomerTableColumns from "../../modules/customers/customerTableColumns/CustomerTableColumns";
-// import { Logout } from "../../components/logOutHandling/LogoutHandling";
-import { useState, useContext } from "react";
-// import Sidebar from "../../modules/layout/sidebar/Sidebar";
-// import WelcomeCard from "../../modules/layout/welcomeCard/WelcomeCard";
-import { AllCustomerContext } from "../../contexts/allCustomerContext/AllCustomerContext";
+import { Logout } from "../../modules/actions/handleLogout/Logout";
+// import CustomerTable from "../../modules/customers/customersTable/CustomerTable";
 
 const getInitials = (firstname = "", lastname = "") => {
   return `${firstname[0] ?? ""}${lastname[0] ?? ""}`.toUpperCase();
@@ -49,7 +46,8 @@ const DashboardPage = () => {
 
   return (
     <div className="d-flex vh-100 position-relative">
-      <Sidebar open={open} setOpen={setOpen} />
+     
+      <Sidebar open={open} setOpen={setOpen} handleLogout={Logout} />
 
       <div className="flex-grow-1 d-flex flex-column bg-light overflow-auto">
         <div className="border-bottom bg-white p-2">
